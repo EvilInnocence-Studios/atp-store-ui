@@ -1,5 +1,8 @@
 export declare interface IProductManagerProps {
-
+    products: IProduct[];
+    isLoading: boolean;
+    create: () => void;
+    columns: ColumnType<IProduct>[];
 }
 
 // What gets passed into the component from the parent as attributes
