@@ -6,6 +6,7 @@ export const productServices = ({get, post, /*put,*/ patch, remove}: IMethods) =
     product: {
         create: (product:NewProduct) => post('product', product).then(getResults),
         search: () => get('product').then(getResults), // TODO: add filters
+        get: (id:number) => get(`product/${id}`).then(getResults),
         update: (id:number, product:Partial<IProduct>) => patch(`product/${id}`, product),
         remove: (id:number) => remove(`product/${id}`),
         tag: {

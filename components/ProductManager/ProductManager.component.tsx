@@ -6,7 +6,7 @@ import { prop, sort } from "ts-functional";
 import { ProductManagerProps } from "./ProductManager.d";
 import styles from './ProductManager.module.scss';
 
-export const ProductManagerComponent = ({products, isLoading, create, columns }:ProductManagerProps) =>
+export const ProductManagerComponent = ({products, isLoading, /*create,*/ columns }:ProductManagerProps) =>
     <div className={styles.productManager}>
         <h1><FontAwesomeIcon icon={faShop} /> Products</h1>
 

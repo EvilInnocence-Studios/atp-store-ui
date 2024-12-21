@@ -2,6 +2,7 @@ export declare interface IProductManagerProps {
     products: IProduct[];
     isLoading: boolean;
     create: () => void;
+    remove: (id: number) => () => void;
     columns: ColumnType<IProduct>[];
 }
 

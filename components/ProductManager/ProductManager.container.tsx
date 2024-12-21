@@ -1,15 +1,19 @@
+import { DeleteBtn } from "@core/components/DeleteBtn";
 import { services } from "@core/lib/api";
 import { flash } from "@core/lib/flash";
 import { useLoader } from "@core/lib/useLoader";
 import { appendTo } from "@core/lib/util";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IProduct } from "@store-shared/product/types";
+import { Switch } from "antd";
 import { ColumnType } from "antd/es/table";
 import { useEffect, useState } from "react";
+import { Link } from "react-router";
+import { all, prop, sort } from "ts-functional";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { ProductManagerComponent } from "./ProductManager.component";
 import { IProductManagerInputProps, IProductManagerProps, ProductManagerProps } from "./ProductManager.d";
-import { Switch } from "antd";
-import { prop, sort } from "ts-functional";
 
 const injectProductManagerProps = createInjector(({}:IProductManagerInputProps):IProductManagerProps => {
     const [products, setProducts] = useState<IProduct[]>([]);
@@ -31,6 +35,15 @@ const injectProductManagerProps = createInjector(({}:IProductManagerInputProps):
         product.search()
             .then(setProducts)
             .catch(flash.error("Failed to load products"))
+            .finally(loader.stop);
+    }
+
+    const remove = (id:number) => () => {
+        const oldProducts = products;
+        setProducts(products.filter(p => p.id !== id));
+        loader.start();
+        product.remove(id)
+            .catch(all(() => setProducts(oldProducts), flash.error("Failed to remove product")))
             .finally(loader.stop);
     }
 
@@ -95,9 +108,16 @@ const injectProductManagerProps = createInjector(({}:IProductManagerInputProps):
         title: "Brokerage Product ID",
         dataIndex: "brokerageProductId",
         key: "brokerageProductId",
+    }, {
+        title: "Actions",
+        key: "actions",
+        render: (product:IProduct) => <>
+            <Link to={`/products/${product.id}`}><FontAwesomeIcon icon={faEdit} /> Edit</Link>
+            <DeleteBtn entityType="product" onClick={remove(product.id)} />
+        </>,
     }]
 
-    return {products, isLoading: loader.isLoading, create, columns};
+    return {products, isLoading: loader.isLoading, create, remove, columns};
 });
 
 const connect = inject<IProductManagerInputProps, ProductManagerProps>(mergeProps(
