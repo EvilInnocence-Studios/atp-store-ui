@@ -6,6 +6,10 @@ import { Card, Col, DatePicker, Radio, Row, Space, Spin, Switch } from "antd";
 import dayjs from "dayjs";
 import { ProductEditorProps } from "./ProductEditor.d";
 import styles from './ProductEditor.module.scss';
+import { ProductTagEditor } from "../ProductTagEditor";
+import { ProductMediaEditor } from "../ProductMediaEditor";
+import { RelatedProductsEditor } from "../RelatedProductsEditor";
+import { ProductFilesEditor } from "../ProductFilesEditor";
 
 export const ProductEditorComponent = ({product, isLoading, updateNumber, updateString, updateToggle}:ProductEditorProps) =>
     <Spin spinning={isLoading}>
@@ -51,9 +55,13 @@ export const ProductEditorComponent = ({product, isLoading, updateNumber, update
                         <Label label="Meta Title"><Editable value={product.metaTitle || ""} onChange={updateString("metaTitle")}/></Label>
                         <Label label="Meta Description"><Editable textArea value={product.metaDescription || ""} onChange={updateString("metaDescription")}/></Label>
                         <Label label="Meta Keywords"><Editable value={product.metaKeywords || ""} onChange={updateString("metaKeywords")}/></Label>
+
+                        <ProductTagEditor productId={product.id} />
+                        <ProductMediaEditor productId={product.id} />
+                        <RelatedProductsEditor productId={product.id} />
+                        <ProductFilesEditor productId={product.id} />
                     </Space>
                 </Col>
             </Row>
-            {JSON.stringify(product)}
         </>}
     </Spin>;
