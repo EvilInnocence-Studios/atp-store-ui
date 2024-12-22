@@ -57,7 +57,7 @@ export const ProductEditorComponent = ({product, isLoading, updateNumber, update
                         <Label label="Meta Keywords"><Editable value={product.metaKeywords || ""} onChange={updateString("metaKeywords")}/></Label>
 
                         <ProductTagEditor productId={product.id} />
-                        <ProductMediaEditor productId={product.id} />
+                        <ProductMediaEditor product={product} />
                         <RelatedProductsEditor productId={product.id} />
                         <ProductFilesEditor productId={product.id} />
                     </Space>

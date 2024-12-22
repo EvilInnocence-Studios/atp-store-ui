@@ -10,6 +10,15 @@ export const productServices = ({get, post, /*put,*/ patch, remove}: IMethods) =
         get: (id:number) => get(`product/${id}`).then(getResults),
         update: (id:number, product:Partial<IProduct>) => patch(`product/${id}`, product),
         remove: (id:number) => remove(`product/${id}`),
+        media: {
+            upload: (productId:number, file:File) => {
+                const formData = new FormData();
+                formData.append('file', file);
+                return post(`product/${productId}/media`, formData).then(getResults);
+            },
+            search: (productId:number) => get(`product/${productId}/media`).then(getResults),
+            remove: (productId:number, mediaId:number) => remove(`product/${productId}/media/${mediaId}`),
+        },
         tag: {
             search: (productId:number):Promise<ITag[]> => get(`product/${productId}/tag`).then(getResults),
             create: (productId:number, tagId:number) => post(`product/${productId}/tag`, {tagId}),

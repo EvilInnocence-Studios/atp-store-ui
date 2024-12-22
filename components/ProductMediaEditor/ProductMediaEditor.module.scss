@@ -1,1 +1,10 @@
 @use "@styles/globals.module.scss";
+
+.productMediaList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: globals.$padding;
+    margin-bottom: globals.$padding;
+    .mediaItem {
+    }
+}
