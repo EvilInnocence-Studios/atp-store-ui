@@ -5,7 +5,7 @@ import { DeleteBtn } from "@core/components/DeleteBtn";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 
-const imgHost = (id:number) =>
+export const imgHost = (id:number) =>
     // "https:\/\/www.evilinnocence.com\/shop\/media\/catalog\/product";
    `https://evilinnocence.s3.us-east-1.amazonaws.com/media/product/${id}/`;
 

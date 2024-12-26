@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { all, prop, sort } from "ts-functional";
 import { createInjector, inject, mergeProps } from "unstateless";
+import { imgHost } from "../ProductMediaEditor/ProductMediaEditor.component";
 import { ProductManagerComponent } from "./ProductManager.component";
 import { IProductManagerInputProps, IProductManagerProps, ProductManagerProps } from "./ProductManager.d";
 
@@ -49,7 +50,6 @@ const injectProductManagerProps = createInjector(({}:IProductManagerInputProps):
 
     useEffect(refresh, []);
 
-    const imgHost = "https://www.evilinnocence.com/shop/media/catalog/product/cache/1/small_image/256x/9df78eab33525d08d6e5fb8d27136e95/";
     const columns:ColumnType<IProduct>[] = [{
         title: "ID",
         dataIndex: "id",
@@ -57,9 +57,9 @@ const injectProductManagerProps = createInjector(({}:IProductManagerInputProps):
         sorter: sort.by(prop<IProduct, "id">("id")).asc,
     },{
         title: "Thumbnail",
-        dataIndex: "thumbnail",
-        key: "thumbnail",
-        render: (thumbnail:string) => <img width={64} src={`${imgHost}${thumbnail}`} />
+        dataIndex: "thumbnailUrl",
+        key: "thumbnailUrl",
+        render: (thumbnailUrl:string, product:IProduct[]) => <img width={64} src={`${imgHost(product.id)}${thumbnailUrl}`} />
     },{
         title: 'Name',
         dataIndex: 'name',
