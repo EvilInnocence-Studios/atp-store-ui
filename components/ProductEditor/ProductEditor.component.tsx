@@ -64,7 +64,7 @@ export const ProductEditorComponent = ({product, isLoading, updateNumber, update
                             <ProductTagEditor productId={product.id} />
                         </Tabs.TabPane>
                         <Tabs.TabPane key="media" tab="Media">
-                            <ProductMediaEditor product={product} />
+                            <ProductMediaEditor product={product} update={updateNumber}/>
                         </Tabs.TabPane>
                         <Tabs.TabPane key="related" tab="Related">
                             <RelatedProductsEditor productId={product.id} />

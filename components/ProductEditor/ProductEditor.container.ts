@@ -36,7 +36,12 @@ const injectProductEditorProps = createInjector(({productId}:IProductEditorInput
         }
     }
     
-    return {product, isLoading: loader.isLoading, updateString: update<string>, updateToggle: update<boolean>, updateNumber: update<number>};
+    return {
+        product, isLoading: loader.isLoading,
+        updateString: update<string>,
+        updateToggle: update<boolean>,
+        updateNumber: update<number>
+    };
 });
 
 const connect = inject<IProductEditorInputProps, ProductEditorProps>(mergeProps(
