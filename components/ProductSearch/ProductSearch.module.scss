@@ -1,0 +1,7 @@
+@use "@styles/globals.module.scss";
+
+.productSearch {
+    :global(.ant-select) {
+        width: 256px;
+    }
+}
