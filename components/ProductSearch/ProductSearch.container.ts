@@ -2,12 +2,15 @@ import { useSynonyms } from "@common/lib/synonym/util";
 import { services } from "@core/lib/api";
 import { useLoader } from "@core/lib/useLoader";
 import { IProductFull } from "@store-shared/product/types";
-import { searchMatch, searchString } from "@store/lib/search";
+import { searchProduct } from "@store/lib/search";
 import { debounce } from "lodash";
 import { useEffect, useState } from "react";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { ProductSearchComponent } from "./ProductSearch.component";
 import { IProductSearchInputProps, IProductSearchProps, ProductSearchProps } from "./ProductSearch.d";
+
+const factor = 100000000000;
+export const dateDiff = (p:IProductFull) => 10 * (Date.now() - Date.parse(p.releaseDate))/factor;
 
 const injectProductSearchProps = createInjector(({}:IProductSearchInputProps):IProductSearchProps => {
     const [search, setSearch] = useState("");
@@ -22,13 +25,20 @@ const injectProductSearchProps = createInjector(({}:IProductSearchInputProps):IP
             .finally(loader.stop);
     }, []);
 
-    const match = (p:IProductFull) => searchMatch(search, searchString(p, synonyms));
+    const match = (p:IProductFull) => searchProduct(p, search, synonyms);
 
-    const matchingProducts = products
+    const matchingProducts = !search ? products : products
         .filter(p => match(p) >= search.split(" ").length)
-        .sort((a, b) => match(b) - match(a));
+        .sort((a, b) => {
+            // Make more recently released products sort higher
+            const matcha = match(a) - dateDiff(a);
+            const matchb = match(b) - dateDiff(b);
+            const diff = matchb - matcha;
+
+            return diff;
+        });
     
-    return {products: matchingProducts, search, setSearch: debounce(setSearch, 500)};
+    return {products: matchingProducts, search, setSearch: debounce(setSearch, 500), match};
 });
 
 const connect = inject<IProductSearchInputProps, ProductSearchProps>(mergeProps(

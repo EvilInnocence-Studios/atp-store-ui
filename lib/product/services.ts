@@ -1,7 +1,7 @@
 import { ITag } from "@common-shared/tag/types";
 import { IMethods } from "@core/lib/types";
 import { getResults } from "@core/lib/util";
-import { IProduct, NewProduct } from "@store-shared/product/types";
+import { IProduct, IProductMedia, NewProduct } from "@store-shared/product/types";
 
 export const productServices = ({get, post, /*put,*/ patch, remove}: IMethods) => ({
     product: {
@@ -16,6 +16,7 @@ export const productServices = ({get, post, /*put,*/ patch, remove}: IMethods) =
                 formData.append('file', file);
                 return post(`product/${productId}/media`, formData).then(getResults);
             },
+            get: (productId:number, mediaId:number):Promise<IProductMedia> => get(`product/${productId}/media/${mediaId}`).then(getResults),
             search: (productId:number) => get(`product/${productId}/media`).then(getResults),
             remove: (productId:number, mediaId:number) => remove(`product/${productId}/media/${mediaId}`),
         },

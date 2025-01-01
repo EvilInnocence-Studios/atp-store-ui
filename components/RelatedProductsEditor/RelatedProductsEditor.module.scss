@@ -1,1 +1,20 @@
 @use "@styles/globals.module.scss";
+
+.relatedProducts {
+    margin-top: globals.$padding;
+    display: flex;
+    flex-wrap: wrap;
+    gap: globals.$padding;
+    .relatedProduct {
+        width: 256px;
+        position: relative;
+        img {
+            margin-bottom: globals.$padding-xs;
+        }
+        :global(.deleteBtn) {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+    }
+}
