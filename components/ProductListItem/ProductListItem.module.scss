@@ -1,0 +1,42 @@
+@use "@styles/globals.module.scss";
+
+.productListItem {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid globals.$brand-border;
+    border-radius: 0.5rem;
+    margin: 1rem;
+    width: 20rem;
+    img {
+        width: 100%;
+        border-radius: 0.5rem;
+    }
+    .productInfo {
+        position: absolute;
+        bottom: 0;
+        padding: globals.$padding-xs globals.$padding-sm;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: globals.$brand-bg-light;
+        opacity: 0.75;
+        color: globals.$brand-secondary;
+        h3 {
+            font-size: 1.5rem;
+            margin: 0.5rem 0;
+            padding: 0;
+        }
+        p {
+            font-size: 1rem;
+            margin: 0.5rem 0;
+        }
+        :global(.addToCartBtn) {
+            position: absolute ! important;
+            bottom: 4px;
+            right: 4px;
+        }
+    }
+}
