@@ -3,6 +3,7 @@ import { Cart } from "@store/components/Cart";
 import { MyAccount } from "@store/components/MyAccount";
 import { ProductEditor } from "@store/components/ProductEditor";
 import { ProductManager } from "../components/ProductManager";
+import { ProductsPage } from "@store/components/ProductsPage";
 
 export const storeRoutes = {
     admin: [
@@ -12,5 +13,6 @@ export const storeRoutes = {
     public: [
         {path: "/my-account", component: MyAccount},
         {path: "/cart", component: Cart},
+        {path: "/products", component: ProductsPage},
     ]
 }
