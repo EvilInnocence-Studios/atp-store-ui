@@ -34,6 +34,17 @@ export const productServices = ({get, post, /*put,*/ patch, remove}: IMethods) =
             create: (productId:number, relatedId:number) => post(`product/${productId}/related`, {relatedId}),
             remove: (productId:number, relatedId:number) => remove(`product/${productId}/related/${relatedId}`),
         },
+        files: {
+            search: (productId:number) => get(`product/${productId}/file`).then(getResults),
+            upload: (productId:number, folder: string, file:File) => {
+                const formData = new FormData();
+                formData.append('file', file);
+                formData.append('folder', folder);
+                return post(`product/${productId}/file`, formData).then(getResults);
+            },
+            remove: (productId:number, fileId:number) => remove(`product/${productId}/file/${fileId}`),
+            download: (productId:number, fileId:number) => get(`product/${productId}/file/${fileId}/download`).then(getResults),
+        }
     }
 });
 
