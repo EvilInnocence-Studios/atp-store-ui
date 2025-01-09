@@ -1,6 +1,9 @@
 @use "@styles/globals.module.scss";
 
 .productEditor {
+    .updateButtons {
+        float: right;
+    }
     hr {
         border: solid 1px globals.$brand-border;
     }

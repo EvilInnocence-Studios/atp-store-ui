@@ -22,7 +22,6 @@ const injectProductMediaEditorProps = createInjector(({product, update}:IProduct
     }, [product]);
     
     const upload = (file: File) => {
-        console.log(file);
         services().product.media.upload(product.id, file);
     }
 

@@ -10,9 +10,9 @@ export declare interface IProductMediaEditorProps {
 }
 
 // What gets passed into the component from the parent as attributes
-export declare interface IProductMediaEditorInputProps {
+export declare interface IProductMediaEditorInputProps<Entity> {
     product: IProduct;
-    update: (field:string) => (value:number) => void;
+    update: (field:keyof Entity) => (value:number) => void;
 }
 
 export type ProductMediaEditorProps = IProductMediaEditorInputProps & IProductMediaEditorProps;

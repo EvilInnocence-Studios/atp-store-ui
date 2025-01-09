@@ -11,7 +11,7 @@ import { ProductMediaEditor } from "../ProductMediaEditor";
 import { RelatedProductsEditor } from "../RelatedProductsEditor";
 import { ProductFilesEditor } from "../ProductFilesEditor";
 
-export const ProductEditorComponent = ({product, isLoading, updateNumber, updateString, updateToggle}:ProductEditorProps) =>
+export const ProductEditorComponent = ({product, isLoading, updateNumber, updateString, updateToggle, UpdateButtons}:ProductEditorProps) =>
     <Spin spinning={isLoading}>
         {!!product && <>
             <Row className={styles.productEditor} gutter={8}>
@@ -26,6 +26,7 @@ export const ProductEditorComponent = ({product, isLoading, updateNumber, update
                     <hr/>
                     <Tabs tabPosition="left">
                         <Tabs.TabPane key="details" tab="Details">
+                            <div className={styles.updateButtons}><UpdateButtons /></div>
                             <Space direction="vertical">
                                 <Space>
                                     <Radio.Group block optionType="button" buttonStyle="solid" value={product.productType} onChange={(e) => updateString("productType")(e.target.value)}>
