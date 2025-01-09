@@ -28,7 +28,16 @@
         > * {
             margin: 0;
             flex-grow: 1;
-            max-width: 378px;
+            flex-basis: 20%;
+            @media (max-width: 1700px) {
+                flex-basis: 30%;
+            }
+            @media (max-width: 1350px) {
+                flex-basis: 45%;
+            }
+            @media (max-width: 900px) {
+                flex-basis: 100%;
+            }
         }
     }
 }
