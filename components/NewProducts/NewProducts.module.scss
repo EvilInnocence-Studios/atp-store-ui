@@ -1,6 +1,31 @@
 @use "@styles/globals.module.scss";
 
 .newProducts {
-    display: flex;
-    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+    height: 378px;
+    .productList {
+        position: absolute;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        white-space: nowrap;
+        * {
+            white-space: normal;
+        }
+    }
+    .arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 6rem;
+        height: 6rem;
+        z-index: 999;
+        filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
+        &.left {
+            left: 0;
+        }
+        &.right {
+            right: 0;
+        }
+    }
 }
