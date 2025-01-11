@@ -6,8 +6,10 @@ export declare interface IProductsPageProps {
     groups: Array<{group: ITagGroup, tags: ITag[]}>;
     selectTag: (tagId: number) => void;
     selectedTagIds: number[];
+    q?: string;
     removeTag: (tagId: number) => void;
-    clearTags: () => void;
+    clearAll: () => void;
+    clearSearch: () => void;
     products: IProductFull[];
     isLoading: boolean;
     paginator: IPaginator;
