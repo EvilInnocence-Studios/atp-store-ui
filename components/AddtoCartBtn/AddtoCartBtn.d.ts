@@ -1,10 +1,14 @@
-export declare interface IAddtoCartBtnProps {
+import { IProduct } from "@store-shared/product/types";
 
+export declare interface IAddtoCartBtnProps {
+    addToCart: () => void;
+    download: () => void;
+    subscribe: () => void;
 }
 
 // What gets passed into the component from the parent as attributes
 export declare interface IAddtoCartBtnInputProps {
-    productId: number;
+    product: IProduct;
 }
 
 export type AddtoCartBtnProps = IAddtoCartBtnInputProps & IAddtoCartBtnProps;

@@ -3,7 +3,11 @@ import {AddtoCartBtnComponent} from "./AddtoCartBtn.component";
 import {IAddtoCartBtnInputProps, AddtoCartBtnProps, IAddtoCartBtnProps} from "./AddtoCartBtn.d";
 
 const injectAddtoCartBtnProps = createInjector(({}:IAddtoCartBtnInputProps):IAddtoCartBtnProps => {
-    return {};
+    return {
+        addToCart: () => {},
+        download: () => {},
+        subscribe: () => {},
+    };
 });
 
 const connect = inject<IAddtoCartBtnInputProps, AddtoCartBtnProps>(mergeProps(
