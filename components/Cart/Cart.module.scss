@@ -1,1 +1,18 @@
 @use "@styles/globals.module.scss";
+
+.cart {
+    max-width: 768px;
+    margin: auto;
+    .thumbnail {
+        margin: -14px -14px -18px -12px;
+    }
+    .cartFooter {
+        text-align: right;
+        font-weight: bold;
+    }
+    .cartActions {
+        margin-top: globals.$padding;
+        text-align: right;
+        padding-left: 75%;
+    }
+}

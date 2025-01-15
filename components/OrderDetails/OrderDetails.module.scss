@@ -1,0 +1,19 @@
+@use "@styles/globals.module.scss";
+
+.orderDetails {
+    padding: globals.$padding;
+    .totals {
+        text-align: center;
+        font-weight: bold;
+    }
+    img {
+        width: 84px;
+        margin: -10px -10px -18px -10px;
+    }
+    .orderFiles {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+}

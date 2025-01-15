@@ -1,0 +1,31 @@
+@use "@styles/globals.module.scss";
+
+.mediaSwitcher {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+    img {
+        width: 100%;
+        height: auto;
+    }
+    .navBtn {
+        position: absolute;
+        top: 50%;
+        font-size: 32px;
+        transform: translateY(-50%);
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 0.5rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        &.prev {
+            left: 0;
+        }
+        &.next {
+            right: 0;
+        }
+    }
+}

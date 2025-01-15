@@ -1,0 +1,24 @@
+@use "@styles/globals.module.scss";
+
+.productPage {
+    max-width: 1024px;
+    margin: auto;
+    .cartInfo {
+        * {font-size: x-large;}
+        button {
+            padding: globals.$padding-lg !important;
+        }
+        .cartPrice {
+            > span {
+                padding: globals.$padding-sm;
+            }
+        }
+    }
+    .relatedProducts {
+        display: flex;
+        flex-wrap: wrap;
+        > * {
+            flex-grow: 1;
+        }
+    }
+}

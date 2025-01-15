@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import { AddtoCartBtn } from "../AddtoCartBtn";
 import { Image } from "../Image";
 import { ProductPrice } from "../ProductPrice";
@@ -6,9 +7,11 @@ import styles from './ProductListItem.module.scss';
 
 export const ProductListItemComponent = ({product}:ProductListItemProps) =>
     <div className={styles.productListItem}>
-        <Image productId={product.id} imageId={product.thumbnailId} />
+        <Link to={`/products/${product.url}`}>
+            <Image productId={product.id} imageId={product.thumbnailId} />
+        </Link>
         <div className={styles.productInfo}>
-            <h3>{product.name}</h3>
+            <Link to={`/products/${product.url}`}><h3>{product.name}</h3></Link>
             <ProductPrice product={product} />
             <AddtoCartBtn product={product} />
         </div>

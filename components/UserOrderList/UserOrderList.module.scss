@@ -1,0 +1,9 @@
+@use "@styles/globals.module.scss";
+
+.userOrderList {
+    .selected {
+        font-weight: bold;
+        color: globals.$brand-primary;
+        background-color: globals.$brand-bg-light;
+    }
+}

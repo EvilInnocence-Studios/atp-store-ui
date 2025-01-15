@@ -1,10 +1,10 @@
-import { Button } from "antd";
-import {AddtoCartBtnProps} from "./AddtoCartBtn.d";
-import styles from './AddtoCartBtn.module.scss';
+import { faCartPlus, faDownload, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartPlus, faDoorOpen, faDownload } from "@fortawesome/free-solid-svg-icons";
-import clsx from "clsx";
 import { hasPermission } from "@uac/components/HasPermission";
+import { Button } from "antd";
+import clsx from "clsx";
+import { AddtoCartBtnProps } from "./AddtoCartBtn.d";
+import styles from './AddtoCartBtn.module.scss';
 
 const Subscribed = hasPermission("product.subscription");
 
@@ -14,21 +14,21 @@ export const AddtoCartBtnComponent = ({product, addToCart, download, subscribe}:
         {product.subscriptionOnly && <>
             <Subscribed yes>
                 <Button className={classes} type="primary" size="small" onClick={download}>
-                    <FontAwesomeIcon icon={faDownload} />
+                    <FontAwesomeIcon icon={faDownload} /> Download
                 </Button>
             </Subscribed>
             <Subscribed no>
                 <Button className={classes} type="primary" size="small" onClick={subscribe}>
-                    <FontAwesomeIcon icon={faDoorOpen} /> Subscribe
+                    <FontAwesomeIcon icon={faUserPlus} /> Subscribe
                 </Button>
             </Subscribed>
         </>}
         {!product.subscriptionOnly && <>
             {product.price > 0 && <Button className={classes} type="primary" size="small" onClick={addToCart}>
-                <FontAwesomeIcon icon={faCartPlus} />
+                <FontAwesomeIcon icon={faCartPlus} /> Add to cart
             </Button>}
             {product.price <= 0 && <Button className={classes} type="primary" size="small" onClick={download}>
-                <FontAwesomeIcon icon={faDownload} />
+                <FontAwesomeIcon icon={faDownload} /> Download
             </Button>}
         </>}
     </>;

@@ -2,8 +2,9 @@ import { withRoute } from "@core/lib/withRoute";
 import { Cart } from "@store/components/Cart";
 import { MyAccount } from "@store/components/MyAccount";
 import { ProductEditor } from "@store/components/ProductEditor";
-import { ProductManager } from "../components/ProductManager";
+import { ProductPage } from "@store/components/ProductPage";
 import { ProductsPage } from "@store/components/ProductsPage";
+import { ProductManager } from "../components/ProductManager";
 
 export const storeRoutes = {
     admin: [
@@ -11,8 +12,9 @@ export const storeRoutes = {
         {path: "/products/:productId", component: withRoute(ProductEditor)},
     ],
     public: [
-        {path: "/my-account", component: MyAccount},
-        {path: "/cart", component: Cart},
-        {path: "/products", component: ProductsPage},
+        {path: "/my-account",    component: MyAccount             },
+        {path: "/cart",          component: Cart                  },
+        {path: "/products",      component: ProductsPage          },
+        {path: "/products/:url", component: withRoute(ProductPage)},
     ]
 }

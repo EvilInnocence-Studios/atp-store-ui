@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { imgHost } from "../ProductMediaEditor/ProductMediaEditor.component";
 import {ImageProps} from "./Image.d";
 import styles from './Image.module.scss';
@@ -9,5 +10,5 @@ export const ImageComponent = ({productId, image, isLoading}:ImageProps) =>
             : '/logo.png'
         }
         alt={image?.alt}
-        className={isLoading ? styles.loading : ''}
+        className={clsx([styles.image, isLoading && styles.loading])}
     />;

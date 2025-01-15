@@ -3,14 +3,14 @@ import { services } from "@core/lib/api";
 import { IMethods } from "@core/lib/types";
 import { useLoader } from "@core/lib/useLoader";
 import { getResults } from "@core/lib/util";
-import { IProduct, IProductFull, IProductMedia, NewProduct } from "@store-shared/product/types";
+import { IOrder, IOrderFull, IOrderItem, IProduct, IProductFile, IProductFull, IProductMedia, NewProduct } from "@store-shared/product/types";
 import { useEffect } from "react";
 import { useSharedState } from "unstateless";
 
 export const productServices = ({get, post, /*put,*/ patch, remove}: IMethods) => ({
     product: {
         create: (product:NewProduct) => post('product', product).then(getResults),
-        search: ():Promise<IProductFull[]> => get('product').then(getResults), // TODO: add filters
+        search: (q?:{}):Promise<IProductFull[]> => get('product', q).then(getResults),
         get: (id:number) => get(`product/${id}`).then(getResults),
         update: (id:number, product:Partial<IProduct>) => patch(`product/${id}`, product),
         remove: (id:number) => remove(`product/${id}`),
@@ -21,7 +21,7 @@ export const productServices = ({get, post, /*put,*/ patch, remove}: IMethods) =
                 return post(`product/${productId}/media`, formData).then(getResults);
             },
             get: (productId:number, mediaId:number):Promise<IProductMedia> => get(`product/${productId}/media/${mediaId}`).then(getResults),
-            search: (productId:number) => get(`product/${productId}/media`).then(getResults),
+            search: (productId:number):Promise<IProductMedia[]> => get(`product/${productId}/media`).then(getResults),
             remove: (productId:number, mediaId:number) => remove(`product/${productId}/media/${mediaId}`),
         },
         tag: {
@@ -45,7 +45,22 @@ export const productServices = ({get, post, /*put,*/ patch, remove}: IMethods) =
             remove: (productId:number, fileId:number) => remove(`product/${productId}/file/${fileId}`),
             download: (productId:number, fileId:number) => get(`product/${productId}/file/${fileId}/download`).then(getResults),
         }
-    }
+    },
+    order: {
+        search: (userId:number):Promise<IOrder[]> => get(`user/${userId}/order`).then(getResults<IOrder[]>),
+        get: (userId:number, orderId:number):Promise<IOrder> => get(`user/${userId}/order/${orderId}`).then(getResults),
+        getFull: (userId:number, orderId:number):Promise<IOrderFull> => get(`user/${userId}/order/${orderId}/full`).then(getResults<IOrderFull>),
+        item: {
+            get: (userId:number, orderId:number):Promise<IOrderItem[]> => get(`user/${userId}/order/${orderId}/item`).then(getResults<IOrderItem[]>),
+        },
+        file: {
+            get: (userId:number, orderId:number):Promise<IProductFile[]> => get(`user/${userId}/order/${orderId}/file`).then(getResults<IProductFile[]>),
+        },
+    },
+    file: {
+        get: (userId:number):Promise<IProductFile[]> => get(`user/${userId}/file`).then(getResults<IProductFile[]>),
+    },
+
 });
 
 export const useProducts = () => {
