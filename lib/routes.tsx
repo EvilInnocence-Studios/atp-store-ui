@@ -12,9 +12,9 @@ export const storeRoutes = {
         {path: "/products/:productId", component: withRoute(ProductEditor)},
     ],
     public: [
-        {path: "/my-account",    component: MyAccount             },
-        {path: "/cart",          component: Cart                  },
-        {path: "/products",      component: ProductsPage          },
-        {path: "/products/:url", component: withRoute(ProductPage)},
+        {path: "/my-account/:tab",    component: withRoute(MyAccount)   },
+        {path: "/cart",               component: Cart                   },
+        {path: "/products",           component: ProductsPage           },
+        {path: "/products/:url",      component: withRoute(ProductPage) },
     ]
 }

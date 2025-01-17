@@ -1,0 +1,14 @@
+@use "@styles/globals.module.scss";
+
+.wishlistContainer {
+    .wishlistItems {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: globals.$padding;
+        > div {
+            flex-grow: 1;
+            max-width: 378px;
+        }
+    }
+}

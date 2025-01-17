@@ -15,15 +15,17 @@ const injectUserFileListProps = createInjector(({userId}:IUserFileListInputProps
     const loader = useLoaderAsync();
 
     useEffect(() => {
-        if(user.id) {
+        if(userId) {
             loader(async () => {
-                services().user.get(user.id).then(setUser);
+                services().user.get(userId).then(setUser);
             });
+        }
+        if(user.id) {
             loader(async () => {
                 services().file.get(user.id).then(setFiles);
             });
         }
-    }, [userId]);
+    }, [userId, user.id]);
 
 
     return {user, files: files.sort((a, b) => b.id - a.id), isLoading: loader.isLoading};

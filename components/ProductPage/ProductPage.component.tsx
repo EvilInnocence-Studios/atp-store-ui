@@ -6,6 +6,7 @@ import { ProductPrice } from "../ProductPrice";
 import { ProductPageProps } from "./ProductPage.d";
 import styles from './ProductPage.module.scss';
 import Markdown from 'marked-react';
+import { WishlistBtn } from "../WishlistBtn";
 
 export const ProductPageComponent = ({product, media, relatedProducts, isLoading}:ProductPageProps) =>
     <Spin spinning={isLoading}>
@@ -25,8 +26,9 @@ export const ProductPageComponent = ({product, media, relatedProducts, isLoading
                             <Col xs={12} className={styles.cartPrice}>
                                 <ProductPrice product={product} />
                             </Col>
-                            <Col xs={12}>
+                            <Col xs={12} className={styles.cartActions}>
                                 <AddtoCartBtn product={product} />
+                                <WishlistBtn product={product} />
                             </Col>
                         </Row>
                         <h2>Tags</h2>
