@@ -15,10 +15,9 @@ const injectProductsPageProps = createInjector(({}:IProductsPageInputProps):IPro
     const [search, setSearch] = useSearchParams();
     const {products, isLoading} = useProducts();
     const [filteredProducts, setFilteredProducts] = useState(products);
-    const [sortBy, setSortBy] = useState('newest');
     const paginator = usePaginator();
 
-    const {q, tags:selectedTagIdsRaw = ""} = Object.fromEntries(search.entries()) as unknown as {q?: string, tags?: string};
+    const {q, tags:selectedTagIdsRaw = "", sortBy = "newest"} = Object.fromEntries(search.entries()) as unknown as {q?: string, tags?: string, sortBy:string};
     const selectedTagIds:number[] = selectedTagIdsRaw ? map((i:string) => parseInt(i, 10))(selectedTagIdsRaw.split(',')) : [];
 
     const loader = useLoader();
@@ -66,6 +65,14 @@ const injectProductsPageProps = createInjector(({}:IProductsPageInputProps):IPro
             ...newTags.length > 0 ? {tags: newTags.join(",")} : {},
         });
     };
+
+    const setSortBy = (sortBy: string) => {
+        setSearch({
+            ...(q ? {q} : {}),
+            ...(selectedTagIds.length > 0 ? {tags: selectedTagIds.join(",")} : {}),
+            sortBy,
+        });
+    }
 
     const clearAll = () => {
         setSearch({});

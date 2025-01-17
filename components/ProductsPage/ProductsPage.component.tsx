@@ -58,8 +58,9 @@ export const ProductsPageComponent = ({groups, selectTag, removeTag, selectedTag
                         .sort(switchOn(sortBy, {
                             newest:    () => (a, b) => new Date(b.releaseDate).getTime() - new Date(a.releaseDate).getTime(),
                             oldest:    () => (a, b) => new Date(a.releaseDate).getTime() - new Date(b.releaseDate).getTime(),
-                            priceLow:  () => (a, b) => a.price                           - b.price,
-                            priceHigh: () => (a, b) => b.price                           - a.price,
+                            // For price sorts, have a secondary sort by newest if the price is the same
+                            priceLow:  () => (a, b) => a.price - b.price || new Date(b.releaseDate).getTime() - new Date(a.releaseDate).getTime(),
+                            priceHigh: () => (a, b) => b.price - a.price || new Date(b.releaseDate).getTime() - new Date(a.releaseDate).getTime(),
                             default:   () => (a, b) => a.id                              - b.id,
                         }))
                         .slice(paginator.pageSize * (paginator.current - 1), paginator.pageSize * paginator.current)

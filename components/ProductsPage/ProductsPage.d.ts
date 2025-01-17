@@ -14,7 +14,7 @@ export declare interface IProductsPageProps {
     isLoading: boolean;
     paginator: IPaginator;
     sortBy: string;
-    setSortBy: Setter<string>;
+    setSortBy: (sortBy:string) => void;
 }
 
 // What gets passed into the component from the parent as attributes
