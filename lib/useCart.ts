@@ -6,15 +6,15 @@ export declare interface ICart {
     add: (product: IProduct) => void;
     remove: (product: IProduct) => void;
     clear: () => void;
-    discount: string;
-    setDiscount: (discount: string) => void;
+    couponCode: string;
+    setCouponCode: (couponCode: string) => void;
     subTotal: () => number;
     total: () => number;
 }
 
 export const useCart = () => {
     const [products, setProducts] = useLocalStorage.object<IProduct[]>("cartProducts", [])();
-    const [discount, setDiscount] = useLocalStorage.string("cartDiscount", "")();
+    const [couponCode, setCouponCode] = useLocalStorage.string("cartCouponCode", "")();
 
     const removeProduct = (product: IProduct) => products.filter(p => p.id !== product.id);
 
@@ -44,8 +44,8 @@ export const useCart = () => {
         add,
         remove,
         clear,
-        discount,
-        setDiscount,
+        couponCode,
+        setCouponCode,
         subTotal,
         total,
     }
