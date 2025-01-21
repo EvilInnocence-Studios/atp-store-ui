@@ -46,9 +46,9 @@ export const productServices = ({get, post, /*put,*/ patch, remove}: IMethods) =
             download: (productId:number, fileId:number) => get(`product/${productId}/file/${fileId}/download`).then(getResults),
         },
         subProduct: {
-            search: (productId:number) => get(`product/${productId}/sub`).then(getResults<IProduct>),
-            create: (productId:number, subProductId:number) => post(`product/${productId}/sub`, {subProductId}).then(getResults<IProduct>),
-            remove: (productId:number, subProductId:number) => remove(`product/${productId}/sub/${subProductId}`),
+            search: (productId:number) => get(`product/${productId}/subProduct`).then(getResults<IProduct>),
+            create: (productId:number, subProductId:number) => post(`product/${productId}/subProduct`, {subProductId}).then(getResults<IProduct>),
+            remove: (productId:number, subProductId:number) => remove(`product/${productId}/subProduct/${subProductId}`),
         }
     },
     order: {

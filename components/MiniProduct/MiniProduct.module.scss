@@ -1,0 +1,13 @@
+@use "@styles/globals.module.scss";
+
+.miniProduct {
+    background-color: globals.$brand-bg;
+    padding: globals.$padding-sm;
+    border-radius: globals.$border-radius;
+    border: solid 1px globals.$brand-border;
+    img {
+        float: left;
+        width: 64px;
+        margin-right: globals.$padding;
+    }
+}

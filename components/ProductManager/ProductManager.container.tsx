@@ -15,6 +15,7 @@ import { createInjector, inject, mergeProps } from "unstateless";
 import { imgHost } from "../ProductMediaEditor/ProductMediaEditor.component";
 import { ProductManagerComponent } from "./ProductManager.component";
 import { IProductManagerInputProps, IProductManagerProps, ProductManagerProps } from "./ProductManager.d";
+import { Image } from "../Image";
 
 const injectProductManagerProps = createInjector(({}:IProductManagerInputProps):IProductManagerProps => {
     const [products, setProducts] = useState<IProduct[]>([]);
@@ -57,9 +58,9 @@ const injectProductManagerProps = createInjector(({}:IProductManagerInputProps):
         sorter: sort.by(prop<IProduct, "id">("id")).asc,
     },{
         title: "Thumbnail",
-        dataIndex: "thumbnailUrl",
-        key: "thumbnailUrl",
-        render: (thumbnailUrl:string, product:IProduct[]) => <img width={64} src={`${imgHost(product.id)}${thumbnailUrl}`} />
+        key: "thumbnail",
+        render: (product:IProduct) => <Image productId={product.id} imageId={product.thumbnailId} />,
+        width: 64,
     },{
         title: 'Name',
         dataIndex: 'name',

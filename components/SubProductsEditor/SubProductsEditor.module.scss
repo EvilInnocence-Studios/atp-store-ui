@@ -1,0 +1,20 @@
+@use "@styles/globals.module.scss";
+
+.subProductEditor {
+    .subProductList {
+        display: flex;
+        flex-wrap: wrap;
+        gap: globals.$padding;
+        margin: globals.$padding;
+        > div {
+            position: relative;
+            flex-grow: 1;
+            max-width: 378px;
+            button {
+                position: absolute;
+                top: 0;
+                right: 0;
+            }
+        }
+    }
+}

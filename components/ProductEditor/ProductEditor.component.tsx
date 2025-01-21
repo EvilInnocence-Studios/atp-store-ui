@@ -10,6 +10,7 @@ import { ProductTagEditor } from "../ProductTagEditor";
 import { ProductMediaEditor } from "../ProductMediaEditor";
 import { RelatedProductsEditor } from "../RelatedProductsEditor";
 import { ProductFilesEditor } from "../ProductFilesEditor";
+import { SubProductsEditor } from "../SubProductsEditor";
 
 export const ProductEditorComponent = ({product, isLoading, updateNumber, updateString, updateToggle, UpdateButtons}:ProductEditorProps) =>
     <Spin spinning={isLoading}>
@@ -70,9 +71,12 @@ export const ProductEditorComponent = ({product, isLoading, updateNumber, update
                         <Tabs.TabPane key="related" tab="Related">
                             <RelatedProductsEditor productId={product.id} />
                         </Tabs.TabPane>
-                        <Tabs.TabPane key="files" tab="Files">
+                        {product.productType === "digital" && <Tabs.TabPane key="files" tab="Files">
                             <ProductFilesEditor productId={product.id} />
-                        </Tabs.TabPane>
+                        </Tabs.TabPane>}
+                        {product.productType === "grouped" && <Tabs.TabPane key="grouped" tab="Sub Products">
+                            <SubProductsEditor productId={product.id} />
+                        </Tabs.TabPane>}
                     </Tabs>
                 </Col>
             </Row>
