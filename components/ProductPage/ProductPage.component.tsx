@@ -7,8 +7,9 @@ import { ProductPageProps } from "./ProductPage.d";
 import styles from './ProductPage.module.scss';
 import Markdown from 'marked-react';
 import { WishlistBtn } from "../WishlistBtn";
+import { MiniProduct } from "../MiniProduct";
 
-export const ProductPageComponent = ({product, media, relatedProducts, isLoading}:ProductPageProps) =>
+export const ProductPageComponent = ({product, media, relatedProducts, subProducts, isLoading}:ProductPageProps) =>
     <Spin spinning={isLoading}>
         <div className={styles.productPage}>
             {product && <>
@@ -17,7 +18,7 @@ export const ProductPageComponent = ({product, media, relatedProducts, isLoading
                     <Col xs={12}>
                         <MediaSwitcher
                             productId={product.id}
-                            media={media.filter(item => item.id !== product.thumbnailId)}
+                            media={media.filter(item => item.id !== product.thumbnailId || item.id === product.mainImageId)}
                             defaultMediaId={product.mainImageId}
                         />
                     </Col>
@@ -35,12 +36,24 @@ export const ProductPageComponent = ({product, media, relatedProducts, isLoading
                         {product.tags.map((tag) => <Tag key={tag}>{tag}</Tag>)}
                         <h2>Description</h2>
                         <Markdown>{product.description}</Markdown>
+
+                    </Col>
+                    <Col xs={24}>
+                        {product.productType === 'grouped' && <>
+                            <h2>Included products</h2>
+                            <div className={styles.subProducts}>
+                                {subProducts.map(subProduct => <MiniProduct key={subProduct.id} product={subProduct} />)}
+                            </div>
+                        </>}
+
+                        {relatedProducts.length > 0 && <>
+                            <h2>Related products</h2>
+                            <div className={styles.relatedProducts}>
+                                {relatedProducts.map((related) => <ProductListItem key={related.id} product={related} />)}
+                            </div>
+                        </>}
                     </Col>
                 </Row>
-                <h2>Related products</h2>
-                <div className={styles.relatedProducts}>
-                    {relatedProducts.map((related) => <ProductListItem key={related.id} product={related} />)}
-                </div>
             </>}
         </div>
     </Spin>

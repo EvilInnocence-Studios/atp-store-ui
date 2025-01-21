@@ -4,6 +4,7 @@ export declare interface IAddtoCartBtnProps {
     addToCart: () => void;
     download: () => void;
     subscribe: () => void;
+    brokeredLink: string;
 }
 
 // What gets passed into the component from the parent as attributes

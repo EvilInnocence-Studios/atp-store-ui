@@ -22,4 +22,12 @@
             flex-grow: 1;
         }
     }
+    .subProducts {
+        display: flex;
+        flex-wrap: wrap;
+        gap: globals.$padding;
+        > * {
+            flex-grow: 1;
+        }
+    }
 }

@@ -10,6 +10,7 @@ const injectProductPageProps = createInjector(({url}:IProductPageInputProps):IPr
     const [product, setProduct] = useState<IProductFull | null>(null);
     const [relatedProducts, setRelatedProducts] = useState<IProduct[]>([]);
     const [media, setMedia] = useState<IProductMedia[]>([]);
+    const [subProducts, setSubProducts] = useState<IProduct[]>([]);
     const loader = useLoaderAsync();
 
     useEffect(() => {
@@ -21,18 +22,29 @@ const injectProductPageProps = createInjector(({url}:IProductPageInputProps):IPr
 
     useEffect(() => {
         if(product) {
+            // Load media
             loader(async () => {
                 const media = await services().product.media.search(product.id);
                 setMedia(media);
             });
+
+            // Load related products
             loader(async () => {
                 const related = await services().product.related.search(product.id);
                 setRelatedProducts(related);
             });
+
+            // Load sub products
+            if(product.productType === 'grouped') {
+                loader(async () => {
+                    const subProducts = await services().product.subProduct.search(product.id);
+                    setSubProducts(subProducts);
+                });
+            }
         }
     }, [product]);
     
-    return {product, media, relatedProducts, isLoading: loader.isLoading};
+    return {product, media, relatedProducts, isLoading: loader.isLoading, subProducts};
 });
 
 const connect = inject<IProductPageInputProps, ProductPageProps>(mergeProps(
