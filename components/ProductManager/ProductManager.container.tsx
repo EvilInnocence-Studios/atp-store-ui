@@ -12,10 +12,9 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { all, prop, sort } from "ts-functional";
 import { createInjector, inject, mergeProps } from "unstateless";
-import { imgHost } from "../ProductMediaEditor/ProductMediaEditor.component";
+import { Image } from "../Image";
 import { ProductManagerComponent } from "./ProductManager.component";
 import { IProductManagerInputProps, IProductManagerProps, ProductManagerProps } from "./ProductManager.d";
-import { Image } from "../Image";
 
 const injectProductManagerProps = createInjector(({}:IProductManagerInputProps):IProductManagerProps => {
     const [products, setProducts] = useState<IProduct[]>([]);

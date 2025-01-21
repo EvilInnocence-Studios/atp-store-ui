@@ -38,7 +38,7 @@ const injectProductSearchProps = createInjector(({}:IProductSearchInputProps):IP
             return diff;
         });
     
-    return {products: matchingProducts, search, setSearch: debounce(setSearch, 500), match};
+    return {products: matchingProducts, search, setSearch: debounce(setSearch, 500)};
 });
 
 const connect = inject<IProductSearchInputProps, ProductSearchProps>(mergeProps(

@@ -5,7 +5,6 @@ export declare interface IProductSearchProps {
     products: IProductFull[];
     search: string;
     setSearch: Setter<string>;
-    match: (p:IProductFull) => number;
 }
 
 // What gets passed into the component from the parent as attributes
