@@ -5,6 +5,7 @@ import { ProductEditor } from "@store/components/ProductEditor";
 import { ProductPage } from "@store/components/ProductPage";
 import { ProductsPage } from "@store/components/ProductsPage";
 import { ProductManager } from "../components/ProductManager";
+import { BackstagePass } from "@store/components/BackstagePass";
 
 export const storeRoutes = {
     admin: [
@@ -16,5 +17,6 @@ export const storeRoutes = {
         {path: "/cart",               component: Cart                   },
         {path: "/products",           component: ProductsPage           },
         {path: "/products/:url",      component: withRoute(ProductPage) },
+        {path: "/backstage-pass",     component: BackstagePass          },
     ]
 }
