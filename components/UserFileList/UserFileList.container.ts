@@ -12,6 +12,7 @@ const injectUserFileListProps = createInjector(({userId}:IUserFileListInputProps
     const [loggedInUser] = useLoggedInUser();
     const [user, setUser] = useState<SafeUser>(loggedInUser.user);
     const [files, setFiles] = useState<IProductFile[]>([]);
+    const [q, setQ] = useState('');
     const loader = useLoaderAsync();
 
     useEffect(() => {
@@ -27,8 +28,15 @@ const injectUserFileListProps = createInjector(({userId}:IUserFileListInputProps
         }
     }, [userId, user.id]);
 
-
-    return {user, files: files.sort((a, b) => b.id - a.id), isLoading: loader.isLoading};
+    return {
+        user,
+        files: files
+            .filter(file => q.length === 0 || file.fileName.toLowerCase().includes(q.toLowerCase()))
+            .sort((a, b) => b.id - a.id),
+        isLoading: loader.isLoading,
+        q,
+        setQ,
+    };
 });
 
 const connect = inject<IUserFileListInputProps, UserFileListProps>(mergeProps(
