@@ -1,6 +1,27 @@
 import { Link } from "react-router";
 import {BackstagePassProps} from "./BackstagePass.d";
 import styles from './BackstagePass.module.scss';
+import { PayPalButtons } from "@paypal/react-paypal-js";
+
+var subscriptionOptions = [{
+    planId:			'P-9BB699402P8840110L33Z2PA',
+    description:	'Monthly',
+    renews:			'month',
+    period:			1,
+    price:			9.99,
+}, {
+    planId:			'P-15W80834UF944505FL332IJQ',
+    description:	'Quarterly',
+    renews:			'3 months',
+    period:			3,
+    price:			25.99,
+}, {
+    planId:			'P-1TA12176F5098193BL332I7Y',
+    description:	'Semi-Annually',
+    renews:			'6 months',
+    period:			6,
+    price:			39.99,
+}];
 
 export const BackstagePassComponent = ({count}:BackstagePassProps) =>
     <div className={styles.backstagePass}>
@@ -11,6 +32,40 @@ export const BackstagePassComponent = ({count}:BackstagePassProps) =>
         <p>Get a Backstage Pass Subscription and start downloading our catalog of exclusive content only available at EvilInnocence.com. For one low monthly price, you get access to over {count} Poser and DAZ Studio products for no additional cost, with new content available every month. You also get 25% off all of our regular products.</p>
 
         <p>Visit our <Link to="/products?tags=169">Backstage Pass Exclusives catalog</Link> to see what's available.</p>
+
+        <h2>Choose your subscription</h2>
+
+        <div className={styles.subscriptionOptions}>
+            {subscriptionOptions.map((option, i) =>
+                <div key={i} className={styles.subscriptionOption}>
+                    <h3>{option.description}</h3>
+                    <p>Renews every {option.renews}</p>
+                    <p>Price: ${option.price} per {option.renews}</p>
+                    <PayPalButtons
+                        style={{
+                            label: 'subscribe',
+                        }}
+                        createSubscription={(data, actions) => {
+                            return actions.subscription.create({
+                                plan_id: option.planId
+                            });
+                        }}
+                        onApprove={(data, actions) => {
+                            console.log(data);
+                            console.log(actions);
+                            return Promise.resolve();
+                        }}
+                        onCancel={(data, actions) => {
+                            console.log(data);
+                            console.log(actions);
+                        }}
+                        onError={(err) => {
+                            console.error(err);
+                        }}
+                    />
+                </div>
+            )}
+        </div>
 
         <h3>What is the Backstage Pass Subscription?</h3>
         <p>In addition to the regular products for sale on this website and at other brokerages, EvilInnocence is now offering exclusive content not available anywhere else to our Backstage Pass subscribers. By purchasing a Backstage Pass subscription, you'll get access to all of our existing Backstage Pass Exclusive products, as well as new exclusive products every month. You also get 25% off all of our regular products.</p>
