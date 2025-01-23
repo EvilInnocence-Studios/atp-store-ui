@@ -45,7 +45,7 @@ export const BackstagePassComponent = ({count}:BackstagePassProps) =>
                         style={{
                             label: 'subscribe',
                         }}
-                        createSubscription={(data, actions) => {
+                        createSubscription={(_data, actions) => {
                             return actions.subscription.create({
                                 plan_id: option.planId
                             });
