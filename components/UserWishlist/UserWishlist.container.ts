@@ -1,7 +1,6 @@
 import { services } from "@core/lib/api";
 import { useLoaderAsync } from "@core/lib/useLoader";
 import { IProduct } from "@store-shared/product/types";
-import { SafeUser } from "@uac-shared/user/types";
 import { useLoggedInUser } from "@uac/lib/login/services";
 import { useEffect, useState } from "react";
 import { createInjector, inject, mergeProps } from "unstateless";

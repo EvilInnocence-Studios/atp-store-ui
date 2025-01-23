@@ -1,6 +1,6 @@
 import { Tag } from "antd";
 import {ProductPriceProps} from "./ProductPrice.d";
-import styles from './ProductPrice.module.scss';
+// import styles from './ProductPrice.module.scss';
 
 export const ProductPriceComponent = ({product}:ProductPriceProps) =><>{
     product.subscriptionOnly ? <Tag>BSP</Tag>          :

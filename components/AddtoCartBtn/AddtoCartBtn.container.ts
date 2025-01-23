@@ -10,13 +10,13 @@ const injectAddtoCartBtnProps = createInjector(({product}:IAddtoCartBtnInputProp
     const navigate = useNavigate();
     const cart = useCart();
 
-    const brokeredLink = switchOn(product.brokeredAt, {
+    const brokeredLink = switchOn(product.brokeredAt || "", {
         Daz:         () => `https://www.daz3d.com/${product.brokerageProductId?.split(":")[1]}`,
         RuntimeDNA:  () => `https://www.daz3d.com/${product.brokerageProductId?.split(":")[1]}`,
         Renderosity: () => `https://www.renderosity.com/marketplace/products/${product.brokerageProductId?.split(":")[1]}`,
         HiveWire:    () => "https://hivewire3d.com/",
         default:     () => "",
-    });
+    }) || "";
 
     return {
         addToCart: () => {

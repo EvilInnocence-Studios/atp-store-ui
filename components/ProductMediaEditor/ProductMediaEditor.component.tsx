@@ -1,11 +1,10 @@
-import { Button, Space, Spin, Upload } from "antd";
-import {ProductMediaEditorProps} from "./ProductMediaEditor.d";
-import styles from './ProductMediaEditor.module.scss';
 import { DeleteBtn } from "@core/components/DeleteBtn";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import { handle } from "@core/lib/onInputChange";
-import { remove } from "lodash";
+import { faUpload } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Button, Space, Spin, Upload } from "antd";
+import { ProductMediaEditorProps } from "./ProductMediaEditor.d";
+import styles from './ProductMediaEditor.module.scss';
 
 export const imgHost = (id:number) =>
     // "https:\/\/www.evilinnocence.com\/shop\/media\/catalog\/product";

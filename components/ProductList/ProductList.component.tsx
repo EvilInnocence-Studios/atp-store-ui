@@ -6,7 +6,7 @@ import styles from './ProductList.module.scss';
 import { useScreenSize } from "@core/lib/useScreenSize";
 
 export const ProductListComponent = ({products, isLoading}:ProductListProps) => {
-    const {width, height} = useScreenSize();
+    const {width} = useScreenSize();
     const gutterSize = 24;
     const columnCount =
         width > 768 ? 8 :

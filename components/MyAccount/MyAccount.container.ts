@@ -1,8 +1,8 @@
-import { createInjector, inject, mergeProps } from "unstateless";
-import {MyAccountComponent} from "./MyAccount.component";
-import {IMyAccountInputProps, MyAccountProps, IMyAccountProps} from "./MyAccount.d";
 import { useNavigate } from "react-router";
-import { concat, pipe, prepend } from "ts-functional";
+import { pipe, prepend } from "ts-functional";
+import { createInjector, inject, mergeProps } from "unstateless";
+import { MyAccountComponent } from "./MyAccount.component";
+import { IMyAccountInputProps, IMyAccountProps, MyAccountProps } from "./MyAccount.d";
 
 const injectMyAccountProps = createInjector(({}:IMyAccountInputProps):IMyAccountProps => {
     const navigate = useNavigate();
