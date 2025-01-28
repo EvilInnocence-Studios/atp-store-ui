@@ -13,7 +13,7 @@ export const MyAccountComponent = ({tab, changeTab}:MyAccountProps) =>
         <h1><FontAwesomeIcon icon={faUser} /> My Account</h1>
         <Tabs defaultActiveKey={tab} tabPosition="left" onChange={changeTab}>
             <Tabs.TabPane tab={<><FontAwesomeIcon icon={faUser} /> Profile</>} key="profile">
-                <ProfileEditor />
+                <ProfileEditor title="My Profile" />
             </Tabs.TabPane>
             <Tabs.TabPane tab={<><FontAwesomeIcon icon={faCartShopping} /> Orders</>} key="orders">
                 <UserOrderList />
