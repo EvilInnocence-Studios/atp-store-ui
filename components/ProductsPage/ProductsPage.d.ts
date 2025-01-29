@@ -4,10 +4,10 @@ import { Setter } from "unstateless";
 
 export declare interface IProductsPageProps {
     groups: Array<{group: ITagGroup, tags: ITag[]}>;
-    selectTag: (tagId: number) => void;
-    selectedTagIds: number[];
+    selectTag: (tagId: string) => void;
+    selectedTagIds: string[];
     q?: string;
-    removeTag: (tagId: number) => void;
+    removeTag: (tagId: string) => void;
     clearAll: () => void;
     clearSearch: () => void;
     products: IProductFull[];

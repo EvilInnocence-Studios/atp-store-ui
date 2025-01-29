@@ -16,8 +16,8 @@ export const ProductsPageComponent = ({groups, selectTag, removeTag, selectedTag
                         {tags.map(tag =>
                             <Tag
                                 key={tag.id}
-                                color={selectedTagIds.includes(tag.id) ? 'blue' : undefined}
-                                onClick={() => selectedTagIds.includes(tag.id) ? removeTag(tag.id) : selectTag(tag.id)}
+                                color={selectedTagIds.includes(`${tag.id}`) ? 'blue' : undefined}
+                                onClick={() => selectedTagIds.includes(`${tag.id}`) ? removeTag(`${tag.id}`) : selectTag(`${tag.id}`)}
                             >
                                 {tag.name}
                             </Tag>
@@ -36,7 +36,7 @@ export const ProductsPageComponent = ({groups, selectTag, removeTag, selectedTag
                         <Tag key={tagId} color="blue" onClick={() => removeTag(tagId)}>
                             <FontAwesomeIcon icon={faTag} />
                             {groups.reduce((acc, {tags}) => {
-                                const tag = tags.find(tag => tag.id === tagId);
+                                const tag = tags.find(tag => `${tag.id}` === tagId);
                                 return tag ? [...acc, tag.name] : acc;
                             }, [] as string[]).join(', ')}
                         </Tag>

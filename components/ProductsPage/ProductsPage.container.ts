@@ -5,7 +5,6 @@ import { usePaginator } from "@core/lib/usePaginator";
 import { useProducts } from "@store/lib/product/services";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router";
-import { map } from "ts-functional";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { ProductsPageComponent } from "./ProductsPage.component";
 import { IProductsPageInputProps, IProductsPageProps, ProductsPageProps } from "./ProductsPage.d";
@@ -18,12 +17,12 @@ const injectProductsPageProps = createInjector(({}:IProductsPageInputProps):IPro
     const paginator = usePaginator();
 
     const {q, tags:selectedTagIdsRaw = "", sortBy = "newest"} = Object.fromEntries(search.entries()) as unknown as {q?: string, tags?: string, sortBy:string};
-    const selectedTagIds:number[] = selectedTagIdsRaw ? map((i:string) => parseInt(i, 10))(selectedTagIdsRaw.split(',')) : [];
+    const selectedTagIds:string[] = selectedTagIdsRaw ? selectedTagIdsRaw.split(',') : [];
 
     const loader = useLoader();
 
     const selectedFiltersByGroup = groups
-        .map(({tags}) => tags.filter(tag => selectedTagIds.includes(tag.id)))
+        .map(({tags}) => tags.filter(tag => selectedTagIds.includes(tag.id.toString())))
         .filter(tags => tags.length > 0);
 
     const updateFilteredProducts = async () => {
@@ -46,11 +45,10 @@ const injectProductsPageProps = createInjector(({}:IProductsPageInputProps):IPro
             resolve(null);
         }).then(loader.stop);
     }
-    console.log(filteredProducts);
 
     useEffect(() => {updateFilteredProducts();}, [selectedTagIds.toString(), q, products]);
 
-    const selectTag = (tagId: number) => {
+    const selectTag = (tagId: string) => {
         const newSearch = {
             ...(q ? {q} : {}),
             tags: [...selectedTagIds, tagId].join(","),
@@ -58,7 +56,7 @@ const injectProductsPageProps = createInjector(({}:IProductsPageInputProps):IPro
         setSearch(newSearch);
     };
 
-    const removeTag = (tagId: number) => {
+    const removeTag = (tagId: string) => {
         const newTags = selectedTagIds.filter(id => id !== tagId);
         setSearch({
             ...(q ? {q} : {}),
