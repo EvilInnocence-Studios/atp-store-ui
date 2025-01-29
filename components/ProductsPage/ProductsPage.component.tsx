@@ -5,12 +5,13 @@ import { ProductsPageProps } from "./ProductsPage.d";
 import styles from './ProductsPage.module.scss';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faTag } from "@fortawesome/free-solid-svg-icons";
+import { Fragment } from "react/jsx-runtime";
 
 export const ProductsPageComponent = ({groups, selectTag, removeTag, selectedTagIds, q, clearAll, clearSearch, products, isLoading, paginator, sortBy, setSortBy}:ProductsPageProps) =>
     <Layout>
         <Layout.Sider theme="light" width={300} className={styles.sider}>
             <div className={styles.tagGroupList}>
-                {groups.map(({group, tags}) => <>
+                {groups.map(({group, tags}) => <Fragment key={group.id}>
                     <h3>{group.name}</h3>
                     <div className={styles.tagList} key={group.id}>
                         {tags.map(tag =>
@@ -23,7 +24,7 @@ export const ProductsPageComponent = ({groups, selectTag, removeTag, selectedTag
                             </Tag>
                         )}
                     </div>
-                </>)}
+                </Fragment>)}
             </div>
         </Layout.Sider>
         <Layout.Content className={styles.productListContainer}>
