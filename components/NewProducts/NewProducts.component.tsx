@@ -8,7 +8,7 @@ import clsx from "clsx";
 
 export const NewProductsComponent = ({products, isLoading, scroll}:NewProductsProps) =>
     <Spin spinning={isLoading}>
-        <h2>New Products</h2>
+        <h2 className={styles.newProductsTitle}>New Products</h2>
         <div className={styles.newProducts} ref={scroll.containerRef}>
             <FontAwesomeIcon
                 icon={faCaretLeft}
@@ -27,7 +27,7 @@ export const NewProductsComponent = ({products, isLoading, scroll}:NewProductsPr
                 style={{visibility: scroll.x.canScrollRight ? 'visible' : 'hidden'}}
             />
             <div className={styles.productList} style={{left: scroll.x.offset}} ref={scroll.ref}>
-                {products.map((product) => <ProductListItem product={product} key={product.id} />)}
+                {products.map((product) => <ProductListItem product={product} key={product.id} textSize="small"/>)}
             </div>
         </div>
     </Spin>;

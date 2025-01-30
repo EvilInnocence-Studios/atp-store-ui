@@ -7,6 +7,7 @@ export declare interface IProductListItemProps {
 // What gets passed into the component from the parent as attributes
 export declare interface IProductListItemInputProps {
     product: IProduct;
+    textSize?: "small" | "default" | "large";
 }
 
 export type ProductListItemProps = IProductListItemInputProps & IProductListItemProps;
