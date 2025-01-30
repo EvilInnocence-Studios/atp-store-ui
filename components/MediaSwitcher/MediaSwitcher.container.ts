@@ -11,8 +11,8 @@ const injectMediaSwitcherProps = createInjector(({media, defaultMediaId}:IMediaS
     );
     const next = () => setCurImage((curImage + 1) % media.length);
     const prev = () => setCurImage((curImage + media.length - 1) % media.length);
-    console.log(media, defaultMediaId, curImage);
-    return {curImage, next, prev};
+
+    return {curImage, next, prev, setCurImage};
 });
 
 const connect = inject<IMediaSwitcherInputProps, MediaSwitcherProps>(mergeProps(

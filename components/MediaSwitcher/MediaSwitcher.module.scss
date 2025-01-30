@@ -5,10 +5,6 @@
     white-space: nowrap;
     overflow: hidden;
     position: relative;
-    img {
-        width: 100%;
-        height: auto;
-    }
     .navBtn {
         position: absolute;
         top: 50%;
@@ -16,6 +12,7 @@
         transform: translateY(-50%);
         background-color: rgba(0, 0, 0, 0.5);
         padding: 0.5rem;
+        z-index: 999;
         cursor: pointer;
         transition: background-color 0.3s;
         &:hover {
@@ -28,7 +25,31 @@
             right: 0;
         }
     }
-    .preload {
+    .mediaImage {
         display: none;
+        &.active {
+            display: block;
+        }
+    }
+}
+.thumbs {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+    .thumb {
+        width: 64px;
+        min-width: 64px;
+        max-width: 64px;
+        border: 2px solid transparent;
+        transition: border-color 0.3s;
+        overflow: hidden;
+        &:hover {
+            border-color: globals.$brand-primary;
+        }
+        &.active {
+            border-color: globals.$brand-primary;
+        }
     }
 }

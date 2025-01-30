@@ -2,4 +2,9 @@
 
 .image {
     width: 100%;
+    transform: scale(1.07);
+    border-radius: 0.5rem;
+    &.isLoading {
+        opacity: 0.05;
+    }
 }
