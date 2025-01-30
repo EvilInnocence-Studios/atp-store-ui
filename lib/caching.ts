@@ -13,10 +13,10 @@ export const useImage = (productId:number, imageId:number):[IProductMedia | null
 
     useEffect(() => {
         if(!images[`${imageId}`]) {
-            loader(async () => {
+            loader(async () => 
                 services().product.media.get(productId, imageId)
-                    .then(image => setImages(oldImages => ({...oldImages, [`${imageId}`]: image})));
-            });
+                    .then(image => setImages(oldImages => ({...oldImages, [`${imageId}`]: image})))
+            );
         }
     }, [productId, imageId]);
 
