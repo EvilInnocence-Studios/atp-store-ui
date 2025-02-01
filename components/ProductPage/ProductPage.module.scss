@@ -5,6 +5,7 @@
     margin: auto;
     .cartInfo {
         * {font-size: x-large;}
+        :global(.ant-tag) {font-size:medium;}
         button {
             padding: globals.$padding-lg !important;
             width: 100%;

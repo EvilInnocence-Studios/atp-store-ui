@@ -1,1 +1,15 @@
 @use "@styles/globals.module.scss";
+
+p {
+    margin: 0;
+    display: inline-block;
+    padding-right: globals.$padding-sm;
+    &.onSale {
+        color: globals.$warning;
+        text-decoration: line-through;
+    }
+    &.salePrice {
+        font-weight: bold;
+        font-style: italic;
+    }
+}

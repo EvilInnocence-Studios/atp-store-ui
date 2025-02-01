@@ -3,7 +3,7 @@ import { services } from "@core/lib/api";
 import { IMethods } from "@core/lib/types";
 import { useLoader } from "@core/lib/useLoader";
 import { getResults } from "@core/lib/util";
-import { IOrder, IOrderCreateRequest, IOrderFull, IOrderItem, IProduct, IProductFile, IProductFull, IProductMedia, NewProduct } from "@store-shared/product/types";
+import { IProduct, IProductFile, IProductFull, IProductMedia, NewProduct } from "@store-shared/product/types";
 import { useEffect } from "react";
 import { useSharedState } from "unstateless";
 
@@ -50,20 +50,6 @@ export const productServices = ({get, post, /*put,*/ patch, remove}: IMethods) =
             create: (productId:number, subProductId:number) => post(`product/${productId}/subProduct`, {subProductId}).then(getResults<IProduct>),
             remove: (productId:number, subProductId:number) => remove(`product/${productId}/subProduct/${subProductId}`),
         }
-    },
-    order: {
-        search: (userId:number):Promise<IOrder[]> => get(`user/${userId}/order`).then(getResults<IOrder[]>),
-        get: (userId:number, orderId:number):Promise<IOrder> => get(`user/${userId}/order/${orderId}`).then(getResults),
-        getFull: (userId:number, orderId:number):Promise<IOrderFull> => get(`user/${userId}/order/${orderId}/full`).then(getResults<IOrderFull>),
-        item: {
-            get: (userId:number, orderId:number):Promise<IOrderItem[]> => get(`user/${userId}/order/${orderId}/item`).then(getResults<IOrderItem[]>),
-        },
-        file: {
-            get: (userId:number, orderId:number):Promise<IProductFile[]> => get(`user/${userId}/order/${orderId}/file`).then(getResults<IProductFile[]>),
-        },
-        create: (userId:number, order:Partial<IOrder>) => post(`user/${userId}/order`, order).then(getResults<IOrder>),
-        start: (userId:number, order:IOrderCreateRequest) => post(`user/${userId}/order/start`, order).then(getResults<IOrder>),
-        finalize: (userId:number, transactionId:number):Promise<IOrder> => post(`user/${userId}/order/finalize`, {transactionId}).then(getResults<IOrder>),
     },
     file: {
         get: (userId:number):Promise<IProductFile[]> => get(`user/${userId}/file`).then(getResults<IProductFile[]>),
