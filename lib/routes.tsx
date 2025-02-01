@@ -6,17 +6,19 @@ import { ProductPage } from "@store/components/ProductPage";
 import { ProductsPage } from "@store/components/ProductsPage";
 import { ProductManager } from "../components/ProductManager";
 import { BackstagePass } from "@store/components/BackstagePass";
+import { DiscountEditor } from "@store/components/DiscountEditor";
 
 export const storeRoutes = {
     admin: [
-        {path: "/products", component: ProductManager},
+        {path: "/products",            component: ProductManager},
         {path: "/products/:productId", component: withRoute(ProductEditor)},
+        {path: "/discounts",           component: DiscountEditor         },
     ],
     public: [
-        {path: "/my-account/:tab",    component: withRoute(MyAccount)   },
-        {path: "/cart",               component: Cart                   },
-        {path: "/products",           component: ProductsPage           },
-        {path: "/products/:url",      component: withRoute(ProductPage) },
-        {path: "/backstage-pass",     component: BackstagePass          },
+        {path: "/my-account/:tab",     component: withRoute(MyAccount)   },
+        {path: "/cart",                component: Cart                   },
+        {path: "/products",            component: ProductsPage           },
+        {path: "/products/:url",       component: withRoute(ProductPage) },
+        {path: "/backstage-pass",      component: BackstagePass          },
     ]
 }
