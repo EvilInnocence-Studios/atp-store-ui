@@ -5,7 +5,7 @@ import { memoizePromise } from "ts-functional";
 
 export const cartServices = ({get}: IMethods) => ({
     cart: memoizePromise(
-        (productIds: string[], couponCode?: string) => get('cart', {productIds, couponCode}).then(getResults<ICartTotals>),
+        (productIds: string[], couponCode?: string):Promise<ICartTotals> => get('cart', {productIds, couponCode}).then(getResults<ICartTotals>),
         {keyGen: ([productIds, couponCode]: [string[], string?]) => `${productIds.join(',')}-${couponCode}`},
     ),
 });
