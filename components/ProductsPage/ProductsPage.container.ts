@@ -8,6 +8,10 @@ import { useSearchParams } from "react-router";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { ProductsPageComponent } from "./ProductsPage.component";
 import { IProductsPageInputProps, IProductsPageProps, ProductsPageProps } from "./ProductsPage.d";
+import { memoizePromise } from "ts-functional";
+
+const loadGroups = memoizePromise(() => services().tagGroup.search());
+const loadTags = memoizePromise(() => services().tagGroup.tag.getAll());
 
 const injectProductsPageProps = createInjector(({}:IProductsPageInputProps):IProductsPageProps => {
     const [groups, setGroups] = useState<Array<{group: ITagGroup, tags: ITag[]}>>([]);
@@ -82,9 +86,11 @@ const injectProductsPageProps = createInjector(({}:IProductsPageInputProps):IPro
 
     useEffect(() => {
         Promise.all([
-            services().tagGroup.search(),
-            services().tagGroup.tag.getAll(),
+            loadGroups(),
+            loadTags(),
         ]).then(([groups, tags]) => {
+            console.log(groups);
+            console.log(tags);
             setGroups(groups.map(group => ({
                 group,
                 tags: tags.filter(tag => tag.groupId === group.id),

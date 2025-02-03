@@ -8,7 +8,7 @@ import { memoizePromise } from "ts-functional";
 
 export const discountServices = ({get, post, patch, remove}:IMethods) => ({
     discount: {
-        search: memoizePromise(():Promise<IDiscount[]> => get('discount').then(getResults<IDiscount>)),
+        search: ():Promise<IDiscount[]> => get('discount').then(getResults<IDiscount>),
         get: (id:string) => get(`discount/${id}`).then(getResults<IDiscount>),
         create: (discount:Partial<NewDiscount>) => post('discount', discount).then(getResults<IDiscount>),
         update: (id:string, discount:Partial<IDiscount>) => patch(`discount/${id}`, discount).then(getResults<IDiscount>),
@@ -16,13 +16,15 @@ export const discountServices = ({get, post, patch, remove}:IMethods) => ({
     },
 });
 
+const loadDiscounts = memoizePromise(() => services().discount.search());
+
 export const useDiscounts = ():[IDiscount[], boolean] => {
     const [discounts, setDiscounts] = useState<IDiscount[]>([]);
     const loader = useLoaderAsync();
 
     useEffect(() => {
         loader(async () => {
-            services().discount.search().then(setDiscounts);
+            loadDiscounts().then(setDiscounts);
         })
     }, []);
 
