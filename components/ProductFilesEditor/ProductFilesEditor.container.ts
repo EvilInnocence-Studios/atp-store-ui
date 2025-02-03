@@ -27,7 +27,7 @@ const injectProductFilesEditorProps = createInjector(({productId}:IProductFilesE
             .finally(loader.stop);
     }
 
-    const remove = (fileId:number) => () => {
+    const remove = (fileId:string) => () => {
         loader.start();
         services().product.files.remove(productId, fileId)
             .then(refresh)

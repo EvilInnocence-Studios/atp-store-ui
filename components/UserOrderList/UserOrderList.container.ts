@@ -1,6 +1,6 @@
 import { services } from "@core/lib/api";
 import { useLoaderAsync } from "@core/lib/useLoader";
-import { IOrder } from "@store-shared/product/types";
+import { IOrder } from "@store-shared/order/types";
 import { SafeUser } from "@uac-shared/user/types";
 import { useLoggedInUser } from "@uac/lib/login/services";
 import { useEffect, useState } from "react";

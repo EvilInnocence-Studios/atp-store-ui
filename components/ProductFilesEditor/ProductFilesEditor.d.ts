@@ -5,7 +5,7 @@ export declare interface IProductFilesEditorProps {
     files: IProductFile[];
     isLoading: boolean;
     add: (file:File) => void;
-    remove: (fileId:number) => () => void;
+    remove: (fileId:string) => () => void;
     folder: string;
     setFolder: Setter<string>;
     download: (file:IProductFile) => () => void;
@@ -13,7 +13,7 @@ export declare interface IProductFilesEditorProps {
 
 // What gets passed into the component from the parent as attributes
 export declare interface IProductFilesEditorInputProps {
-    productId: number;
+    productId:string;
 }
 
 export type ProductFilesEditorProps = IProductFilesEditorInputProps & IProductFilesEditorProps;

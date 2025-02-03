@@ -16,13 +16,13 @@ const injectSubProductsEditorProps = createInjector(({productId}:ISubProductsEdi
          });
      }
 
-    const add = (subProductId: number) => {
+    const add = (subProductId:string) => {
         loader(async () => {
             await services().product.subProduct.create(productId, subProductId).then(refresh);
         });
     }
 
-    const remove = (subProductId: number) => {
+    const remove = (subProductId:string) => {
         loader(async () => {
             await services().product.subProduct.remove(productId, subProductId).then(refresh);
         });

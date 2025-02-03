@@ -6,7 +6,7 @@ import { Button, Space, Spin, Upload } from "antd";
 import { ProductMediaEditorProps } from "./ProductMediaEditor.d";
 import styles from './ProductMediaEditor.module.scss';
 
-export const imgHost = (id:number) =>
+export const imgHost = (id:string) =>
     // "https:\/\/www.evilinnocence.com\/shop\/media\/catalog\/product";
    `https://evilinnocence.s3.us-east-1.amazonaws.com/media/product/${id}/`;
 

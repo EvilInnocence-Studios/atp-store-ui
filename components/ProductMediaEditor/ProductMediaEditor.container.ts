@@ -25,7 +25,7 @@ const injectProductMediaEditorProps = createInjector(({product, update}:IProduct
         services().product.media.upload(product.id, file);
     }
 
-    const remove = (id:number) => () => {
+    const remove = (id:string) => () => {
         loader.start();
         services().product.media.remove(product.id, id)
             .then(flash.success("Image removed"))

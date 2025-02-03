@@ -19,7 +19,7 @@ const injectRelatedProductsEditorProps = createInjector(({productId}:IRelatedPro
             .finally(loader.stop);
     }
 
-    const add = (relatedProductId:number) => {
+    const add = (relatedProductId:string) => {
         loader.start();
         services().product.related.create(productId, relatedProductId)
             .then(refresh)

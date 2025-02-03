@@ -5,8 +5,8 @@ export declare interface IDiscountEditorProps {
     discounts: IDiscount[];
     isLoading: boolean;
     permissions: IPermission[];
-    update: (id:number, field:string) => (value:any) => void;
-    remove: (id:number) => () => void;
+    update: (id:string, field:string) => (value:any) => void;
+    remove: (id:string) => () => void;
     create: () => void;
 }
 

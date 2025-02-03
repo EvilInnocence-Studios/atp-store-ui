@@ -1,4 +1,4 @@
-import { IOrder, IOrderFull, IOrderItem, IProductFile } from "@store-shared/product/types";
+import { IOrderFull } from "@store-shared/order/types";
 
 export declare interface IOrderDetailsProps {
     order?: IOrderFull;
@@ -7,8 +7,8 @@ export declare interface IOrderDetailsProps {
 
 // What gets passed into the component from the parent as attributes
 export declare interface IOrderDetailsInputProps {
-    userId: number;
-    orderId: number;
+    userId:string;
+    orderId:string;
 }
 
 export type OrderDetailsProps = IOrderDetailsInputProps & IOrderDetailsProps;

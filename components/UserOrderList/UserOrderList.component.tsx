@@ -1,10 +1,10 @@
+import { IOrder } from "@store-shared/order/types";
 import { Col, Row, Spin, Table } from "antd";
 import dayjs from "dayjs";
+import { prop, sort } from "ts-functional";
+import { OrderDetails } from "../OrderDetails";
 import { UserOrderListProps } from "./UserOrderList.d";
 import styles from './UserOrderList.module.scss';
-import { IOrder } from "@store-shared/product/types";
-import { OrderDetails } from "../OrderDetails";
-import { prop, sort } from "ts-functional";
 
 export const UserOrderListComponent = ({user, orders, isLoading, selectOrder, selectedOrder}:UserOrderListProps) => {
     const columns = [{

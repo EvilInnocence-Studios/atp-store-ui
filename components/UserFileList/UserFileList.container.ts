@@ -32,7 +32,7 @@ const injectUserFileListProps = createInjector(({userId}:IUserFileListInputProps
         user,
         files: files
             .filter(file => q.length === 0 || file.fileName.toLowerCase().includes(q.toLowerCase()))
-            .sort((a, b) => b.id - a.id),
+            .sort((a, b) => b.id.localeCompare(a.id)),
         isLoading: loader.isLoading,
         q,
         setQ,

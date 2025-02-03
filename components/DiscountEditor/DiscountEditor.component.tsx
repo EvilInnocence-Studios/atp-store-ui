@@ -75,7 +75,7 @@ export const DiscountEditorComponent = ({discounts, permissions, isLoading, upda
             title: 'Actions',
             dataIndex: 'id',
             key: 'actions',
-            render: (id:number) => <>
+            render: (id:string) => <>
                 <CanDelete yes>
                     <DeleteBtn entityType="discount" onClick={remove(id)} />
                 </CanDelete>

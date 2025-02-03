@@ -10,9 +10,9 @@ export declare interface IMediaSwitcherProps {
 
 // What gets passed into the component from the parent as attributes
 export declare interface IMediaSwitcherInputProps {
-    productId: number;
+    productId:string;
     media: IProductMedia[];
-    defaultMediaId: number | null;
+    defaultMediaId:string | null;
 }
 
 export type MediaSwitcherProps = IMediaSwitcherInputProps & IMediaSwitcherProps;

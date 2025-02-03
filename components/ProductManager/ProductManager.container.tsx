@@ -39,7 +39,7 @@ const injectProductManagerProps = createInjector(({}:IProductManagerInputProps):
             .finally(loader.stop);
     }
 
-    const remove = (id:number) => () => {
+    const remove = (id:string) => () => {
         const oldProducts = products;
         setProducts(products.filter(p => p.id !== id));
         loader.start();

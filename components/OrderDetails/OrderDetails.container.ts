@@ -1,6 +1,6 @@
 import { services } from "@core/lib/api";
 import { useLoaderAsync } from "@core/lib/useLoader";
-import { IOrderFull } from "@store-shared/product/types";
+import { IOrderFull } from "@store-shared/order/types";
 import { useEffect, useState } from "react";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { OrderDetailsComponent } from "./OrderDetails.component";

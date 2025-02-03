@@ -4,15 +4,15 @@ export declare interface IProductMediaEditorProps {
     media: IProductMedia[];
     upload: (file: File) => void;
     isLoading: boolean;
-    updateThumbnail: (id:number) => void;
-    updateMainImage: (id:number) => void;
-    remove: (id:number) => () => void;
+    updateThumbnail: (id:string) => void;
+    updateMainImage: (id:string) => void;
+    remove: (id:string) => () => void;
 }
 
 // What gets passed into the component from the parent as attributes
 export declare interface IProductMediaEditorInputProps {
     product: IProduct;
-    update: (field:keyof IProduct) => (value:number) => void;
+    update: (field:keyof IProduct) => (value:string) => void;
 }
 
 export type ProductMediaEditorProps = IProductMediaEditorInputProps & IProductMediaEditorProps;

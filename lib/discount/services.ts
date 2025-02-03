@@ -9,10 +9,10 @@ import { memoizePromise } from "ts-functional";
 export const discountServices = ({get, post, patch, remove}:IMethods) => ({
     discount: {
         search: memoizePromise(():Promise<IDiscount[]> => get('discount').then(getResults<IDiscount>)),
-        get: (id:number) => get(`discount/${id}`).then(getResults<IDiscount>),
+        get: (id:string) => get(`discount/${id}`).then(getResults<IDiscount>),
         create: (discount:Partial<NewDiscount>) => post('discount', discount).then(getResults<IDiscount>),
-        update: (id:number, discount:Partial<IDiscount>) => patch(`discount/${id}`, discount).then(getResults<IDiscount>),
-        remove: (id:number) => remove(`discount/${id}`),
+        update: (id:string, discount:Partial<IDiscount>) => patch(`discount/${id}`, discount).then(getResults<IDiscount>),
+        remove: (id:string) => remove(`discount/${id}`),
     },
 });
 

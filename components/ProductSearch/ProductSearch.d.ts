@@ -9,7 +9,7 @@ export declare interface IProductSearchProps {
 
 // What gets passed into the component from the parent as attributes
 export declare interface IProductSearchInputProps {
-    onSelect: (productId:number) => void;
+    onSelect: (productId:string) => void;
     placeholder?: string;
 }
 

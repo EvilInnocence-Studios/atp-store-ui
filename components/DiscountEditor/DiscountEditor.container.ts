@@ -22,7 +22,7 @@ const injectDiscountEditorProps = createInjector(({}:IDiscountEditorInputProps):
         });
     }, []);
 
-    const update = (id:number, field:string) => (value:any) => {
+    const update = (id:string, field:string) => (value:any) => {
         const oldDiscounts = discounts;
         setDiscounts(discounts.map(d => d.id === id ? {...d, [field]: value || null} : d));
         console.log(value);
@@ -33,7 +33,7 @@ const injectDiscountEditorProps = createInjector(({}:IDiscountEditorInputProps):
         });
     }
 
-    const remove = (id:number) => () => {
+    const remove = (id:string) => () => {
         const oldDiscounts = discounts;
         setDiscounts(discounts.filter(d => d.id !== id));
         loader(async () => {

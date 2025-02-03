@@ -7,7 +7,7 @@ import { useSharedState } from "unstateless";
 
 const useImageList = useSharedState<Index<IProductMedia>>({});
 
-export const useImage = (productId:number, imageId:number | null):[IProductMedia | null, boolean] => {
+export const useImage = (productId:string, imageId:string | null):[IProductMedia | null, boolean] => {
     const [images, setImages] = useImageList();
     const loader = useLoaderAsync();
 
