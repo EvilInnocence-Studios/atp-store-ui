@@ -11,12 +11,13 @@ export const MediaSwitcherComponent = ({productId, media, curImage, next, prev, 
             <FontAwesomeIcon className={clsx([styles.navBtn, styles.prev])} icon={faCaretLeft } onClick={prev} />
             <FontAwesomeIcon className={clsx([styles.navBtn, styles.next])} icon={faCaretRight} onClick={next} />
         </>}
-        {media.map(image => <div className={clsx([styles.mediaImage, curImage === media.indexOf(image) && styles.active])}>
+        {media.map(image => <div key={image.id} className={clsx([styles.mediaImage, curImage === media.indexOf(image) && styles.active])}>
             <Image key={image.id} productId={productId} imageId={image.id} />
         </div>)}
     </div>
     {media.length > 1 && <div className={styles.thumbs}>
         {media.map(image => <div
+            key={image.id}
             className={clsx([styles.thumb, curImage === media.indexOf(image) && styles.active])}
             onClick={() => setCurImage(media.indexOf(image))}
         >

@@ -3,6 +3,22 @@
 .productPage {
     max-width: 1024px;
     margin: auto;
+    padding: globals.$padding;
+    .media, .productInfo {
+        width: 50%;
+        display: inline-block;
+        vertical-align: top;
+        @media (max-width: 780px) {
+            width: 100%;
+        }
+    }
+    .productInfo {
+        padding-left: globals.$padding;
+        @media (max-width: 780px) {
+            padding: 0;
+            margin-top: globals.$padding;
+        }
+    }
     .cartInfo {
         * {font-size: x-large;}
         :global(.ant-tag) {font-size:medium;}
@@ -16,19 +32,29 @@
             }
         }
     }
-    .relatedProducts {
-        display: flex;
-        flex-wrap: wrap;
-        > * {
-            flex-grow: 1;
+    .relatedProductsLists {
+        h2 {
+            margin: globals.$padding-lg 0 0 0;
         }
-    }
-    .subProducts {
-        display: flex;
-        flex-wrap: wrap;
-        gap: globals.$padding;
-        > * {
-            flex-grow: 1;
+        .relatedProducts, .subProducts {
+            margin-left: -(globals.$padding);
+            width: calc(100% + globals.$padding * 2);
+            > * {
+                width: calc((100% - (globals.$padding * 6)) / 3);
+                @media (max-width: 900px) {
+                    width: calc((100% - (globals.$padding * 4)) / 2);
+                }
+                @media (max-width: 570px) {
+                    width: calc(100% - (globals.$padding * 2));
+                }
+            }
+        }
+        .subProducts {
+            padding: globals.$padding;
+            > * {
+                display: inline-block;
+                margin: 0 globals.$padding globals.$padding 0;
+            }
         }
     }
 }
