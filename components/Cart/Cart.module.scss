@@ -3,8 +3,18 @@
 .cart {
     max-width: 768px;
     margin: auto;
+    @media (max-width: 780px) {
+        width: 100%;
+        padding: globals.$padding;
+    }
     .thumbnail {
         margin: -14px -14px -18px -12px;
+    }
+    .priceContainer {
+        float: right;
+    }
+    .productName {
+        float: left;
     }
     .cartFooter {
         text-align: right;
@@ -13,6 +23,9 @@
     .cartActions {
         margin-top: globals.$padding;
         text-align: right;
-        padding-left: 75%;
+        > * {
+            display: inline-block;
+            max-width: 256px;
+        }
     }
 }

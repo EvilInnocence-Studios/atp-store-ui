@@ -17,13 +17,14 @@ export const CartComponent = ({userId, createOrder, onApprove, ...cart}:CartProp
         </div>,
         width: 64,
     },{
-        title: 'Name',
-        dataIndex: 'name',
-        key: 'name',
-    }, {
-        title: 'Price',
-        key: 'price',
-        render: (_:any, product:IProduct) => <ProductPrice product={product} />,
+        title: 'Product',
+        key: 'product',
+        render: (_:any, product:IProduct) => <>
+            <span className={styles.productName}>{product.name}</span>
+            <span className={styles.priceContainer}>
+                <ProductPrice product={product} />
+            </span>
+        </>,
     }, {
         dataIndex: 'actions',
         key: 'actions',
@@ -42,7 +43,7 @@ export const CartComponent = ({userId, createOrder, onApprove, ...cart}:CartProp
                 </Button>
             </div>
             <div className={styles.cartItems}>
-            <Table<IProduct>
+                <Table<IProduct>
                     dataSource={cart.products}
                     columns={columns}
                     pagination={false}
