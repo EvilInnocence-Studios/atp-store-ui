@@ -1,5 +1,4 @@
-import { ITag, ITagGroup } from "@common-shared/tag/types";
-import { services } from "@core/lib/api";
+import { useTagGroups } from "@common/lib/useTagGroups";
 import { useLoader } from "@core/lib/useLoader";
 import { usePaginator } from "@core/lib/usePaginator";
 import { useProducts } from "@store/lib/product/services";
@@ -8,17 +7,13 @@ import { useSearchParams } from "react-router";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { ProductsPageComponent } from "./ProductsPage.component";
 import { IProductsPageInputProps, IProductsPageProps, ProductsPageProps } from "./ProductsPage.d";
-import { memoizePromise } from "ts-functional";
-
-const loadGroups = memoizePromise(() => services().tagGroup.search());
-const loadTags = memoizePromise(() => services().tagGroup.tag.getAll());
 
 const injectProductsPageProps = createInjector(({}:IProductsPageInputProps):IProductsPageProps => {
-    const [groups, setGroups] = useState<Array<{group: ITagGroup, tags: ITag[]}>>([]);
     const [search, setSearch] = useSearchParams();
     const {products, isLoading} = useProducts();
     const [filteredProducts, setFilteredProducts] = useState(products);
     const paginator = usePaginator();
+    const {groups} = useTagGroups();
 
     const {q, tags:selectedTagIdsRaw = "", sortBy = "newest"} = Object.fromEntries(search.entries()) as unknown as {q?: string, tags?: string, sortBy:string};
     const selectedTagIds:string[] = selectedTagIdsRaw ? selectedTagIdsRaw.split(',') : [];
@@ -84,22 +79,8 @@ const injectProductsPageProps = createInjector(({}:IProductsPageInputProps):IPro
         setSearch({tags: selectedTagIds.join(",")});
     };
 
-    useEffect(() => {
-        Promise.all([
-            loadGroups(),
-            loadTags(),
-        ]).then(([groups, tags]) => {
-            console.log(groups);
-            console.log(tags);
-            setGroups(groups.map(group => ({
-                group,
-                tags: tags.filter(tag => tag.groupId === group.id),
-            })));
-        });
-    }, []);
-
     return {
-        groups, selectTag, removeTag, clearAll, clearSearch, selectedTagIds, q,
+        selectTag, removeTag, clearAll, clearSearch, selectedTagIds, q,
         products:filteredProducts,
         isLoading: isLoading || loader.isLoading,
         paginator, sortBy, setSortBy,

@@ -1,23 +1,5 @@
 @use "@styles/globals.module.scss";
 
-.tagGroupList {
-    margin: globals.$padding-sm;
-    .tagList {
-        display: flex;
-        flex-wrap: wrap;
-        gap: globals.$padding-xs;
-        > * {
-            display: inline-block;
-            min-width: 128px;
-            text-align: center;
-        }
-    }
-}
-
-.selectedTagList {
-    margin: globals.$padding;
-}
-
 .productListContainer {
     margin: globals.$padding;
     .productList {

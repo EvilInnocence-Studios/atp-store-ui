@@ -3,7 +3,6 @@ import { IPaginator } from "@core/lib/usePaginator";
 import { Setter } from "unstateless";
 
 export declare interface IProductsPageProps {
-    groups: Array<{group: ITagGroup, tags: ITag[]}>;
     selectTag: (tagId: string) => void;
     selectedTagIds: string[];
     q?: string;

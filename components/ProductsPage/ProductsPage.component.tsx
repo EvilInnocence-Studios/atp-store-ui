@@ -1,49 +1,19 @@
-import { Layout, Pagination, Select, Spin, Tag } from "antd";
+import { SelectedTags } from "@common/components/SelectedTags";
+import { TagFacets } from "@common/components/TagFacets";
+import { Layout, Pagination, Select, Spin } from "antd";
 import { switchOn } from "ts-functional";
 import { ProductListItem } from "../ProductListItem";
 import { ProductsPageProps } from "./ProductsPage.d";
 import styles from './ProductsPage.module.scss';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faTag } from "@fortawesome/free-solid-svg-icons";
-import { Fragment } from "react/jsx-runtime";
 
-export const ProductsPageComponent = ({groups, selectTag, removeTag, selectedTagIds, q, clearAll, clearSearch, products, isLoading, paginator, sortBy, setSortBy}:ProductsPageProps) =>
+export const ProductsPageComponent = ({selectTag, removeTag, selectedTagIds, q, clearAll, clearSearch, products, isLoading, paginator, sortBy, setSortBy}:ProductsPageProps) =>
     <Layout>
         <Layout.Sider theme="light" width={300} className={styles.sider}>
-            <div className={styles.tagGroupList}>
-                {groups.map(({group, tags}) => <Fragment key={group.id}>
-                    <h3>{group.name}</h3>
-                    <div className={styles.tagList} key={group.id}>
-                        {tags.map(tag =>
-                            <Tag
-                                key={tag.id}
-                                color={selectedTagIds.includes(`${tag.id}`) ? 'blue' : undefined}
-                                onClick={() => selectedTagIds.includes(`${tag.id}`) ? removeTag(`${tag.id}`) : selectTag(`${tag.id}`)}
-                            >
-                                {tag.name}
-                            </Tag>
-                        )}
-                    </div>
-                </Fragment>)}
-            </div>
+            <TagFacets selectedTagIds={selectedTagIds} selectTag={selectTag} removeTag={removeTag} />
         </Layout.Sider>
         <Layout.Content className={styles.productListContainer}>
             <Spin spinning={isLoading}>
-                <div className={styles.selectedTagList}>
-                    {selectedTagIds.length === 0 && !q && <h3>All products</h3>}
-                    {(selectedTagIds.length > 0 || !!q) && <h3>Search results</h3>}
-                    {!!q && <Tag color="blue" onClick={clearSearch}><FontAwesomeIcon icon={faSearch} /> {q}</Tag>}
-                    {selectedTagIds.map(tagId =>
-                        <Tag key={tagId} color="blue" onClick={() => removeTag(tagId)}>
-                            <FontAwesomeIcon icon={faTag} />
-                            {groups.reduce((acc, {tags}) => {
-                                const tag = tags.find(tag => `${tag.id}` === tagId);
-                                return tag ? [...acc, tag.name] : acc;
-                            }, [] as string[]).join(', ')}
-                        </Tag>
-                    )}
-                    {(selectedTagIds.length > 0 || !!q) && <Tag onClick={clearAll}>Clear all</Tag>}
-                </div>
+                <SelectedTags selectedTagIds={selectedTagIds} clearSearch={clearSearch} q={q} removeTag={removeTag} clearAll={clearAll} />
 
                 <div className={styles.orderSelect}>
                     <Select placeholder="Sort By" value={sortBy} onChange={setSortBy}>
