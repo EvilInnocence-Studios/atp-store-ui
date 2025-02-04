@@ -7,6 +7,7 @@ import { useSearchParams } from "react-router";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { ProductsPageComponent } from "./ProductsPage.component";
 import { IProductsPageInputProps, IProductsPageProps, ProductsPageProps } from "./ProductsPage.d";
+import { useToggle } from "@core/lib/useToggle";
 
 const injectProductsPageProps = createInjector(({}:IProductsPageInputProps):IProductsPageProps => {
     const [search, setSearch] = useSearchParams();
@@ -14,6 +15,7 @@ const injectProductsPageProps = createInjector(({}:IProductsPageInputProps):IPro
     const [filteredProducts, setFilteredProducts] = useState(products);
     const paginator = usePaginator();
     const {groups} = useTagGroups();
+    const filters = useToggle();
 
     const {q, tags:selectedTagIdsRaw = "", sortBy = "newest"} = Object.fromEntries(search.entries()) as unknown as {q?: string, tags?: string, sortBy:string};
     const selectedTagIds:string[] = selectedTagIdsRaw ? selectedTagIdsRaw.split(',') : [];
@@ -83,7 +85,7 @@ const injectProductsPageProps = createInjector(({}:IProductsPageInputProps):IPro
         selectTag, removeTag, clearAll, clearSearch, selectedTagIds, q,
         products:filteredProducts,
         isLoading: isLoading || loader.isLoading,
-        paginator, sortBy, setSortBy,
+        paginator, sortBy, setSortBy, filters,
     };
 });
 

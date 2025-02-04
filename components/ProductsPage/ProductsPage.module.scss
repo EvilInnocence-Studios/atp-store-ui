@@ -1,28 +1,56 @@
 @use "@styles/globals.module.scss";
 
-.productListContainer {
-    margin: globals.$padding;
-    .productList {
-        padding: globals.$padding 0;
-        > * {
-            width: calc(25% - globals.$padding * 2);
-            @media (max-width: 1600px) {
-                width: calc(33.33% - globals.$padding * 2);
+.productsPage {
+    .inlineFacets {
+        .filterHeader {
+            button {
+                float: right;
             }
-            @media (max-width: 1200px) {
-                width: calc(50% - globals.$padding * 2);
-            }
-            @media (max-width: 800px) {
-                width: calc(100% - globals.$padding * 2);
+        }
+        display: none;
+        background-color: globals.$brand-bg-light;
+        padding: globals.$padding;
+        margin-bottom: globals.$padding;
+        @media (max-width: 890px) {
+            display: block;
+        }
+    }
+
+    .sider {
+        @media (max-width: 890px) {
+            display: none;
+        }
+    }
+
+    .productListContainer {
+        margin: globals.$padding;
+        .productList {
+            padding: globals.$padding 0;
+            > * {
+                width: calc(25% - globals.$padding * 2);
+                @media (max-width: 1600px) {
+                    width: calc(33.33% - globals.$padding * 2);
+                }
+                @media (max-width: 1200px) {
+                    width: calc(50% - globals.$padding * 2);
+                }
+                @media (max-width: 600px) {
+                    width: calc(100% - globals.$padding * 2);
+                }
             }
         }
     }
-}
 
-.orderSelect {
-    width: 150px;
-    float: right;
-    > * {
-        width: 100%;
+    .orderSelect {
+        width: 150px;
+        float: right;
+        > * {
+            width: 100%;
+        }
+        @media (max-width: 460px) {
+            float: none;
+            width: 100%;
+            margin: globals.$padding 0;
+        }
     }
 }
