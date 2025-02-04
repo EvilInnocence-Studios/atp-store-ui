@@ -1,4 +1,4 @@
-import { IOrder } from "@store-shared/order/types";
+import { IOrder, IOrderItem } from "@store-shared/order/types";
 import { Col, Row, Spin, Table } from "antd";
 import dayjs from "dayjs";
 import { prop, sort } from "ts-functional";
@@ -20,11 +20,12 @@ export const UserOrderListComponent = ({user, orders, isLoading, selectOrder, se
         title: 'Discount',
         dataIndex: 'discount',
         key: 'discount',
-        render: (discount:number) => `$${discount.toFixed(2)}`,
-    },{
-        title: 'Coupon Code',
-        dataIndex: 'couponCode',
-        key: 'couponCode',
+        render: (discount:number, order:IOrder) => <>
+            ${discount.toFixed(2)}
+            {discount > 0 && !!order.couponCode && <>
+                <br/> {order.couponCode}
+            </>}
+        </>,
     }, {
         title: 'Total',
         dataIndex: 'total',
@@ -42,7 +43,7 @@ export const UserOrderListComponent = ({user, orders, isLoading, selectOrder, se
     return <Spin spinning={isLoading}>
         <div className={styles.userOrderList}>
             <Row gutter={16}>
-                <Col xs={12}>
+                <Col xs={24} xl={12}>
                     <h1>Orders for {user.firstName} {user.lastName}</h1>
                     <Table<IOrder>
                         dataSource={orders}
@@ -51,7 +52,7 @@ export const UserOrderListComponent = ({user, orders, isLoading, selectOrder, se
                         onRow={(record) => ({onClick: selectOrder(record)})}
                     />
                 </Col>
-                <Col xs={12}>
+                <Col xs={24} xl={12}>
                     {selectedOrder && <OrderDetails userId={selectedOrder.userId} orderId={selectedOrder.id} />}
                 </Col>
             </Row>            
