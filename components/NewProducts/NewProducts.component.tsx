@@ -13,6 +13,8 @@ export const NewProductsComponent = ({products, isLoading, scroll}:NewProductsPr
             <FontAwesomeIcon
                 icon={faCaretLeft}
                 className={clsx([styles.arrow, styles.left])}
+                onTouchStart={() => scroll.x.left()}
+                onTouchEnd={scroll.stop}
                 onMouseDown={() => scroll.x.left()}
                 onMouseUp={scroll.stop}
                 onMouseLeave={scroll.stop}
@@ -21,6 +23,8 @@ export const NewProductsComponent = ({products, isLoading, scroll}:NewProductsPr
             <FontAwesomeIcon
                 icon={faCaretRight}
                 className={clsx([styles.arrow, styles.right])}
+                onTouchStart={() => scroll.x.right()}
+                onTouchEnd={scroll.stop}
                 onMouseDown={() => scroll.x.right()}
                 onMouseUp={scroll.stop}
                 onMouseLeave={scroll.stop}
