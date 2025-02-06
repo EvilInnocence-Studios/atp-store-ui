@@ -1,24 +1,21 @@
 import { useTagGroups } from "@common/lib/useTagGroups";
 import { useLoader } from "@core/lib/useLoader";
 import { usePaginator } from "@core/lib/usePaginator";
+import { useToggle } from "@core/lib/useToggle";
 import { useProducts } from "@store/lib/product/services";
+import { useSearch } from "@store/lib/useSearch";
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { ProductsPageComponent } from "./ProductsPage.component";
 import { IProductsPageInputProps, IProductsPageProps, ProductsPageProps } from "./ProductsPage.d";
-import { useToggle } from "@core/lib/useToggle";
 
 const injectProductsPageProps = createInjector(({}:IProductsPageInputProps):IProductsPageProps => {
-    const [search, setSearch] = useSearchParams();
     const {products, isLoading} = useProducts();
     const [filteredProducts, setFilteredProducts] = useState(products);
     const paginator = usePaginator();
     const {groups} = useTagGroups();
     const filters = useToggle();
-
-    const {q, tags:selectedTagIdsRaw = "", sortBy = "newest"} = Object.fromEntries(search.entries()) as unknown as {q?: string, tags?: string, sortBy:string};
-    const selectedTagIds:string[] = selectedTagIdsRaw ? selectedTagIdsRaw.split(',') : [];
+    const {q, selectedTagIds, ...handlers} = useSearch();
 
     const loader = useLoader();
 
@@ -49,43 +46,12 @@ const injectProductsPageProps = createInjector(({}:IProductsPageInputProps):IPro
 
     useEffect(() => {updateFilteredProducts();}, [selectedTagIds.toString(), q, products]);
 
-    const selectTag = (tagId: string) => {
-        const newSearch = {
-            ...(q ? {q} : {}),
-            tags: [...selectedTagIds, tagId].join(","),
-        };
-        setSearch(newSearch);
-    };
-
-    const removeTag = (tagId: string) => {
-        const newTags = selectedTagIds.filter(id => id !== tagId);
-        setSearch({
-            ...(q ? {q} : {}),
-            ...newTags.length > 0 ? {tags: newTags.join(",")} : {},
-        });
-    };
-
-    const setSortBy = (sortBy: string) => {
-        setSearch({
-            ...(q ? {q} : {}),
-            ...(selectedTagIds.length > 0 ? {tags: selectedTagIds.join(",")} : {}),
-            sortBy,
-        });
-    }
-
-    const clearAll = () => {
-        setSearch({});
-    };
-
-    const clearSearch = () => {
-        setSearch({tags: selectedTagIds.join(",")});
-    };
-
     return {
-        selectTag, removeTag, clearAll, clearSearch, selectedTagIds, q,
+        selectedTagIds, q,
         products:filteredProducts,
         isLoading: isLoading || loader.isLoading,
-        paginator, sortBy, setSortBy, filters,
+        paginator, filters,
+        ...handlers,
     };
 });
 
