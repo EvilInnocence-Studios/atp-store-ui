@@ -1,4 +1,4 @@
-import { IOrder, IOrderItem } from "@store-shared/order/types";
+import { IOrder } from "@store-shared/order/types";
 import { Col, Row, Spin, Table } from "antd";
 import dayjs from "dayjs";
 import { prop, sort } from "ts-functional";
