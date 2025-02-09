@@ -1,26 +1,29 @@
 import { services } from "@core/lib/api";
 import { useLoaderAsync } from "@core/lib/useLoader";
 import { IProductFull, IProductMedia } from "@store-shared/product/types";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { memoizePromise } from "ts-functional";
 import { Index } from "ts-functional/dist/types";
 import { useSharedState } from "unstateless";
 
 const useImageList = useSharedState<Index<IProductMedia>>({});
 
+const loadImage = memoizePromise((productId:string, imageId:string) => services().product.media.get(productId, imageId));
+
 export const useImage = (productId:string, imageId:string | null):[IProductMedia | null, boolean] => {
-    const [images, setImages] = useImageList();
+    const [image, setImage] = useState<IProductMedia | null>(null);
     const loader = useLoaderAsync();
 
     useEffect(() => {
-        if(!!imageId && !images[`${imageId}`]) {
+        if(!!imageId) {
             loader(async () => 
-                services().product.media.get(productId, imageId)
-                    .then(image => setImages(oldImages => ({...oldImages, [`${imageId}`]: image})))
+                loadImage(productId, imageId)
+                    .then(setImage)
             );
         }
     }, [productId, imageId]);
 
-    return [!!images[`${imageId}`] ? images[`${imageId}`] : null, loader.isLoading];
+    return [!!image ? image : null, loader.isLoading];
 }
 
 export const useProducts = useSharedState<IProductFull[]>(`products`, []);

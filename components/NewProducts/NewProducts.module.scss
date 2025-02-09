@@ -8,12 +8,15 @@
 .newProducts {
     position: relative;
     overflow: hidden;
-    height: 332px;
+    height: 350px;
     .productList {
         position: absolute;
         overflow-x: hidden;
         overflow-y: hidden;
         white-space: nowrap;
+        > * {
+            width: 256px;
+        }
         * {
             white-space: normal;
         }
