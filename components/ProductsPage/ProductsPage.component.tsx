@@ -6,7 +6,14 @@ import { ProductListItem } from "../ProductListItem";
 import { ProductsPageProps } from "./ProductsPage.d";
 import styles from './ProductsPage.module.scss';
 
-export const ProductsPageComponent = ({selectTag, removeTag, selectedTagIds, q, clearAll, clearSearch, products, isLoading, paginator, sortBy, setSortBy, filters}:ProductsPageProps) =>
+export const ProductsPageComponent = ({
+    selectTag, removeTag, selectedTagIds,
+    q, clearAll, clearSearch,
+    products, isLoading, paginator,
+    sortBy, setSortBy,
+    perPage, setPerPage,
+    filters,
+}:ProductsPageProps) =>
     <div className={styles.productsPage}>
         <Layout>
             <Layout.Sider theme="light"width={300} className={styles.sider}>

@@ -12,10 +12,10 @@ import { IProductsPageInputProps, IProductsPageProps, ProductsPageProps } from "
 const injectProductsPageProps = createInjector(({}:IProductsPageInputProps):IProductsPageProps => {
     const {products, isLoading} = useProducts();
     const [filteredProducts, setFilteredProducts] = useState(products);
-    const paginator = usePaginator();
     const {groups} = useTagGroups();
     const filters = useToggle();
     const {q, selectedTagIds, ...handlers} = useSearch();
+    const paginator = usePaginator(handlers.perPage, handlers.setPerPage);
 
     const loader = useLoader();
 
