@@ -3,10 +3,7 @@ import { useLoaderAsync } from "@core/lib/useLoader";
 import { IProductFull, IProductMedia } from "@store-shared/product/types";
 import { useEffect, useState } from "react";
 import { memoizePromise } from "ts-functional";
-import { Index } from "ts-functional/dist/types";
 import { useSharedState } from "unstateless";
-
-const useImageList = useSharedState<Index<IProductMedia>>({});
 
 const loadImage = memoizePromise((productId:string, imageId:string) => services().product.media.get(productId, imageId));
 

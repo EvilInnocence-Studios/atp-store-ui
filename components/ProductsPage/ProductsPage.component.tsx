@@ -11,7 +11,6 @@ export const ProductsPageComponent = ({
     q, clearAll, clearSearch,
     products, isLoading, paginator,
     sortBy, setSortBy,
-    perPage, setPerPage,
     filters,
 }:ProductsPageProps) =>
     <div className={styles.productsPage}>
