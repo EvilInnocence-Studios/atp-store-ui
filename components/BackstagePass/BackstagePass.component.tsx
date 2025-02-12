@@ -30,9 +30,9 @@ export const BackstagePassComponent = ({count, selectedOption, setSelectedOption
             <div>
                 <h1>Backstage Pass Subscription</h1>
                 <h2>Unlock Exclusive 3D Content for Poser & DAZ Studio</h2>
-                <h3>🎭 Get VIP Access to Our Exclusive Catalog</h3>
+                <h3>🎭 Get VIP Access to Our Exclusive Catalog of over {count} products</h3>
 
-                <p>Join the Backstage Pass Subscription and instantly access over 850 exclusive Poser and DAZ Studio products for one low monthly price—with new content added every month! Plus, enjoy 25% off all regular products in our store.</p>
+                <p>Join the Backstage Pass Subscription and instantly access over {count} exclusive Poser and DAZ Studio products for one low monthly price—with new content added every month! Plus, enjoy 25% off all regular products in our store.</p>
 
                 <ul>
                     <li>Unlimited access to exclusive Backstage Pass content</li>
