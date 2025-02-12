@@ -1,17 +1,51 @@
 @use "@styles/globals.module.scss";
 
+@mixin infoBlock {
+    div {
+        max-width: globals.$cms-width;
+        margin: auto;
+    }
+}
+
 .backstagePass {
-    @include globals.cmsPage;
+    p {
+        display: block;
+        margin: globals.$padding 0;
+    }
+    .topInfo {
+        @include infoBlock;
+
+        background-color: globals.$brand-bg-light;
+        clip-path:ellipse(1024px 100% at 50% 0%);
+        padding-bottom: 2em;
+    }
 
     .subscriptionOptions {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        margin-bottom: 1rem;
-        .subscriptionOption {
-            text-align: center;
-            flex-grow: 1;
+        @include infoBlock;
+        
+        div.optionList {
+            margin-bottom: 1rem;
+            .subscriptionOption {
+                width: 32%;
+                display: inline-block;
+                vertical-align: top;
+                padding: globals.$padding;
+                .optionDetails {
+                    border: solid 4px globals.$brand-border;
+                    padding: globals.$padding;
+                    margin-bottom: globals.$padding;
+                    height: 128px;
+                    button {
+                        width: 100%;
+                    }
+                }
+                text-align: center;
+                flex-grow: 1;
+            }
         }
+    }
+
+    .about {
+        @include infoBlock;
     }
 }
