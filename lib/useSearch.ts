@@ -1,69 +1,87 @@
-import { useNavigate, useSearchParams } from "react-router";
-import { unique } from "ts-functional";
+import { useSearchParams } from "react-router";
+import { objFilter, objMap, unique } from "ts-functional";
+import { Index } from "ts-functional/dist/types";
+
+interface IParams extends Index<string> {
+}
 
 export declare interface ISearch {
     q?: string;
     selectedTagIds: string[];
     sortBy: string;
     perPage: string;
-    search: (term?:string, nav?: boolean) => void;
+    page: string;
+    search: (term:string) => void;
     selectTag: (tagId: string) => void;
     removeTag: (tagId: string) => void;
     setSortBy: (order: string) => void;
     setPerPage: (perPage: string) => void;
+    setPage: (page:string) => void;
+    updateQuery: (params:IParams) => void;
     clearAll: () => void;
     clearSearch: () => void;
 }
 
 export const useSearch = ():ISearch => {
     const [query, setQuery] = useSearchParams();
-    const navigate = useNavigate();
 
-    const {q, tags:selectedTagIdsRaw = "", sortBy = "newest", perPage = "12"} = Object.fromEntries(query.entries()) as unknown as {q?: string, tags?: string, sortBy:string, perPage: string};
+    const {
+        q,
+        tags:selectedTagIdsRaw = "",
+        sortBy = "newest",
+        perPage = "12",
+        page = "1",
+    } = Object.fromEntries(query.entries()) as unknown as IParams;
     const selectedTagIds:string[] = selectedTagIdsRaw ? selectedTagIdsRaw.split(',') : [];
 
-    const updateQuery = (q: string | undefined, tags: string[], sortBy?: string, perPage?: string) => {
-        const params = {
-            ...(!!q ? {q} : {}),
-            ...(tags.length > 0 ? {tags: tags.join(",")} : {}),
-            ...(!!sortBy ? {sortBy} : {}),
-            ...(!!perPage ? {perPage} : {}),
-        };
-        setQuery(params);
-        navigate(`/products?${new URLSearchParams(params).toString()}`);
+    const updateQuery = (params:IParams) => {
+        console.log("Updating", params);
+        setQuery((old:URLSearchParams) => {
+            const oldParams:IParams = Object.fromEntries(old.entries()) as unknown as IParams;
+            const newParams = objMap<string, IParams>(
+                (value:any, key:keyof IParams) => params[key] || value,
+            )({...oldParams, ...params});
+            const filtered = objFilter(value => !! value)(newParams);
+            console.log("Updated params", old.toString(), filtered);
+            return filtered as unknown as URLSearchParams;
+        });        
     }
 
-    const search = (term?:string) => {
-        updateQuery(term, selectedTagIds, sortBy, perPage);
+    const search = (term:string) => {
+        updateQuery({q: term, page: "1"});
     }
 
     const selectTag = (tagId: string) => {
-        updateQuery(q, unique([...selectedTagIds, tagId]), sortBy, perPage);
+        updateQuery({tags: unique([...selectedTagIds, tagId]).join(','), page: "1"});
     }
 
     const removeTag = (tagId: string) => {
-        updateQuery(q, selectedTagIds.filter(id => id !== tagId), sortBy, perPage);
+        updateQuery({tags: selectedTagIds.filter(id => id !== tagId).join(',')});
     }
 
     const setSortBy = (order: string) => {
-        updateQuery(q, selectedTagIds, order, perPage);
+        updateQuery({sortBy: order});
     }
 
     const setPerPage = (perPage: string) => {
-        updateQuery(q, selectedTagIds, sortBy, perPage);
+        updateQuery({perPage, page: "1"});
+    }
+
+    const setPage = (page:string) => {
+        updateQuery({page});
     }
 
     const clearAll = () => {
-        updateQuery(undefined, [], sortBy, perPage);
+        setQuery({sortBy, perPage, page});
     }
 
     const clearSearch = () => {
-        updateQuery(undefined, selectedTagIds, sortBy, perPage);
+        setQuery({sortBy, perPage, page, tags: selectedTagIds.join(',')});
     }
 
     return {
-        q, selectedTagIds, sortBy, perPage,
-        search, selectTag, removeTag, setSortBy, setPerPage,
+        q, selectedTagIds, sortBy, perPage, page, 
+        search, selectTag, removeTag, setSortBy, setPerPage, setPage, updateQuery,
         clearAll, clearSearch,
     };
 }

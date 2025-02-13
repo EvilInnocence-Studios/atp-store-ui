@@ -15,7 +15,7 @@ const injectProductsPageProps = createInjector(({}:IProductsPageInputProps):IPro
     const {groups} = useTagGroups();
     const filters = useToggle();
     const {q, selectedTagIds, ...handlers} = useSearch();
-    const paginator = usePaginator(handlers.perPage, handlers.setPerPage);
+    const paginator = usePaginator(handlers.page, handlers.perPage, handlers.updateQuery);
 
     const loader = useLoader();
 
