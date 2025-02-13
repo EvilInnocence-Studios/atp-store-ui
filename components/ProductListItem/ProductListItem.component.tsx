@@ -9,7 +9,7 @@ import clsx from "clsx";
 export const ProductListItemComponent = ({product, textSize}:ProductListItemProps) =>
     <div className={styles.productListItem}>
         <Link to={`/products/${product.url}`}>
-            {product.mainImageId && <Image productId={product.id} imageId={product.mainImageId} />}
+            {(product.mainImageId || product.thumbnailId) && <Image productId={product.id} imageId={product.mainImageId || product.thumbnailId} />}
         </Link>
         <div className={clsx([styles.productInfo, styles[textSize || "default"]])}>
             <Link to={`/products/${product.url}`}><h3>{product.name}</h3></Link>
