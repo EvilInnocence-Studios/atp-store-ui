@@ -42,7 +42,7 @@ export const ProductsPageComponent = ({
                             <Select.Option value="priceHigh">Price: High to Low</Select.Option>
                         </Select>
                     </div>
-                    <Pagination {...paginator} total={products.length} align="center"/>
+                    <Pagination {...paginator} total={products.length} align="center" showSizeChanger/>
                     <div className={styles.productList}>
                         {products
                             .sort(switchOn(sortBy, {
@@ -57,7 +57,7 @@ export const ProductsPageComponent = ({
                             .map(product => <ProductListItem key={product.id} product={product} />)
                         }
                     </div>
-                    <Pagination {...paginator} total={products.length} align="center"/>
+                    <Pagination {...paginator} total={products.length} align="center" showSizeChanger/>
                 </Spin>
             </Layout.Content>
         </Layout>
