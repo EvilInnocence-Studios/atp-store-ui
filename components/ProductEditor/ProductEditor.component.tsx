@@ -21,13 +21,13 @@ export const ProductEditorComponent = ({product, isLoading, updateNumber, update
                         <Switch checked={product.enabled} checkedChildren="Enabled" unCheckedChildren="Disabled" onChange={updateToggle("enabled")}/>
                         <DatePicker value={dayjs(product.releaseDate)} onChange={onDateChange(updateString("releaseDate"))}/>
                     </Space>
+                    <div className={styles.updateButtons}><UpdateButtons /></div>
                     <h1>
                         <Label label="Name"><Editable value={product.name} onChange={updateString("name")}/></Label>
                     </h1>
                     <hr/>
                     <Tabs tabPosition="left">
                         <Tabs.TabPane key="details" tab="Details">
-                            <div className={styles.updateButtons}><UpdateButtons /></div>
                             <Space direction="vertical">
                                 <Space>
                                     <Radio.Group block optionType="button" buttonStyle="solid" value={product.productType} onChange={(e) => updateString("productType")(e.target.value)}>
