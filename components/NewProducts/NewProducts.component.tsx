@@ -9,7 +9,10 @@ import clsx from "clsx";
 export const NewProductsComponent = ({products, isLoading, scroll}:NewProductsProps) =>
     <Spin spinning={isLoading}>
         <h2 className={styles.newProductsTitle}>New Products</h2>
-        <div className={styles.newProducts} ref={scroll.containerRef}>
+        <div
+            className={clsx([styles.newProducts, scroll.x.canScrollLeft && styles.canScrollLeft, scroll.x.canScrollRight && styles.canScrollRight])}
+            ref={scroll.containerRef}
+        >
             <FontAwesomeIcon
                 icon={faCaretLeft}
                 className={clsx([styles.arrow, styles.left])}
