@@ -1,4 +1,4 @@
-import { useSearchParams } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
 import { objFilter, objMap, unique } from "ts-functional";
 import { Index } from "ts-functional/dist/types";
 
@@ -11,7 +11,7 @@ export declare interface ISearch {
     sortBy: string;
     perPage: string;
     page: string;
-    search: (term:string) => void;
+    search: (term:string, nav?: boolean) => void;
     selectTag: (tagId: string) => void;
     removeTag: (tagId: string) => void;
     setSortBy: (order: string) => void;
@@ -24,6 +24,7 @@ export declare interface ISearch {
 
 export const useSearch = ():ISearch => {
     const [query, setQuery] = useSearchParams();
+    const navigate = useNavigate();
 
     const {
         q,
@@ -47,8 +48,12 @@ export const useSearch = ():ISearch => {
         });        
     }
 
-    const search = (term:string) => {
+    const search = (term:string, nav?: boolean) => {
         updateQuery({q: term, page: "1"});
+        if (nav) {
+            query.set("q", term);
+            navigate(`/products?${query.toString()}`);
+        }
     }
 
     const selectTag = (tagId: string) => {

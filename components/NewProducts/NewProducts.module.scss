@@ -8,7 +8,9 @@
 .newProducts {
     position: relative;
     overflow: hidden;
-    height: 350px;
+    height: 360px;
+    background-color: globals.$brand-bg-light;
+    padding-bottom: globals.$padding;
     .productList {
         position: absolute;
         overflow-x: hidden;

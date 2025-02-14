@@ -34,7 +34,9 @@ export const ProductPageComponent = ({product, media, relatedProducts, subProduc
                         </Col>
                     </Row>
                     <h2>Tags</h2>
-                    {product.tags.map((tag) => <Tag key={tag}>{tag}</Tag>)}
+                    <div className={styles.tags}>
+                        {product.tags.map((tag) => <Tag key={tag}>{tag}</Tag>)}
+                    </div>
                     <h2>Description</h2>
                     <Markdown>{product.description}</Markdown>
 
