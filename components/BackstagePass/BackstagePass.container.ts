@@ -1,8 +1,7 @@
-import { createInjector, inject, mergeProps } from "unstateless";
-import {BackstagePassComponent} from "./BackstagePass.component";
-import {IBackstagePassInputProps, BackstagePassProps, IBackstagePassProps} from "./BackstagePass.d";
 import { useProducts } from "@store/lib/product/services";
-import { useState } from "react";
+import { createInjector, inject, mergeProps } from "unstateless";
+import { BackstagePassComponent } from "./BackstagePass.component";
+import { BackstagePassProps, IBackstagePassInputProps, IBackstagePassProps } from "./BackstagePass.d";
 
 const injectBackstagePassProps = createInjector(({}:IBackstagePassInputProps):IBackstagePassProps => {
     const {products} = useProducts();
