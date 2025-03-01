@@ -11,7 +11,7 @@ export declare interface IBSPSignupFormProps {
 
 // What gets passed into the component from the parent as attributes
 export declare interface IBSPSignupFormInputProps {
-    onSignup: () => void;
+    onSignup?: () => void;
 }
 
 export declare interface IPayPalSubscriptionApprove {

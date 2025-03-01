@@ -5,6 +5,7 @@ export declare interface IMyAccountProps {
 // What gets passed into the component from the parent as attributes
 export declare interface IMyAccountInputProps {
     tab: string;
+    id?: string;
 }
 
 export type MyAccountProps = IMyAccountInputProps & IMyAccountProps;

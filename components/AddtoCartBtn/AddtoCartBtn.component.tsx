@@ -1,22 +1,22 @@
-import { faArrowRight, faArrowUpRightFromSquare, faCartPlus, faDownload, faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faArrowUpRightFromSquare, faCartPlus, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { hasPermission } from "@uac/components/HasPermission";
 import { Button, Modal } from "antd";
 import clsx from "clsx";
+import { Link } from "react-router";
+import { BSPSignupForm } from "../BSPSignupForm";
 import { AddtoCartBtnProps } from "./AddtoCartBtn.d";
 import styles from './AddtoCartBtn.module.scss';
-import { BSPSignupForm } from "../BSPSignupForm";
-import { Link } from "react-router";
 
 const Subscribed = hasPermission("product.subscription");
 
 const classes = clsx([styles.addToCartBtn, "addToCartBtn"]);
 
-export const AddtoCartBtnComponent = ({product, addToCart, download, bspModal, brokeredLink}:AddtoCartBtnProps) => <>
+export const AddtoCartBtnComponent = ({product, addToCart, bspModal, brokeredLink}:AddtoCartBtnProps) => <>
         {product.subscriptionOnly && <>
             <Subscribed yes>
-                <Button className={classes} type="primary" size="small" onClick={download}>
-                    <FontAwesomeIcon icon={faDownload} /> Download
+                <Button className={classes} type="primary" size="small" onClick={addToCart}>
+                    <FontAwesomeIcon icon={faCartPlus} /> Add to cart
                 </Button>
             </Subscribed>
             <Subscribed no>
@@ -36,12 +36,9 @@ export const AddtoCartBtnComponent = ({product, addToCart, download, bspModal, b
         </Modal>
         {!product.subscriptionOnly && <>
             {!product.brokeredAt && <>
-                {product.price > 0 && <Button className={classes} type="primary" size="small" onClick={addToCart}>
+                <Button className={classes} type="primary" size="small" onClick={addToCart}>
                     <FontAwesomeIcon icon={faCartPlus} /> Add to cart
-                </Button>}
-                {product.price <= 0 && <Button className={classes} type="primary" size="small" onClick={download}>
-                    <FontAwesomeIcon icon={faDownload} /> Download
-                </Button>}
+                </Button>
             </>}
             {product.brokeredAt && <Button className={classes} type="primary" size="small" onClick={() => window.open(brokeredLink)}>
                 <FontAwesomeIcon icon={faArrowUpRightFromSquare} /> Brokered At {product.brokeredAt}

@@ -7,13 +7,14 @@ import { useEffect, useState } from "react";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { UserOrderListComponent } from "./UserOrderList.component";
 import { IUserOrderListInputProps, IUserOrderListProps, UserOrderListProps } from "./UserOrderList.d";
+import { useNavigate } from "react-router";
 
-const injectUserOrderListProps = createInjector(({userId}:IUserOrderListInputProps):IUserOrderListProps => {
+const injectUserOrderListProps = createInjector(({userId, id}:IUserOrderListInputProps):IUserOrderListProps => {
     const [loggedInUser] = useLoggedInUser();
     const [user, setUser] = useState<SafeUser>(loggedInUser.user);
     const [orders, setOrders] = useState<IOrder[]>([]);
-    const [selectedOrder, setSelectedOrder] = useState<IOrder | undefined>();
     const loader = useLoaderAsync();
+    const navigate = useNavigate();
 
     useEffect(() => {
         if(user.id) {
@@ -26,7 +27,11 @@ const injectUserOrderListProps = createInjector(({userId}:IUserOrderListInputPro
         }
     }, [userId]);
 
-    const selectOrder = (order: IOrder) => () => setSelectedOrder(order);
+    const selectedOrder = id ? orders.find(order => order.id === id) : undefined;
+
+    const selectOrder = (order: IOrder) => () => {
+        navigate(`/my-account/orders/${order.id}`);
+    }
 
     return {user, orders, isLoading: loader.isLoading, selectedOrder, selectOrder};
 });

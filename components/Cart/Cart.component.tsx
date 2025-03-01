@@ -1,5 +1,5 @@
 import { DeleteBtn } from "@core/components/DeleteBtn";
-import { faCartShopping, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping, faShoppingCart, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { PayPalButtons } from "@paypal/react-paypal-js";
 import { IProduct } from "@store-shared/product/types";
@@ -9,7 +9,7 @@ import { ProductPrice } from "../ProductPrice";
 import { CartProps } from "./Cart.d";
 import styles from './Cart.module.scss';
 
-export const CartComponent = ({userId, createOrder, onApprove, ...cart}:CartProps) => {
+export const CartComponent = ({userId, createOrder, onApprove, completeFreeOrder, isLoading, ...cart}:CartProps) => {
     const columns = [{
         key: 'thumbnailImageId',
         render: (product:IProduct ) => <div className={styles.thumbnail}>
@@ -35,7 +35,7 @@ export const CartComponent = ({userId, createOrder, onApprove, ...cart}:CartProp
     }];
 
     return <div className={styles.cart}>
-        <Spin spinning={cart.isLoading}>
+        <Spin spinning={isLoading}>
             <h1><FontAwesomeIcon icon={faCartShopping} /> Your Cart</h1>
             <div className={styles.cartActions}>
                 <Button type="link" danger onClick={cart.clear}>
@@ -62,7 +62,14 @@ export const CartComponent = ({userId, createOrder, onApprove, ...cart}:CartProp
                 />
             </div>
             <div className={styles.cartActions}>
-                <PayPalButtons createOrder={createOrder} onApprove={onApprove} />
+                {cart.totals.total > 0 &&
+                    <PayPalButtons createOrder={createOrder} onApprove={onApprove} />
+                }
+                {cart.totals.total === 0 &&
+                    <Button type="primary" onClick={completeFreeOrder}>
+                        <FontAwesomeIcon icon={faShoppingCart} /> Complete Order
+                    </Button>
+                }
             </div>
         </Spin>
     </div>;

@@ -3,7 +3,6 @@ import { IProduct } from "@store-shared/product/types";
 
 export declare interface IAddtoCartBtnProps {
     addToCart: () => void;
-    download: () => void;
     brokeredLink: string;
     bspModal: IToggle;
 }

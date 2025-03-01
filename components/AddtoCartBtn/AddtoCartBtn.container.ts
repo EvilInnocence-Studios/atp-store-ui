@@ -23,9 +23,6 @@ const injectAddtoCartBtnProps = createInjector(({product}:IAddtoCartBtnInputProp
             cart.add(product);
             flash.success("Product added to cart")();
         },
-        download: () => {
-            // Manually create an order, submit it, and then navigate to the user downloads page
-        },
         bspModal,
         brokeredLink,
     };

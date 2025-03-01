@@ -7,34 +7,54 @@ import { CartComponent } from "./Cart.component";
 import { CartProps, ICartInputProps, ICartProps } from "./Cart.d";
 import { useNavigate } from "react-router";
 import { flash } from "@core/lib/flash";
+import { useLoaderAsync } from "@core/lib/useLoader";
+import { IOrder } from "@store-shared/order/types";
 
 const injectCartProps = createInjector(({}:ICartInputProps):ICartProps => {
     const [{user}] = useLoggedInUser();
     const cart = useCart();
     const navigate = useNavigate();
+    const loader = useLoaderAsync();
+
+    const ids = cart.products.map(prop("id"));
 
     const createOrder = (_data:any, _actions:any) => {
         return services().order.start(
             user.id, {
-                ids: cart.products.map(prop("id")),
+                ids,
                 couponCode: cart.couponCode,
             }).then((order:any) => {
                 return order.transactionId;
             });
     }
 
-    const onApprove = (_data:any, actions:any) => {
-        console.log("Approving order");
-        return actions.order.capture().then(function(details:any) {                        
-            return services().order.finalize(user.id, details.id).then((_order:any) => {
-                flash.success("Order placed successfully")();
-                cart.clear();
-                navigate('/my-account/orders');
-            });
-        });
+    const finishOrder = (order:IOrder) => {
+        flash.success("Order placed successfully")();
+        cart.clear();
+        navigate(`/my-account/orders/${order.id}`);
+}
+
+    const onApprove = (_data:any, actions:any) => 
+        actions.order.capture().then((details:any) => 
+            loader(() => services().order.finalize(user.id, details.id)
+                .then(finishOrder)
+            )
+        );
+
+    const completeFreeOrder = () => {
+        loader(() => services().order.finalizeFreeOrder(user.id, ids)
+            .then(finishOrder)
+        );
     }
 
-    return {...cart, userId: user.id, createOrder, onApprove};
+    return {
+        ...cart,
+        isLoading: cart.isLoading || loader.isLoading,
+        userId: user.id,
+        createOrder,
+        onApprove,
+        completeFreeOrder
+    };
 });
 
 const connect = inject<ICartInputProps, CartProps>(mergeProps(

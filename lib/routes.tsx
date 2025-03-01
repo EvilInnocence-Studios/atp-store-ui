@@ -16,6 +16,7 @@ export const storeRoutes = {
     ],
     public: [
         {path: "/my-account/:tab",     component: withRoute(MyAccount)   },
+        {path: "/my-account/:tab/:id", component: withRoute(MyAccount)   },
         {path: "/cart",                component: Cart                   },
         {path: "/products",            component: ProductsPage           },
         {path: "/products/:url",       component: withRoute(ProductPage) },

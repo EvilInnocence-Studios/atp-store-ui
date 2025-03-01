@@ -11,7 +11,8 @@ export declare interface IUserOrderListProps {
 
 // What gets passed into the component from the parent as attributes
 export declare interface IUserOrderListInputProps {
-    userId?: number;
+    userId?: string;
+    id?: string;
 }
 
 export type UserOrderListProps = IUserOrderListInputProps & IUserOrderListProps;

@@ -17,5 +17,6 @@ export const orderServices = ({get, post}:IMethods) => ({
         create: (userId:string, order:Partial<IOrder>) => post(`user/${userId}/order`, order).then(getResults<IOrder>),
         start: (userId:string, order:IOrderCreateRequest) => post(`user/${userId}/order/start`, order).then(getResults<IOrder>),
         finalize: (userId:string, transactionId:string):Promise<IOrder> => post(`user/${userId}/order/finalize`, {transactionId}).then(getResults<IOrder>),
+        finalizeFreeOrder: (userId:string, productIds:string[]) => post(`user/${userId}/order/finalizeFree`, {productIds}).then(getResults<IOrder>),
     },
 });
