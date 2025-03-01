@@ -1,0 +1,38 @@
+@use "@styles/globals.module.scss";
+
+.subscriptionOptions {
+    @include globals.infoBlock;
+    
+    div.optionList {
+        margin-bottom: 1rem;
+        display: flex;
+        @media (max-width: 730px) {
+            flex-wrap: wrap;
+        }
+        .subscriptionOption {
+            flex-grow: 1;
+            display: inline-block;
+            vertical-align: top;
+            padding: globals.$padding;
+            @media (max-width: 730px) {
+                width: 100%;
+            }
+            .optionDetails {
+                border: solid 4px globals.$brand-border;
+                border-radius: globals.$border-radius-lg;
+                padding: globals.$padding;
+                margin-bottom: globals.$padding;
+                height: 128px;
+                &.selected {
+                    border: solid 4px globals.$brand-primary;
+                    background-color: globals.$brand-bg-light;
+                }
+                button {
+                    width: 100%;
+                }
+            }
+            text-align: center;
+            flex-grow: 1;
+        }
+    }
+}

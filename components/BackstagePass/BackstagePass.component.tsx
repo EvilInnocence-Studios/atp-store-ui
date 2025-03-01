@@ -1,30 +1,9 @@
 import { Link } from "react-router";
-import {BackstagePassProps} from "./BackstagePass.d";
+import { BSPSignupForm } from "../BSPSignupForm";
+import { BackstagePassProps } from "./BackstagePass.d";
 import styles from './BackstagePass.module.scss';
-import { PayPalButtons } from "@paypal/react-paypal-js";
-import { Button } from "antd";
 
-var subscriptionOptions = [{
-    planId:			'P-9BB699402P8840110L33Z2PA',
-    description:	'Monthly',
-    renews:			'month',
-    period:			1,
-    price:			9.99,
-}, {
-    planId:			'P-15W80834UF944505FL332IJQ',
-    description:	'Quarterly',
-    renews:			'3 months',
-    period:			3,
-    price:			25.99,
-}, {
-    planId:			'P-1TA12176F5098193BL332I7Y',
-    description:	'Semi-Annually',
-    renews:			'6 months',
-    period:			6,
-    price:			39.99,
-}];
-
-export const BackstagePassComponent = ({count, selectedOption, setSelectedOption}:BackstagePassProps) =>
+export const BackstagePassComponent = ({count   }:BackstagePassProps) =>
     <div className={styles.backstagePass}>
         <div className={styles.topInfo}>
             <div>
@@ -45,51 +24,7 @@ export const BackstagePassComponent = ({count, selectedOption, setSelectedOption
             </div>
         </div>
 
-
-        <div className={styles.subscriptionOptions}>
-            <div>
-                <h2>Choose your Subscription Plan</h2>
-                <div className={styles.optionList}>
-                    {subscriptionOptions.map((option, i) =>
-                        <div key={i} className={styles.subscriptionOption}>
-                            <div className={styles.optionDetails}>
-                                <Button type={selectedOption === i ? "primary" : "default"} onClick={() => setSelectedOption(i)}>
-                                    {option.description}: ${option.price}
-                                </Button>
-                                <p>
-                                    Renews every {option.renews}
-                                    {i > 0 && <><br/>
-                                        Saves {Math.round((1 - (option.price / option.period) / subscriptionOptions[0].price) * 100)}%
-                                    </>}
-                                </p>
-                            </div>
-                            {selectedOption === i && <PayPalButtons
-                                style={{
-                                    label: 'subscribe',
-                                }}
-                                createSubscription={(_data, actions) => {
-                                    return actions.subscription.create({
-                                        plan_id: option.planId
-                                    });
-                                }}
-                                onApprove={(data, actions) => {
-                                    console.log(data);
-                                    console.log(actions);
-                                    return Promise.resolve();
-                                }}
-                                onCancel={(data, actions) => {
-                                    console.log(data);
-                                    console.log(actions);
-                                }}
-                                onError={(err) => {
-                                    console.error(err);
-                                }}
-                            />}
-                        </div>
-                    )}
-                </div>
-            </div>
-        </div>
+        <BSPSignupForm />
 
         <div className={styles.about}>
             <div>

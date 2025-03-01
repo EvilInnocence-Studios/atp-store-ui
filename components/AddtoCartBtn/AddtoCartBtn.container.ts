@@ -1,13 +1,13 @@
-import { useNavigate } from "react-router";
+import { flash } from "@core/lib/flash";
+import { useToggle } from "@core/lib/useToggle";
+import { useCart } from "@store/lib/useCart";
+import { switchOn } from "ts-functional";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { AddtoCartBtnComponent } from "./AddtoCartBtn.component";
 import { AddtoCartBtnProps, IAddtoCartBtnInputProps, IAddtoCartBtnProps } from "./AddtoCartBtn.d";
-import { useCart } from "@store/lib/useCart";
-import { flash } from "@core/lib/flash";
-import { switchOn } from "ts-functional";
 
 const injectAddtoCartBtnProps = createInjector(({product}:IAddtoCartBtnInputProps):IAddtoCartBtnProps => {
-    const navigate = useNavigate();
+    const bspModal = useToggle();
     const cart = useCart();
 
     const brokeredLink = switchOn(product.brokeredAt || "", {
@@ -26,7 +26,7 @@ const injectAddtoCartBtnProps = createInjector(({product}:IAddtoCartBtnInputProp
         download: () => {
             // Manually create an order, submit it, and then navigate to the user downloads page
         },
-        subscribe: () => {navigate("/backstage-pass")},
+        bspModal,
         brokeredLink,
     };
 });

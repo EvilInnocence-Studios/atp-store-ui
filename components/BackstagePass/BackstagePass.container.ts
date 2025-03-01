@@ -6,12 +6,11 @@ import { useState } from "react";
 
 const injectBackstagePassProps = createInjector(({}:IBackstagePassInputProps):IBackstagePassProps => {
     const {products} = useProducts();
-    const [selectedOption, setSelectedOption] = useState(0);
 
     const threshold = 25;
     const count = Math.floor(products.filter(product => product.subscriptionOnly && product.enabled).length / threshold) * threshold;
     
-    return {count, selectedOption, setSelectedOption};
+    return {count};
 });
 
 const connect = inject<IBackstagePassInputProps, BackstagePassProps>(mergeProps(

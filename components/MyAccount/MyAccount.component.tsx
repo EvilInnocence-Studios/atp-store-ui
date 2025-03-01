@@ -1,12 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {MyAccountProps} from "./MyAccount.d";
 import styles from './MyAccount.module.scss';
-import { faCartShopping, faDownload, faHeart, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping, faCrown, faDownload, faHeart, faUser } from "@fortawesome/free-solid-svg-icons";
 import { Tabs } from "antd";
 import { ProfileEditor } from "@uac/components/ProfileEditor";
 import { UserOrderList } from "../UserOrderList";
 import { UserFileList } from "../UserFileList";
 import { UserWishlist } from "../UserWishlist";
+import { SubscriptionEditor } from "../SubscriptionEditor";
 
 export const MyAccountComponent = ({tab, changeTab}:MyAccountProps) =>
     <div className={styles.myAccount}>
@@ -14,6 +15,9 @@ export const MyAccountComponent = ({tab, changeTab}:MyAccountProps) =>
         <Tabs defaultActiveKey={tab} tabPosition="left" onChange={changeTab}>
             <Tabs.TabPane tab={<><FontAwesomeIcon icon={faUser} /> Profile</>} key="profile">
                 <ProfileEditor title="My Profile" />
+            </Tabs.TabPane>
+            <Tabs.TabPane tab={<><FontAwesomeIcon icon={faCrown} /> Backstage Pass</>} key="bsp">
+                <SubscriptionEditor />
             </Tabs.TabPane>
             <Tabs.TabPane tab={<><FontAwesomeIcon icon={faCartShopping} /> Orders</>} key="orders">
                 <UserOrderList />
