@@ -8,7 +8,7 @@ import styles from './ProductPage.module.scss';
 import Markdown from 'marked-react';
 import { WishlistBtn } from "../WishlistBtn";
 import { MiniProduct } from "../MiniProduct";
-import { NotFoundPage } from "@public/components/NotFoundPage";
+import { NotFoundPage } from "@core/components/NotFoundPage";
 
 export const ProductPageComponent = ({product, media, relatedProducts, subProducts, isLoading}:ProductPageProps) =>
     <Spin spinning={isLoading}>
