@@ -1,0 +1,11 @@
+@use "@styles/globals.module.scss";
+
+.queue {
+    text-align: center;
+    border-bottom: solid 1px globals.$brand-border;
+    padding-bottom: globals.$padding-sm;
+    span {
+        display: inline-block;
+        margin: 0 0.5rem;
+    }
+}
