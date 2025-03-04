@@ -29,9 +29,12 @@ const injectQueueProps = createInjector(({groupId, tagId}:IQueueInputProps):IQue
     useEffect(refresh, [tagId, groupId]);
 
     const done = () => {
+        const id = products[offset].id;
         loader(() => 
-            services().product.tag.remove(products[offset].id, tagId)
-                .then(() => refresh(true))
+            services().product.tag.remove(id, tagId)
+                .then(() => {
+                    setProducts(products.filter(p => p.id !== id));
+                })
         );
     }
 
