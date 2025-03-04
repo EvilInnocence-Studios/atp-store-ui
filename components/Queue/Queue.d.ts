@@ -8,6 +8,7 @@ export declare interface IQueueProps {
     prev?: () => void;
     tag: ITag | null;
     productCount: number;
+    isLoading: boolean;
 }
 
 // What gets passed into the component from the parent as attributes

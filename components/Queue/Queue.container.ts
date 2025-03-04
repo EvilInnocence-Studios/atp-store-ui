@@ -46,7 +46,7 @@ const injectQueueProps = createInjector(({groupId, tagId}:IQueueInputProps):IQue
         setOffset(offset - 1);
     } : undefined;
     
-    return {product: products[offset], next, prev, refresh, tag, productCount: products.length, done};
+    return {product: products[offset], next, prev, refresh, tag, productCount: products.length, done, isLoading: loader.isLoading};
 });
 
 const connect = inject<IQueueInputProps, QueueProps>(mergeProps(
