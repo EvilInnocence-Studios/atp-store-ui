@@ -6,6 +6,7 @@ import { createInjector, inject, mergeProps } from "unstateless";
 import { QueueComponent } from "./Queue.component";
 import { IQueueInputProps, IQueueProps, QueueProps } from "./Queue.d";
 import { ITag } from "@common-shared/tag/types";
+import { prop, sort } from "ts-functional";
 
 const injectQueueProps = createInjector(({groupId, tagId}:IQueueInputProps):IQueueProps => {
     const [offset, setOffset] = useState(0);
@@ -22,7 +23,7 @@ const injectQueueProps = createInjector(({groupId, tagId}:IQueueInputProps):IQue
             services().product.search()
         ]).then(([tag, products]) => {
             setTag(tag);
-            setProducts(products.filter(p => p.tags.includes(tag.name)));
+            setProducts(products.filter(p => p.tags.includes(tag.name)).sort((a, b) => b.id.padStart(5, "0").localeCompare(a.id.padStart(5, "0"))));
         }));
     }
 
