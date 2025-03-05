@@ -29,11 +29,11 @@ export const useProductList = () => {
     }
     
     const refresh = () => {
-        loader(async () => {
+        loader(async () => 
             product.search()
                 .then(setProducts)
-                .catch(flash.error("Failed to load products"));
-        });
+                .catch(flash.error("Failed to load products"))
+        );
     }
 
     const remove = (id:string) => () => {

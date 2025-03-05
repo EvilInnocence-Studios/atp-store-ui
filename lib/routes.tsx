@@ -11,10 +11,10 @@ import { ProductManager } from "../components/ProductManager";
 
 export const storeRoutes = {
     admin: [
-        {path: "/products",            component: ProductManager          },
-        {path: "/products/:productId", component: withRoute(ProductEditor)},
-        {path: "/discounts",           component: DiscountEditor          },
-        {path: "/queue/:tagName",      component: withRoute(Queue)        },
+        {path: "/products",              component: ProductManager          },
+        {path: "/products/:productId",   component: withRoute(ProductEditor)},
+        {path: "/discounts",             component: DiscountEditor          },
+        {path: "/queue/:groupId/:tagId", component: withRoute(Queue)        },
     ],
     public: [
         {path: "/my-account/:tab",     component: withRoute(MyAccount)    },

@@ -3,15 +3,18 @@ import { IProduct } from "@store-shared/product/types";
 export declare interface IQueueProps {
     product: IProduct;
     refresh: () => void;
+    done: () => void;
     next?: () => void;
     prev?: () => void;
-    tagName: string;
+    tag: ITag | null;
     productCount: number;
+    isLoading: boolean;
 }
 
 // What gets passed into the component from the parent as attributes
 export declare interface IQueueInputProps {
-    tagName: string;
+    groupId: string;
+    tagId: string;
 }
 
 export type QueueProps = IQueueInputProps & IQueueProps;
