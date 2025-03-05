@@ -49,6 +49,11 @@ export const ProductEditorComponent = ({product, isLoading, updateNumber, update
                                     <Editable value={product.url} onChange={updateString("url")}/><br/>
                                 </Label>
 
+                                <Label label="Brokered">
+                                    <Editable placeholder="Brokered At" value={product.brokeredAt || ""} onChange={updateString("brokeredAt")} />
+                                    <Editable placeholder="Brokered Product Id" value={product.brokerageProductId || ""} onChange={updateString("brokerageProductId")} />
+                                </Label>
+
                                 <Card title="Short Description" size="small">
                                     <Editor value={product.descriptionShort} onChange={updateString("descriptionShort")}/>
                                 </Card>
