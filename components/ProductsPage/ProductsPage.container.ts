@@ -36,8 +36,7 @@ const injectProductsPageProps = createInjector(({}:IProductsPageInputProps):IPro
                     selectedFiltersByGroup.every(tags => tags.some(tag => (product.tags as string[]).includes(tag.name)))
                 )
                 .filter(product => !q ||
-                    product.name.toLowerCase().includes(q.toLowerCase()) ||
-                    product.description.toLowerCase().includes(q.toLowerCase())
+                    `${product.name} ${product.description} ${product.brokeredAt}`.toLowerCase().includes(q.toLowerCase())
                 )
             ));
             resolve(null);
