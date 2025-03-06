@@ -2,28 +2,52 @@ import { Link } from "react-router";
 import { BSPSignupForm } from "../BSPSignupForm";
 import { BackstagePassProps } from "./BackstagePass.d";
 import styles from './BackstagePass.module.scss';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCrown, faDollarSign, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faCreativeCommonsNc } from "@fortawesome/free-brands-svg-icons";
 
 export const BackstagePassComponent = ({count   }:BackstagePassProps) =>
     <div className={styles.backstagePass}>
         <div className={styles.topInfo}>
             <div>
-                <h1>Backstage Pass Subscription</h1>
-                <h2>Unlock Exclusive 3D Content for Poser & DAZ Studio</h2>
-                <h3>🎭 Get VIP Access to Our Exclusive Catalog of over {count} products</h3>
+                <h1>Backstage Pass</h1>
+                <h2>Exclusive 3D Content for Poser & DAZ Studio</h2>
 
-                <p>Join the Backstage Pass Subscription and instantly access over {count} exclusive Poser and DAZ Studio products for one low monthly price—with new content added every month! Plus, enjoy 25% off all regular products in our store.</p>
+                <p>Get instant access to over <b>{count}</b> exclusive Poser and DAZ Studio products, with more every month! Plus, enjoy <b>25%</b> off all regular products in our store.</p>
 
-                <ul>
-                    <li>Unlimited access to exclusive Backstage Pass content</li>
-                    <li>New releases every month – at least 4 new items guaranteed</li>
-                    <li>Exclusive savings – 25% off all regular store items</li>
-                    <li>No extra fees – all Backstage Pass items are FREE to download</li>
-                </ul>
-
-                <p>📥 Start downloading today!</p>
+                <div className={styles.subscribeLink}>
+                    <a href="#signup">
+                        Subscribe Now
+                    </a>
+                </div>
             </div>
         </div>
 
+
+        <ul className={styles.benefits}>
+            <li>
+                <div className={styles.icon}><FontAwesomeIcon icon={faCrown} /></div>
+                <h3>Exclusive Content</h3>
+                <p>Unlimited access to exclusive Backstage Pass content</p>
+            </li>
+            <li>
+                <div className={styles.icon}><FontAwesomeIcon icon={faPlus} /></div>
+                <h3>New content</h3>
+                <p>New releases every month – at least 4 new items guaranteed</p>
+            </li>
+            <li>
+                <div className={styles.icon}><FontAwesomeIcon icon={faDollarSign} /></div>
+                <h3>Extra Savings</h3>
+                <p>Exclusive savings – 25% off all regular store items</p>
+            </li>
+            <li>
+                <div className={styles.icon}><FontAwesomeIcon icon={faCreativeCommonsNc} /></div>
+                <h3>No hidden fees</h3>
+                <p>No extra fees – all Backstage Pass items are FREE to download</p>
+            </li>
+        </ul>
+
+        <a id="signup" />
         <BSPSignupForm />
 
         <div className={styles.about}>

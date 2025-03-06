@@ -2,20 +2,25 @@
 
 .subscriptionOptions {
     @include globals.infoBlock;
+    h2 {
+        text-align: center;
+        margin: 32px auto;
+        font-size: 48px;
+    }
     
     div.optionList {
         margin-bottom: 1rem;
         display: flex;
+        align-items: flex-start;
         @media (max-width: 730px) {
             flex-wrap: wrap;
         }
         .subscriptionOption {
             flex-grow: 1;
             display: inline-block;
-            vertical-align: top;
             padding: globals.$padding;
             text-align: center;
-            flex-grow: 1;
+            min-height: 380px;
             @media (max-width: 730px) {
                 width: 100%;
             }

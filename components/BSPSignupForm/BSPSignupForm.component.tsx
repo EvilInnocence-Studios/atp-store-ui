@@ -10,7 +10,7 @@ import { LoginForm } from "@uac/components/LoginForm";
 export const BSPSignupFormComponent = ({selectedOption, setSelectedOption, createSubscription, onApprove}:BSPSignupFormProps) => <>
     <LoggedIn yes >
         <div className={styles.subscriptionOptions}>
-            <h2>Choose your Subscription Plan</h2>
+            <h2>Choose your Plan</h2>
             <div className={styles.optionList}>
                 {config().paypal.plans.map((option, i) =>
                     <div key={i} className={styles.subscriptionOption}>
