@@ -41,3 +41,13 @@
         }
     }
 }
+
+.loginForm {
+    max-width: globals.$cms-width;
+    margin: auto;
+    padding: 128px;
+    h2 {
+        text-align: center;
+        margin-bottom: 64px;
+    }
+}

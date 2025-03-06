@@ -36,7 +36,9 @@ export const BSPSignupFormComponent = ({selectedOption, setSelectedOption, creat
         </div>
     </LoggedIn>
     <LoggedIn no>
-        <h2>Login to Subscribe</h2>
-        <LoginForm inline />
+        <div className={styles.loginForm}>
+            <h2>Login to Subscribe</h2>
+            <LoginForm inline />
+        </div>
     </LoggedIn>
 </>;
