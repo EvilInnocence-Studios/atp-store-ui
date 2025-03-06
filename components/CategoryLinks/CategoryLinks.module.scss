@@ -1,0 +1,26 @@
+@use "@styles/globals.module.scss";
+
+.categoryLinks {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+    background-color: globals.$brand-bg-light;
+    width: 100%;
+    a {
+        flex-grow: 1;
+        padding: globals.$padding;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        color: globals.$brand-text;
+        text-decoration: none;
+        transition: all 0.3s;
+        &:hover {
+            background-color: globals.$brand-bg;
+        }
+    }
+}

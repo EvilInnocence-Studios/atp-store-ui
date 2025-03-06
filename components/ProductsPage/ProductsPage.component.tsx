@@ -5,6 +5,7 @@ import { switchOn } from "ts-functional";
 import { ProductListItem } from "../ProductListItem";
 import { ProductsPageProps } from "./ProductsPage.d";
 import styles from './ProductsPage.module.scss';
+import { CategoryLinks } from "../CategoryLinks";
 
 export const ProductsPageComponent = ({
     selectTag, removeTag, selectedTagIds,
@@ -20,6 +21,7 @@ export const ProductsPageComponent = ({
             </Layout.Sider>
             <Layout.Content className={styles.productListContainer}>
                 <Spin spinning={isLoading}>
+                    <CategoryLinks />
                     <SelectedTags selectedTagIds={selectedTagIds} clearSearch={clearSearch} q={q} removeTag={removeTag} clearAll={clearAll} />
                     <div className={styles.inlineFacets}>
                         <div className={styles.filterHeader}>
