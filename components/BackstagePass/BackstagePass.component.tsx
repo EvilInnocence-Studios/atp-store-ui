@@ -1,10 +1,12 @@
+import { faCreativeCommonsNc } from "@fortawesome/free-brands-svg-icons";
+import { faCrown, faDollarSign, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router";
 import { BSPSignupForm } from "../BSPSignupForm";
+import { ProductScroller } from "../ProductScroller";
 import { BackstagePassProps } from "./BackstagePass.d";
 import styles from './BackstagePass.module.scss';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCrown, faDollarSign, faPlus } from "@fortawesome/free-solid-svg-icons";
-import { faCreativeCommonsNc } from "@fortawesome/free-brands-svg-icons";
+import { IProductFull } from "@store-shared/product/types";
 
 export const BackstagePassComponent = ({count   }:BackstagePassProps) =>
     <div className={styles.backstagePass}>
@@ -49,6 +51,13 @@ export const BackstagePassComponent = ({count   }:BackstagePassProps) =>
 
         <a id="signup" />
         <BSPSignupForm />
+
+        <ProductScroller
+            title="Explore Backstage Pass Products"
+            count={10}
+            filter={(p:IProductFull) => p.tags.includes('BSP Featured')}
+            sort={(a, b) => new Date(b.releaseDate).getTime() - new Date(a.releaseDate).getTime()}
+        />;
 
         <div className={styles.about}>
             <div>

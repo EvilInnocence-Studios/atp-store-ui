@@ -6,9 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import { ProductListItem } from "../ProductListItem";
 
-export const ProductScrollerComponent = ({products, isLoading, scroll}:ProductScrollerProps) =>
+export const ProductScrollerComponent = ({title, products, isLoading, scroll}:ProductScrollerProps) =>
     <Spin spinning={isLoading}>
-        <h2 className={styles.scrollerTitle}>New Products</h2>
+        <h2 className={styles.scrollerTitle}>{title}</h2>
         <div
             className={clsx([styles.scroller, scroll.x.canScrollLeft && styles.canScrollLeft, scroll.x.canScrollRight && styles.canScrollRight])}
             ref={scroll.containerRef}

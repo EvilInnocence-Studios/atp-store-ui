@@ -11,6 +11,7 @@ export declare interface IProductScrollerInputProps {
     filter: (p:IProductFull) => boolean;
     sort: (a:IProductFull, b:IProductFull) => number;
     count?: number;
+    title: string;
 }
 
 export type ProductScrollerProps = IProductScrollerInputProps & IProductScrollerProps;
