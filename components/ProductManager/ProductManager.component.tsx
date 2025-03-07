@@ -1,7 +1,8 @@
+import { ClearCacheButton } from "@common/components/ClearCacheButton";
 import { faPlus, faShop } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IProduct } from "@store-shared/product/types";
-import { Button, Spin, Table, Tabs, Tag } from "antd";
+import { Button, Space, Spin, Table, Tabs, Tag } from "antd";
 import { objMap, prop, sort } from "ts-functional";
 import { ProductManagerProps } from "./ProductManager.d";
 import styles from './ProductManager.module.scss';
@@ -19,7 +20,12 @@ export const ProductManagerComponent = ({products, isLoading, create, columns, t
                 defaultActiveKey={tab}
                 onChange={setTab}
                 items={allTabs.map(tab => ({key: tab, label: tab}))}
-                tabBarExtraContent={<Button type="primary" onClick={create}><FontAwesomeIcon icon={faPlus} /> New Product</Button>}
+                tabBarExtraContent={<>
+                    <Space.Compact>
+                        <Button type="primary" onClick={create}><FontAwesomeIcon icon={faPlus} /> New Product</Button>
+                        <ClearCacheButton entity="product" cacheType="product" />
+                    </Space.Compact>
+                </>}
             />
             <Table
                 dataSource={products.sort(sort.by(prop<IProduct, "name">("name")).asc)}

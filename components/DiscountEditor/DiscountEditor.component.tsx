@@ -7,6 +7,7 @@ import { hasPermission } from "@uac/components/HasPermission";
 import { Button, Col, Row, Select, Spin, Table } from "antd";
 import { DiscountEditorProps } from "./DiscountEditor.d";
 import styles from './DiscountEditor.module.scss';
+import { ClearCacheButton } from "@common/components/ClearCacheButton";
 
 const CanUpdate = hasPermission("discount.update");
 const CanDelete = hasPermission("discount.delete");
@@ -88,7 +89,8 @@ export const DiscountEditorComponent = ({discounts, permissions, isLoading, upda
             <h1><FontAwesomeIcon icon={faMoneyBill} /> Discounts</h1>
             <Row gutter={16}>
                 <Col xs={6}>
-                    <Button onClick={create} type="primary"><FontAwesomeIcon icon={faPlus} /> Create Discount</Button>
+                    <Button onClick={create} type="primary"><FontAwesomeIcon icon={faPlus} /> Create Discount</Button><br/><br/>
+                    <ClearCacheButton entity="discount" cacheType="discount" />
                 </Col>
                 <Col xs={12}>
                     <Table<IDiscount>
