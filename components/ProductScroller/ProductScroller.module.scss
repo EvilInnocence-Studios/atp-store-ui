@@ -1,8 +1,10 @@
 @use "@styles/globals.module.scss";
 
 .scrollerTitle {
-    margin-bottom: 0;
+    margin-bottom: globals.$padding;
     margin-top: 64px;
+    font-size: 48px;
+    text-align: center;
 }
 
 .scroller {

@@ -71,4 +71,14 @@
     .about {
         @include globals.infoBlock;
     }
+
+    .faq {
+        @include globals.infoBlock;
+        margin-top: globals.$padding-lg;
+        h2 {
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: globals.$padding;
+        }
+    }
 }
