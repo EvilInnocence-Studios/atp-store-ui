@@ -1,13 +1,13 @@
 import { faCreativeCommonsNc } from "@fortawesome/free-brands-svg-icons";
 import { faCrown, faDollarSign, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { IProductFull } from "@store-shared/product/types";
+import { Collapse } from "antd";
 import { Link } from "react-router";
 import { BSPSignupForm } from "../BSPSignupForm";
 import { ProductScroller } from "../ProductScroller";
 import { BackstagePassProps } from "./BackstagePass.d";
 import styles from './BackstagePass.module.scss';
-import { IProductFull } from "@store-shared/product/types";
-import { Col, Collapse } from "antd";
 
 export const BackstagePassComponent = ({count   }:BackstagePassProps) =>
     <div className={styles.backstagePass}>
