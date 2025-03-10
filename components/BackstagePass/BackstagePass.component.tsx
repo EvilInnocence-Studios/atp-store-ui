@@ -26,29 +26,30 @@ export const BackstagePassComponent = ({count   }:BackstagePassProps) =>
             </div>
         </div>
 
-
-        <ul className={styles.benefits}>
-            <li>
-                <div className={styles.icon}><FontAwesomeIcon icon={faCrown} /></div>
-                <h3>Exclusive Content</h3>
-                <p>Unlimited access to exclusive Backstage Pass content</p>
-            </li>
-            <li>
-                <div className={styles.icon}><FontAwesomeIcon icon={faPlus} /></div>
-                <h3>New content</h3>
-                <p>New releases every month – at least 4 new items guaranteed</p>
-            </li>
-            <li>
-                <div className={styles.icon}><FontAwesomeIcon icon={faDollarSign} /></div>
-                <h3>Extra Savings</h3>
-                <p>Exclusive savings – 25% off all regular store items</p>
-            </li>
-            <li>
-                <div className={styles.icon}><FontAwesomeIcon icon={faCreativeCommonsNc} /></div>
-                <h3>No hidden fees</h3>
-                <p>No extra fees – all Backstage Pass items are FREE to download</p>
-            </li>
-        </ul>
+        <div className={styles.benefitsWrapper}>
+            <ul className={styles.benefits}>
+                <li>
+                    <div className={styles.icon}><FontAwesomeIcon icon={faCrown} /></div>
+                    <h3>Exclusive Content</h3>
+                    <p>Unlimited access to exclusive Backstage Pass content</p>
+                </li>
+                <li>
+                    <div className={styles.icon}><FontAwesomeIcon icon={faPlus} /></div>
+                    <h3>New content</h3>
+                    <p>New releases every month – at least 4 new items guaranteed</p>
+                </li>
+                <li>
+                    <div className={styles.icon}><FontAwesomeIcon icon={faDollarSign} /></div>
+                    <h3>Extra Savings</h3>
+                    <p>Exclusive savings – 25% off all regular store items</p>
+                </li>
+                <li>
+                    <div className={styles.icon}><FontAwesomeIcon icon={faCreativeCommonsNc} /></div>
+                    <h3>No hidden fees</h3>
+                    <p>No extra fees – all Backstage Pass items are FREE to download</p>
+                </li>
+            </ul>
+        </div>
 
         <a id="signup" />
         <BSPSignupForm />

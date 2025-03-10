@@ -37,29 +37,4 @@
             }
         }
     }
-    .relatedProductsLists {
-        h2 {
-            margin: globals.$padding-lg 0 0 0;
-        }
-        .relatedProducts, .subProducts {
-            margin-left: -(globals.$padding);
-            width: calc(100% + globals.$padding * 2);
-            > * {
-                width: calc((100% - (globals.$padding * 6)) / 3);
-                @media (max-width: 900px) {
-                    width: calc((100% - (globals.$padding * 4)) / 2);
-                }
-                @media (max-width: 570px) {
-                    width: calc(100% - (globals.$padding * 2));
-                }
-            }
-        }
-        .subProducts {
-            padding: globals.$padding;
-            > * {
-                display: inline-block;
-                margin: 0 globals.$padding globals.$padding 0;
-            }
-        }
-    }
 }

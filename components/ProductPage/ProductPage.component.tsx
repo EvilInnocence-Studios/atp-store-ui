@@ -9,6 +9,7 @@ import Markdown from 'marked-react';
 import { WishlistBtn } from "../WishlistBtn";
 import { MiniProduct } from "../MiniProduct";
 import { NotFoundPage } from "@core/components/NotFoundPage";
+import { ProductScroller } from "../ProductScroller";
 
 export const ProductPageComponent = ({product, media, relatedProducts, subProducts, isLoading}:ProductPageProps) =>
     <Spin spinning={isLoading}>
@@ -44,16 +45,20 @@ export const ProductPageComponent = ({product, media, relatedProducts, subProduc
             </div>
             <div className={styles.relatedProductsLists}>
                 {product.productType === 'grouped' && <>
-                    <h2>Included products</h2>
-                    <div className={styles.subProducts}>
-                        {subProducts.map(subProduct => <MiniProduct key={subProduct.id} product={subProduct} />)}
-                    </div>
+                    <ProductScroller
+                        title="Grouped Products"
+                        filter={(p) => subProducts.some(subProduct => subProduct.id === p.id)}
+                        sort={(a, b) => a.name.localeCompare(b.name)}
+                    />
                 </>}
 
                 {relatedProducts.length > 0 && <>
-                    <h2>Related products</h2>
                     <div className={styles.relatedProducts}>
-                        {relatedProducts.map((related) => <ProductListItem key={related.id} product={related} />)}
+                        <ProductScroller
+                            title="Related Products"
+                            filter={(p) => relatedProducts.some(related => related.id === p.id)}
+                            sort={(a, b) => a.name.localeCompare(b.name)}
+                        />
                     </div>
                 </>}
             </div>
