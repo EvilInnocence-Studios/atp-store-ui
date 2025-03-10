@@ -1,15 +1,13 @@
+import { NotFoundPage } from "@core/components/NotFoundPage";
 import { Col, Row, Spin, Tag } from "antd";
+import Markdown from 'marked-react';
 import { AddtoCartBtn } from "../AddtoCartBtn";
 import { MediaSwitcher } from "../MediaSwitcher";
-import { ProductListItem } from "../ProductListItem";
 import { ProductPrice } from "../ProductPrice";
+import { ProductScroller } from "../ProductScroller";
+import { WishlistBtn } from "../WishlistBtn";
 import { ProductPageProps } from "./ProductPage.d";
 import styles from './ProductPage.module.scss';
-import Markdown from 'marked-react';
-import { WishlistBtn } from "../WishlistBtn";
-import { MiniProduct } from "../MiniProduct";
-import { NotFoundPage } from "@core/components/NotFoundPage";
-import { ProductScroller } from "../ProductScroller";
 
 export const ProductPageComponent = ({product, media, relatedProducts, subProducts, isLoading}:ProductPageProps) =>
     <Spin spinning={isLoading}>
