@@ -1,11 +1,7 @@
 import { ITag } from "@common-shared/tag/types";
-import { services } from "@core/lib/api";
 import { IMethods } from "@core/lib/types";
-import { useLoader } from "@core/lib/useLoader";
 import { getResults } from "@core/lib/util";
 import { IProduct, IProductFile, IProductFull, IProductMedia, NewProduct } from "@store-shared/product/types";
-import { useEffect } from "react";
-import { useSharedState } from "unstateless";
 
 export const productServices = ({get, post, /*put,*/ patch, remove}: IMethods) => ({
     product: {
