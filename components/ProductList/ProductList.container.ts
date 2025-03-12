@@ -1,5 +1,5 @@
 import { IProductFull } from "@store-shared/product/types";
-import { useProducts } from "@store/lib/product/services";
+import { useProductList } from "@store/lib/useProductList";
 import { prop, sort } from "ts-functional";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { ProductListComponent } from "./ProductList.component";
@@ -7,7 +7,7 @@ import { IProductListInputProps, IProductListProps, ProductListProps } from "./P
 import { randomProducts } from "./ProductList.helpers";
 
 const injectProductListProps = createInjector(({}:IProductListInputProps):IProductListProps => {
-    const {products, isLoading} = useProducts();
+    const {products, isLoading} = useProductList();
 
     const sortedProducts = randomProducts(products).sort(sort.by(prop<IProductFull, 'releaseDate'>('releaseDate')).desc);
     

@@ -1,13 +1,13 @@
-import { createInjector, inject, mergeProps } from "unstateless";
-import {ProductScrollerComponent} from "./ProductScroller.component";
-import {IProductScrollerInputProps, ProductScrollerProps, IProductScrollerProps} from "./ProductScroller.d";
 import { useScrollable } from "@core/useScrollable";
-import { useEffect, useState } from "react";
 import { IProductFull } from "@store-shared/product/types";
-import { useProducts } from "@store/lib/product/services";
+import { useProductList } from "@store/lib/useProductList";
+import { useEffect, useState } from "react";
+import { createInjector, inject, mergeProps } from "unstateless";
+import { ProductScrollerComponent } from "./ProductScroller.component";
+import { IProductScrollerInputProps, IProductScrollerProps, ProductScrollerProps } from "./ProductScroller.d";
 
 const injectProductScrollerProps = createInjector(({filter, sort, count}:IProductScrollerInputProps):IProductScrollerProps => {
-    const {products, isLoading} = useProducts();
+    const {products, isLoading} = useProductList();
     const scroll = useScrollable(10);
     const [newProducts, setNewProducts] = useState<IProductFull[]>([]);
 

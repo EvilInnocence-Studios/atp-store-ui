@@ -56,20 +56,3 @@ export const productServices = ({get, post, /*put,*/ patch, remove}: IMethods) =
     },
 
 });
-
-export const useProducts = () => {
-    const [products, setProducts] = useSharedState<IProductFull[]>("productList", [])();
-    const loader = useLoader();
-    
-    useEffect(() => {
-        if(products.length === 0) {
-            loader.start();
-            services().product.search()
-                .then(setProducts)
-                .finally(loader.stop);
-        }
-    }, []);
-
-    return {products, isLoading: loader.isLoading};
-
-}

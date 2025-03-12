@@ -23,6 +23,4 @@ export const useImage = (productId:string, imageId:string | null):[IProductMedia
     return [!!image ? image : null, loader.isLoading];
 }
 
-export const useProducts = useSharedState<IProductFull[]>(`products`, []);
-
 export const useProduct = (id:string) => useSharedState<IProductFull | null>(`product-${id}`, null);

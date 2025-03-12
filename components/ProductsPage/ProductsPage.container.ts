@@ -2,15 +2,17 @@ import { useTagGroups } from "@common/lib/useTagGroups";
 import { useLoader } from "@core/lib/useLoader";
 import { usePaginator } from "@core/lib/usePaginator";
 import { useToggle } from "@core/lib/useToggle";
-import { useProducts } from "@store/lib/product/services";
+import { useProductList } from "@store/lib/useProductList";
 import { useSearch } from "@store/lib/useSearch";
 import { useEffect, useState } from "react";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { ProductsPageComponent } from "./ProductsPage.component";
 import { IProductsPageInputProps, IProductsPageProps, ProductsPageProps } from "./ProductsPage.d";
+import { synonymReplace, useSynonyms } from "@common/lib/synonym/util";
 
 const injectProductsPageProps = createInjector(({}:IProductsPageInputProps):IProductsPageProps => {
-    const {products, isLoading} = useProducts();
+    const {products, isLoading} = useProductList();
+    const synonyms = useSynonyms();
     const [filteredProducts, setFilteredProducts] = useState(products);
     const {groups} = useTagGroups();
     const filters = useToggle();
@@ -35,11 +37,7 @@ const injectProductsPageProps = createInjector(({}:IProductsPageInputProps):IPro
                 .filter(product =>
                     selectedFiltersByGroup.every(tags => tags.some(tag => (product.tags as string[]).includes(tag.name)))
                 )
-                .filter(product => !q ||
-                    new RegExp(`\\b${q.toLowerCase()}\\b`).test(
-                        `${product.name} ${product.description} ${product.brokeredAt} ${product.tags}`.toLowerCase()
-                    )
-                )
+                .filter(product => !q || new RegExp(`\\b${synonymReplace(q, synonyms)}\\b`).test(product.search))
             ));
             resolve(null);
         }).then(loader.stop);

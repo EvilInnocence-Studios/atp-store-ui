@@ -1,13 +1,20 @@
+import { synonymReplace, useSynonyms } from "@common/lib/synonym/util";
 import { services } from "@core/lib/api";
 import { flash } from "@core/lib/flash";
 import { useLoaderAsync } from "@core/lib/useLoader";
 import { appendTo } from "@core/lib/util";
-import { IProduct } from "@store-shared/product/types";
-import { useState } from "react";
+import { IProductFull } from "@store-shared/product/types";
+import { useEffect } from "react";
 import { all } from "ts-functional";
+import { useSharedState } from "unstateless";
+
+type SearchableProduct = IProductFull & {search: string};
+
+const useProductsRaw = useSharedState<SearchableProduct[]>("products", []);
 
 export const useProductList = () => {
-    const [products, setProducts] = useState<IProduct[]>([]);
+    const [products, setProducts] = useProductsRaw();
+    const synonyms = useSynonyms();
     const loader =  useLoaderAsync();
 
     const product = services().product;
@@ -31,10 +38,18 @@ export const useProductList = () => {
     const refresh = () => {
         loader(async () => 
             product.search()
-                .then(setProducts)
+                .then(products => {
+                    setProducts(products.map(p => {
+                        const searchRaw = `${p.name} ${p.description} ${p.brokeredAt} ${p.tags.join(" ")}`;
+                        const search = synonymReplace(searchRaw, synonyms);
+                        return {...p, search};
+                    }));
+                })
                 .catch(flash.error("Failed to load products"))
         );
     }
+
+    useEffect(refresh, []);
 
     const remove = (id:string) => () => {
         const oldProducts = products;
