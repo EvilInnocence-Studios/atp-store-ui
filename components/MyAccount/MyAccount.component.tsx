@@ -8,25 +8,29 @@ import { UserOrderList } from "../UserOrderList";
 import { UserFileList } from "../UserFileList";
 import { UserWishlist } from "../UserWishlist";
 import { SubscriptionEditor } from "../SubscriptionEditor";
+import { LoggedIn } from "@uac/components/LoggedIn";
 
-export const MyAccountComponent = ({tab, id, changeTab}:MyAccountProps) =>
-    <div className={styles.myAccount}>
-        <h1><FontAwesomeIcon icon={faUser} /> My Account</h1>
-        <Tabs defaultActiveKey={tab} tabPosition="left" onChange={changeTab}>
-            <Tabs.TabPane tab={<><FontAwesomeIcon icon={faUser} /> Profile</>} key="profile">
-                <ProfileEditor title="My Profile" />
-            </Tabs.TabPane>
-            <Tabs.TabPane tab={<><FontAwesomeIcon icon={faCrown} /> Backstage Pass</>} key="bsp">
-                <SubscriptionEditor />
-            </Tabs.TabPane>
-            <Tabs.TabPane tab={<><FontAwesomeIcon icon={faCartShopping} /> Orders</>} key="orders">
-                <UserOrderList id={id}/>
-            </Tabs.TabPane>
-            <Tabs.TabPane tab={<><FontAwesomeIcon icon={faHeart} /> My Wishlist</>} key="wishlist">
-                <UserWishlist />
-            </Tabs.TabPane>
-            <Tabs.TabPane tab={<><FontAwesomeIcon icon={faDownload} /> My Files</>} key="files">
-                <UserFileList />
-            </Tabs.TabPane>
-        </Tabs>
-    </div>;
+export const MyAccountComponent = ({tab, id, changeTab}:MyAccountProps) => <>
+    <LoggedIn yes>
+        <div className={styles.myAccount}>
+            <h1><FontAwesomeIcon icon={faUser} /> My Account</h1>
+            <Tabs defaultActiveKey={tab} tabPosition="left" onChange={changeTab}>
+                <Tabs.TabPane tab={<><FontAwesomeIcon icon={faUser} /> Profile</>} key="profile">
+                    <ProfileEditor title="My Profile" />
+                </Tabs.TabPane>
+                <Tabs.TabPane tab={<><FontAwesomeIcon icon={faCrown} /> Backstage Pass</>} key="bsp">
+                    <SubscriptionEditor />
+                </Tabs.TabPane>
+                <Tabs.TabPane tab={<><FontAwesomeIcon icon={faCartShopping} /> Orders</>} key="orders">
+                    <UserOrderList id={id}/>
+                </Tabs.TabPane>
+                <Tabs.TabPane tab={<><FontAwesomeIcon icon={faHeart} /> My Wishlist</>} key="wishlist">
+                    <UserWishlist />
+                </Tabs.TabPane>
+                <Tabs.TabPane tab={<><FontAwesomeIcon icon={faDownload} /> My Files</>} key="files">
+                    <UserFileList />
+                </Tabs.TabPane>
+            </Tabs>
+        </div>
+    </LoggedIn>
+</>;
