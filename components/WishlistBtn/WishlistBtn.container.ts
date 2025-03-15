@@ -1,14 +1,16 @@
-import { createInjector, inject, mergeProps } from "unstateless";
-import {WishlistBtnComponent} from "./WishlistBtn.component";
-import {IWishlistBtnInputProps, WishlistBtnProps, IWishlistBtnProps} from "./WishlistBtn.d";
-import { useLoaderAsync } from "@core/lib/useLoader";
 import { services } from "@core/lib/api";
-import { useLoggedInUser } from "@uac/lib/login/services";
 import { flash } from "@core/lib/flash";
+import { useLoaderAsync } from "@core/lib/useLoader";
+import { useLoggedInUser } from "@uac/lib/login/services";
+import { useLoginForm } from "@uac/lib/useLoginForm";
+import { createInjector, inject, mergeProps } from "unstateless";
+import { WishlistBtnComponent } from "./WishlistBtn.component";
+import { IWishlistBtnInputProps, IWishlistBtnProps, WishlistBtnProps } from "./WishlistBtn.d";
 
 const injectWishlistBtnProps = createInjector(({product}:IWishlistBtnInputProps):IWishlistBtnProps => {
     const [user] = useLoggedInUser();
     const loader = useLoaderAsync();
+    const loginModal = useLoginForm();
 
     const add = () => {
         if(user.user.id) {
@@ -21,7 +23,7 @@ const injectWishlistBtnProps = createInjector(({product}:IWishlistBtnInputProps)
         }
     };
     
-    return {add};
+    return {add, isLoggedIn: !!user.user.id && user.user.id !== '' && user.user.id !== '0', loginModal};
 });
 
 const connect = inject<IWishlistBtnInputProps, WishlistBtnProps>(mergeProps(

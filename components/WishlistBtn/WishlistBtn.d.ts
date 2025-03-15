@@ -1,6 +1,9 @@
+import { IModal } from "@core/lib/useModal";
 import { IProduct } from "@store-shared/product/types";
 
 export declare interface IWishlistBtnProps {
+    isLoggedIn: boolean;
+    loginModal: IModal;
     add: () => void;
 }
 
