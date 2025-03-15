@@ -1,5 +1,5 @@
 import { DeleteBtn } from "@core/components/DeleteBtn";
-import { faCartShopping, faShoppingCart, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping, faShoppingCart, faSignIn, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { PayPalButtons } from "@paypal/react-paypal-js";
 import { IProduct } from "@store-shared/product/types";
@@ -9,7 +9,7 @@ import { ProductPrice } from "../ProductPrice";
 import { CartProps } from "./Cart.d";
 import styles from './Cart.module.scss';
 
-export const CartComponent = ({userId, createOrder, onApprove, completeFreeOrder, isLoading, ...cart}:CartProps) => {
+export const CartComponent = ({userId, createOrder, onApprove, completeFreeOrder, isLoading, loginModal, ...cart}:CartProps) => {
     const columns = [{
         key: 'thumbnailImageId',
         render: (product:IProduct ) => <div className={styles.thumbnail}>
@@ -47,6 +47,9 @@ export const CartComponent = ({userId, createOrder, onApprove, completeFreeOrder
                     dataSource={cart.products}
                     columns={columns}
                     pagination={false}
+                    locale={{
+                        emptyText: <><FontAwesomeIcon icon={faShoppingCart} /> Your cart is empty.</>,
+                    }}
                     rowKey="id"
                     footer={() => <div className={styles.cartFooter}>
                         {cart.totals.subtotal !== cart.totals.total && <div className={styles.cartSubTotal}>
@@ -61,16 +64,21 @@ export const CartComponent = ({userId, createOrder, onApprove, completeFreeOrder
                     </div>}
                 />
             </div>
-            <div className={styles.cartActions}>
+            {!!parseInt(userId) && <div className={styles.cartActions}>
                 {cart.totals.total > 0 &&
                     <PayPalButtons createOrder={createOrder} onApprove={onApprove} />
                 }
-                {cart.totals.total === 0 &&
+                {cart.totals.total === 0 && cart.products.length > 0 &&
                     <Button type="primary" onClick={completeFreeOrder}>
                         <FontAwesomeIcon icon={faShoppingCart} /> Complete Order
                     </Button>
                 }
-            </div>
+            </div>}
+            {!parseInt(userId) && <div className={styles.cartActions}>
+                <Button type="primary" onClick={loginModal.open}>
+                    <FontAwesomeIcon icon={faSignIn} /> Login to Checkout
+                </Button>
+            </div>}
         </Spin>
     </div>;
 }

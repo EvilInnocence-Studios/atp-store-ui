@@ -1,3 +1,4 @@
+import { IModal } from "@core/lib/useModal";
 import { ICart } from "@store/lib/useCart";
 
 export declare interface ICartProps extends ICart {
@@ -6,6 +7,7 @@ export declare interface ICartProps extends ICart {
     onApprove: (_data:any, actions:any) => Promise<void>;
     completeFreeOrder: () => void;
     isLoading: boolean;
+    loginModal: IModal;
 }
 
 // What gets passed into the component from the parent as attributes

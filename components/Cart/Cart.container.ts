@@ -9,12 +9,14 @@ import { useNavigate } from "react-router";
 import { flash } from "@core/lib/flash";
 import { useLoaderAsync } from "@core/lib/useLoader";
 import { IOrder } from "@store-shared/order/types";
+import { useLoginForm } from "@uac/lib/useLoginForm";
 
 const injectCartProps = createInjector(({}:ICartInputProps):ICartProps => {
     const [{user}] = useLoggedInUser();
     const cart = useCart();
     const navigate = useNavigate();
     const loader = useLoaderAsync();
+    const loginModal = useLoginForm();
 
     const ids = cart.products.map(prop("id"));
 
@@ -53,7 +55,8 @@ const injectCartProps = createInjector(({}:ICartInputProps):ICartProps => {
         userId: user.id,
         createOrder,
         onApprove,
-        completeFreeOrder
+        completeFreeOrder,
+        loginModal,
     };
 });
 
