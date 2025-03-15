@@ -14,8 +14,8 @@ export const BSPSignupFormComponent = ({selectedOption, setSelectedOption, creat
             <div className={styles.optionList}>
                 {config().paypal.plans.map((option, i) =>
                     <div key={i} className={styles.subscriptionOption}>
-                        <div className={clsx([styles.optionDetails, (selectedOption === i) && styles.selected])}>
-                            <Button type={selectedOption === i ? "primary" : "default"} onClick={() => setSelectedOption(i)}>
+                        <div className={clsx([styles.optionDetails, (selectedOption === i) && styles.selected])} onClick={() => setSelectedOption(i)}>
+                            <Button type={selectedOption === i ? "primary" : "default"}>
                                 {option.description}: ${option.price}
                             </Button>
                             <p>
