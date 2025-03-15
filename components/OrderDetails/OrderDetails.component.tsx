@@ -14,8 +14,11 @@ export const OrderDetailsComponent = ({order, isLoading}:OrderDetailsProps) => {
         width: 64,
     },{
         title: 'Name',
-        dataIndex: 'name',
         key: 'name',
+        render: (item:IProduct) => <>
+            {item.name}&nbsp;
+            {order?.files.filter(file => file.productId === item.id).map(file => <ProductFileDownloadBtn small file={file} />)}
+        </>
     },{
         title: 'Price',
         dataIndex: 'price',
@@ -33,7 +36,7 @@ export const OrderDetailsComponent = ({order, isLoading}:OrderDetailsProps) => {
                 <Col xs={8}>Total: ${order.total.toFixed(2)}</Col>
             </Row>
 
-            <h2>Files</h2>
+            <h2>All Order Files</h2>
             <div className={styles.orderFiles}>
                 {order.files.map(file => <ProductFileDownloadBtn file={file} />)}
             </div>

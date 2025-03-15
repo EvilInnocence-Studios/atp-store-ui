@@ -7,6 +7,7 @@ export declare interface IProductFileDownloadBtnProps {
 // What gets passed into the component from the parent as attributes
 export declare interface IProductFileDownloadBtnInputProps {
     file: IProductFile;
+    small?: boolean;
 }
 
 export type ProductFileDownloadBtnProps = IProductFileDownloadBtnInputProps & IProductFileDownloadBtnProps;
