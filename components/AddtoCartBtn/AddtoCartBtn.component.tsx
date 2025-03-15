@@ -41,7 +41,8 @@ export const AddtoCartBtnComponent = ({product, addToCart, bspModal, brokeredLin
                 </Button>
             </>}
             {product.brokeredAt && <Button className={classes} type="primary" size="small" onClick={() => window.open(brokeredLink)}>
-                <FontAwesomeIcon icon={faArrowUpRightFromSquare} /> Brokered At {product.brokeredAt}
+                <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+                {product.price > 0 ? "Brokered" : "Download"} At {product.brokeredAt}
             </Button>}
         </>}
     </>;
