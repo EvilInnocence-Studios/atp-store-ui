@@ -6,22 +6,32 @@ import { useEffect, useState } from "react";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { UserWishlistComponent } from "./UserWishlist.component";
 import { IUserWishlistInputProps, IUserWishlistProps, UserWishlistProps } from "./UserWishlist.d";
+import { flash } from "@core/lib/flash";
 
 const injectUserWishlistProps = createInjector(({userId}:IUserWishlistInputProps):IUserWishlistProps => {
     const [{user}] = useLoggedInUser();
     const [wishlist, setWishlist] = useState<IProduct[]>([]);
     const loader = useLoaderAsync();
 
-    useEffect(() => {
+    const refresh = () => {
         if(user.id) {
             loader(async () => {
                 services().wishlist.search(user.id).then(setWishlist);
             });
         }
-    }, [userId]);
+    }
 
+    useEffect(refresh, [userId]);
 
-    return {user, wishlist, isLoading: loader.isLoading};
+    const remove = (productId:string) => () => {
+        loader(() => 
+            services().wishlist.remove(user.id, productId)
+            .then(flash.success("Product removed from wishlist"))
+            .then(refresh)
+        )
+    }
+
+    return {user, wishlist, isLoading: loader.isLoading, remove};
 });
 
 const connect = inject<IUserWishlistInputProps, UserWishlistProps>(mergeProps(
