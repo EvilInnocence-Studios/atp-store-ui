@@ -33,4 +33,10 @@ export const MyAccountComponent = ({tab, id, changeTab}:MyAccountProps) => <>
             </Tabs>
         </div>
     </LoggedIn>
+    <LoggedIn no >
+        <div className={styles.myAccount}>
+            <h1><FontAwesomeIcon icon={faUser} /> My Account</h1>
+            <p>Please log in to view your account details.</p>
+        </div>
+    </LoggedIn>
 </>;
