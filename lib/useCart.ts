@@ -2,6 +2,7 @@ import { services } from "@core/lib/api";
 import { useLoaderAsync } from "@core/lib/useLoader";
 import { ICartTotals } from "@store-shared/order/types";
 import { IProduct } from "@store-shared/product/types";
+import { useLoggedInUser } from "@uac/lib/login/services";
 import { useEffect, useState } from "react";
 import { useLocalStorage } from "unstateless";
 
@@ -21,12 +22,13 @@ export const useCart = ():ICart => {
     const [couponCode, setCouponCode] = useLocalStorage.string("cartCouponCode", "")();
     const [totals, setTotals] = useState<ICartTotals>({subtotal: 0, total: 0, discount: 0});
     const loader = useLoaderAsync();
+    const [user] = useLoggedInUser();
 
     useEffect(() => {
         loader(async () => {
-            services().cart(products.map(p => p.id), couponCode).then(setTotals);
+            services().cart(user.user.id, products.map(p => p.id), couponCode).then(setTotals);
         });
-    }, [products, couponCode]);
+    }, [user.user.id, products, couponCode]);
 
     const removeProduct = (product: IProduct) => products.filter(p => p.id !== product.id);
 
