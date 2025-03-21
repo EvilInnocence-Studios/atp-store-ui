@@ -9,7 +9,7 @@ const injectSubscriptionEditorProps = createInjector(({}:ISubscriptionEditorInpu
 
     const cancel = () => services().user.unsubscribe(user.user.id).then(refresh);
 
-    return {user: user.user, cancel};
+    return {cancel};
 });
 
 const connect = inject<ISubscriptionEditorInputProps, SubscriptionEditorProps>(mergeProps(

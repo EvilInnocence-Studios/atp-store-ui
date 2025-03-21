@@ -21,7 +21,6 @@ const weights:Index<number> = {
     productType: 1,
 }
 
-const check = "EI-S0050";
 export const searchProduct = memoize((product:IProductFull, search:string, synonyms:ISynonym[]) => {
     if(search === "") return 0;
     const searchReplaced = synonymReplace(search, synonyms);
@@ -31,13 +30,8 @@ export const searchProduct = memoize((product:IProductFull, search:string, synon
             : (product[field as keyof IProductFull] as string[]).join(" ");
         const replaced = synonymReplace(value, synonyms);
         const match = unique(replaced.toLocaleUpperCase().split(" ")).filter(word => !!word && searchReplaced.toLocaleUpperCase().includes(word));
-        if(product.sku === check) {
-            console.log(`Product ${product.name} has a match of ${match} in field ${field}`);
-            console.log(match);
-        }
         return match.length * weight;
     })(weights));
     const totalWeights = matchWeights.reduce(add, 0);
-    if(product.sku === check) {console.log(`Product ${product.name} has a weight of ${totalWeights}`);}
     return totalWeights;
 }, {});
