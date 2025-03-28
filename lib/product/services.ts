@@ -5,7 +5,7 @@ import { IProduct, IProductFile, IProductFull, IProductMedia, NewProduct } from 
 
 export const productServices = ({get, post, /*put,*/ patch, remove}: IMethods) => ({
     product: {
-        create: (product:NewProduct) => post('product', product).then(getResults),
+        create: (product:NewProduct):Promise<IProduct> => post('product', product).then(getResults<IProduct>),
         search: (q?:{}):Promise<IProductFull[]> => get('product', q).then(getResults),
         get: (id:string) => get(`product/${id}`).then(getResults),
         update: (id:string, product:Partial<IProduct>) => patch(`product/${id}`, product),

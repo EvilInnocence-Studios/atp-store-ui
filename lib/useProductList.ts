@@ -5,6 +5,7 @@ import { useLoaderAsync } from "@core/lib/useLoader";
 import { appendTo } from "@core/lib/util";
 import { IProductFull } from "@store-shared/product/types";
 import { useEffect } from "react";
+import { useNavigate } from "react-router";
 import { all } from "ts-functional";
 import { useSharedState } from "unstateless";
 
@@ -16,13 +17,17 @@ export const useProductList = () => {
     const [products, setProducts] = useProductsRaw();
     const synonyms = useSynonyms();
     const loader =  useLoaderAsync();
+    const navigate = useNavigate();
 
     const product = services().product;
 
     const create = (onCreate?:(productId:string) => void) => {
         loader(async () => {
-            product.create({name: 'New Product', description: 'New Description'})
-                .then(appendTo(products))
+            product.create({name: 'New Product', description: 'New Description', sku: 'EVI-NEW', url: 'new-product'})
+                .then(newProduct => {
+                    // Navigate to the new product's edit page
+                    navigate(`/products/${newProduct.id}`);
+                })
                 .then(() => {
                     flash.success("Product created");
                     if(onCreate) {
