@@ -16,6 +16,7 @@ export const ProductFilesEditorComponent = ({files, isLoading, folder, setFolder
                     name="file"
                     multiple={false}
                     customRequest={({file}) => add(file as File)}
+                    showUploadList={false}
                 >
                     <FontAwesomeIcon icon={faUpload} size="3x"/><br/>
                     <p className="ant-upload-text">Click or drag file to this area to upload</p>
