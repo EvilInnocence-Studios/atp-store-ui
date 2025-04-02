@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Space, Spin, Upload } from "antd";
 import { ProductMediaEditorProps } from "./ProductMediaEditor.d";
 import styles from './ProductMediaEditor.module.scss';
+import { Image } from "../Image";
 
 export const imgHost = (id:string) =>
     // "https:\/\/www.evilinnocence.com\/shop\/media\/catalog\/product";
@@ -18,7 +19,7 @@ export const ProductMediaEditorComponent = ({
         {!!product && <>
             <div className={styles.productMediaList}>
                 {media.map(m => <div className={styles.mediaItem}>
-                    <img src={`${imgHost(product.id)}${m.url}`} alt={m.caption} width={256}/><br/>
+                    <Image productId={product.id} imageId={m.id} /><br/>
                     <Space.Compact>
                         <Button
                             type={m.id === product.thumbnailId ? "primary" : "default"} 

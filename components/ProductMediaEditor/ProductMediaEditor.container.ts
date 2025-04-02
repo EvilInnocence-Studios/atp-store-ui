@@ -1,6 +1,6 @@
 import { services } from "@core/lib/api";
 import { flash } from "@core/lib/flash";
-import { useLoader } from "@core/lib/useLoader";
+import { useLoaderAsync } from "@core/lib/useLoader";
 import { IProductMedia } from "@store-shared/product/types";
 import { useEffect, useState } from "react";
 import { createInjector, inject, mergeProps } from "unstateless";
@@ -9,30 +9,35 @@ import { IProductMediaEditorInputProps, IProductMediaEditorProps, ProductMediaEd
 
 const injectProductMediaEditorProps = createInjector(({product, update}:IProductMediaEditorInputProps):IProductMediaEditorProps => {
     const [media, setMedia] = useState<IProductMedia[]>([]);
-    const loader = useLoader();
+    const loader = useLoaderAsync();
 
-    useEffect(() => {
+    const refresh = () => {
         if(!!product) {
-            loader.start();
-            services().product.media.search(product.id)
+            loader(() => services().product.media.search(product.id)
                 .then(setMedia)
                 .catch(flash.error('Failed to load media'))
-                .finally(loader.stop);
+            );
         }
-    }, [product]);
+    }
+
+    useEffect(refresh, [product]);
     
     const upload = (file: File) => {
-        services().product.media.upload(product.id, file);
+        loader(() => services().product.media.upload(product.id, file)
+            .then(flash.success("Image uploaded"))
+            .then(refresh)
+            .catch(flash.error("Failed to upload image"))
+        );
     }
 
     const remove = (id:string) => () => {
-        loader.start();
-        services().product.media.remove(product.id, id)
+        loader(() => services().product.media.remove(product.id, id)
             .then(flash.success("Image removed"))
             .then(() => {
                 setMedia(old => old.filter(m => m.id !== id))
             })
-            .finally(loader.stop);
+            .catch(flash.error("Failed to remove image"))
+        );
     }
 
     const updateThumbnail = update("thumbnailId");
