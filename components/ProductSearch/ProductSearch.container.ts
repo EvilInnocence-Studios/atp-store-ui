@@ -1,4 +1,3 @@
-import { synonymReplace, useSynonyms } from "@common/lib/synonym/util";
 import { IProductFull } from "@store-shared/product/types";
 import { useProductList } from "@store/lib/useProductList";
 import { debounce } from "lodash";
@@ -12,10 +11,9 @@ export const dateDiff = (p:IProductFull) => Date.now() - Date.parse(p.releaseDat
 const injectProductSearchProps = createInjector(({}:IProductSearchInputProps):IProductSearchProps => {
     const [search, setSearch] = useState("");
     const{products, isLoading} = useProductList();
-    const synonyms = useSynonyms();
 
     const matchingProducts = !search ? products : products
-        .filter(product => !search || new RegExp(`\\b${synonymReplace(search, synonyms)}\\b`).test(product.search))
+        .filter(product => product.search.toLocaleLowerCase().includes(search.toLocaleLowerCase()))
         .sort((a, b) => dateDiff(a) - dateDiff(b));
     
     return {products: matchingProducts, search, setSearch: debounce(setSearch, 500), isLoading};

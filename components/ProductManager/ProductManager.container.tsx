@@ -20,8 +20,8 @@ const injectProductManagerProps = createInjector(({}:IProductManagerInputProps):
 
     useEffect(refresh, []);
 
-    const goToProduct = (id:string) => {
-        navigate(`/products/${id}`);
+    const goToProduct = (product:IProduct) => {
+        navigate(`/products/${product.id}`);
     }
 
     const filters = useTableFilters(products);
@@ -47,11 +47,10 @@ const injectProductManagerProps = createInjector(({}:IProductManagerInputProps):
 
     return {
         products:filters.items, isLoading,
-        create, remove,
+        create: () => (create(goToProduct)), remove,
         columns,
         tab, setTab, allTabs: Object.keys(columnSets),
         filters: filters.values,
-        goToProduct
     };
 });
 

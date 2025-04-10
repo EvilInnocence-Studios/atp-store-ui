@@ -5,6 +5,7 @@
     flex-wrap: wrap;
     gap: globals.$padding;
     margin-bottom: globals.$padding;
-    .mediaItem {
+    img {
+        width: 256px;
     }
 }

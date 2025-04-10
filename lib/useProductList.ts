@@ -2,8 +2,7 @@ import { synonymReplace, useSynonyms } from "@common/lib/synonym/util";
 import { services } from "@core/lib/api";
 import { flash } from "@core/lib/flash";
 import { useLoaderAsync } from "@core/lib/useLoader";
-import { appendTo } from "@core/lib/util";
-import { IProductFull } from "@store-shared/product/types";
+import { IProduct, IProductFull } from "@store-shared/product/types";
 import { useEffect } from "react";
 import { all } from "ts-functional";
 import { useSharedState } from "unstateless";
@@ -19,14 +18,13 @@ export const useProductList = () => {
 
     const product = services().product;
 
-    const create = (onCreate?:(productId:string) => void) => {
+    const create = (onCreate?:(product:IProduct) => void) => {
         loader(async () => {
-            product.create({name: 'New Product', description: 'New Description'})
-                .then(appendTo(products))
-                .then(() => {
-                    flash.success("Product created");
-                    if(onCreate) {
-                        onCreate(products[products.length - 1].id);
+            product.create({name: 'New Product', description: 'New Description', sku: 'EVI-NEW', url: 'new-product'})
+                .then(flash.success("Product created")())
+                .then(newProduct => {
+                    if(onCreate && typeof onCreate === "function") {
+                        onCreate(newProduct);
                     } else {
                         refresh();
                     }

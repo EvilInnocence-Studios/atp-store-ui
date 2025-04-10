@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { IProduct } from "@store-shared/product/types";
 import { useLoader } from "@core/lib/useLoader";
 import { services } from "@core/lib/api";
+import { flash } from "@core/lib/flash";
 
 const injectRelatedProductsEditorProps = createInjector(({productId}:IRelatedProductsEditorInputProps):IRelatedProductsEditorProps => {
     const [related, setRelated] = useState<IProduct[]>([]);
@@ -20,6 +21,10 @@ const injectRelatedProductsEditorProps = createInjector(({productId}:IRelatedPro
     }
 
     const add = (relatedProductId:string) => {
+        if(relatedProductId === productId) {
+            flash.error("You can't relate a product to itself");
+            return;            
+        }
         loader.start();
         services().product.related.create(productId, relatedProductId)
             .then(refresh)
