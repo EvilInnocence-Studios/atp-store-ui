@@ -34,22 +34,29 @@ export const useProductList = () => {
                 .catch(flash.error("Failed to create product"));
         });
     }
-    
+
+    const updateSearch = () => {
+        if(synonyms.length === 0) {return;}
+        setProducts(old => old.map(p => {
+            const searchRaw = `${p.name} ${p.description} ${p.brokeredAt} ${p.tags.join(" ")}`;
+            const search = synonymReplace(searchRaw, synonyms);
+            return {...p, search};
+        }));
+    }
+
     const refresh = () => {
         loader(async () => 
             product.search()
                 .then(products => {
-                    setProducts(products.map(p => {
-                        const searchRaw = `${p.name} ${p.description} ${p.brokeredAt} ${p.tags.join(" ")}`;
-                        const search = synonymReplace(searchRaw, synonyms);
-                        return {...p, search};
-                    }));
+                    setProducts(products.map(p => ({...p, search: ""})));
+                    updateSearch();
                 })
                 .catch(flash.error("Failed to load products"))
         );
     }
 
     useEffect(refresh, []);
+    useEffect(updateSearch, [synonyms]);
 
     const remove = (id:string) => () => {
         const oldProducts = products;

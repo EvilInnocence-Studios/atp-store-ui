@@ -32,6 +32,7 @@ const injectProductsPageProps = createInjector(({}:IProductsPageInputProps):IPro
             // A product only needs to match one tag for a given tag group,
             // but needs to match at least one tag in each tag group
             // product.tags is a list of the tag names associated with the product
+            console.log(synonymReplace(q, synonyms));
             setFilteredProducts((selectedFiltersByGroup.length === 0 && !q ? products.filter(p => p.enabled) : products
                 .filter(p => p.enabled)
                 .filter(product =>
