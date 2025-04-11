@@ -20,7 +20,7 @@ export const SubscriptionEditorComponent = ({cancel}:SubscriptionEditorProps) =>
     <br/>
     <IsSubscribed yes>
         <Popconfirm onConfirm={cancel} title="Are you sure you want to cancel your Backstage Pass subscription?">
-            <Button type="primary" danger>
+            <Button type="primary">
                 <FontAwesomeIcon icon={faTrash} /> Cancel Backstage Pass Subscription
             </Button>
         </Popconfirm>
