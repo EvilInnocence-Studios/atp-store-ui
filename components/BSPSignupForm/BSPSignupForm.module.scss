@@ -1,5 +1,11 @@
 @use "@styles/globals.module.scss";
 
+.subscribedAlert {
+    max-width: 512px;
+    margin: globals.$padding auto;
+    text-align: center;
+}
+
 .subscriptionOptions {
     @include globals.infoBlock;
     h2 {
