@@ -1,4 +1,4 @@
-import { Button, Popconfirm } from "antd";
+import { Alert, Button, Popconfirm } from "antd";
 import { BSPSignupForm } from "../BSPSignupForm";
 import {SubscriptionEditorProps} from "./SubscriptionEditor.d";
 import styles from './SubscriptionEditor.module.scss';
@@ -9,20 +9,26 @@ import { BSPFaq } from "../BSPFaq";
 
 const IsSubscribed = hasPermission("product.subscription");
 
-export const SubscriptionEditorComponent = ({cancel}:SubscriptionEditorProps) => <>
+export const SubscriptionEditorComponent = ({cancel}:SubscriptionEditorProps) => <div className={styles.bspEditor}>
     <h1>Backstage Pass</h1>
     <IsSubscribed no>
         <BSPSignupForm onSignup={() => {}} />
+    </IsSubscribed>
+    <IsSubscribed yes>
+        <Alert message="You are currently subscribed to our Backstage Pass subscription." />
+        <br/>
     </IsSubscribed>
     <div className={styles.bspFaq}>
         <BSPFaq />
     </div>
     <br/>
     <IsSubscribed yes>
-        <Popconfirm onConfirm={cancel} title="Are you sure you want to cancel your Backstage Pass subscription?">
-            <Button type="primary">
-                <FontAwesomeIcon icon={faTrash} /> Cancel Backstage Pass Subscription
-            </Button>
-        </Popconfirm>
+        <div className={styles.bspCancel}>
+            <Popconfirm onConfirm={cancel} title="Are you sure you want to cancel your Backstage Pass subscription?">
+                <Button type="primary">
+                    <FontAwesomeIcon icon={faTrash} /> Cancel Backstage Pass Subscription
+                </Button>
+            </Popconfirm>
+        </div>
     </IsSubscribed>
-</>;
+</div>;

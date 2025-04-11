@@ -1,5 +1,9 @@
 @use "@styles/globals.module.scss";
 
-.bspFaq {
+.bspEditor {
     max-width: 1024px;
+    margin: auto;
+    .bspCancel {
+        text-align: right;
+    }
 }
