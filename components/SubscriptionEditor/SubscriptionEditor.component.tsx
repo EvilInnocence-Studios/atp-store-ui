@@ -24,7 +24,12 @@ export const SubscriptionEditorComponent = ({cancel}:SubscriptionEditorProps) =>
     <br/>
     <IsSubscribed yes>
         <div className={styles.bspCancel}>
-            <Popconfirm onConfirm={cancel} title="Are you sure you want to cancel your Backstage Pass subscription?">
+            <Popconfirm
+                onConfirm={cancel}
+                title="Are you sure you want to cancel your Backstage Pass subscription?"
+                cancelText="Stay subscribed"
+                okText="Cancel subscription"
+            >
                 <Button type="primary">
                     <FontAwesomeIcon icon={faTrash} /> Cancel Backstage Pass Subscription
                 </Button>
