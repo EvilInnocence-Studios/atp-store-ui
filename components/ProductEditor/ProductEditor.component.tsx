@@ -19,7 +19,7 @@ export const ProductEditorComponent = ({product, isLoading, updateNumber, update
                 <Col span={24}>
                     <Space>
                         <Switch checked={product.enabled} checkedChildren="Enabled" unCheckedChildren="Disabled" onChange={updateToggle("enabled")}/>
-                        ({product.releaseDate})<DatePicker value={product.releaseDate ? dayjs(product.releaseDate) : undefined} onChange={onDateChange(updateString("releaseDate"))}/>
+                        <DatePicker value={product.releaseDate ? dayjs(product.releaseDate) : undefined} onChange={onDateChange(updateString("releaseDate"))}/>
                     </Space>
                     <div className={styles.updateButtons}><UpdateButtons /></div>
                     <h1>
