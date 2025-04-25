@@ -13,6 +13,7 @@ export const productTableColumns = (filters:ITableFilters<IProduct>):Index<Colum
             dataIndex: "id",
             key: "id",
             sorter: (a, b) => `${a.id}`.padStart(10, "0").localeCompare(`${b.id}`.padStart(10, "0")),
+            defaultSortOrder: "descend",
         },
         thumbnail: {
             title: "Thumbnail",
