@@ -3,7 +3,7 @@ import { faCheck, faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IProduct } from "@store-shared/product/types";
 import { Image } from "@store/components/Image";
-import { Switch, Tag } from "antd";
+import { Tag } from "antd";
 import { ColumnType } from "antd/es/table";
 import { prop, sort } from "ts-functional";
 import { Index } from "ts-functional/dist/types";

@@ -32,6 +32,10 @@ export const ProductManagerComponent = ({products, isLoading, create, columns, t
                 rowKey="id"
                 columns={columns}
                 size="small"
+                pagination={{
+                    position: ["bottomRight", "topRight"],
+                    defaultPageSize: 20,
+                }}
                 onRow={(product:IProduct) => ({
                     onClick: () => {goToProduct(product);},
                 })}
