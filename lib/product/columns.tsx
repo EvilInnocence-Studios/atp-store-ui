@@ -8,6 +8,11 @@ import { ColumnType } from "antd/es/table";
 import { prop, sort } from "ts-functional";
 import { Index } from "ts-functional/dist/types";
 
+const truncate = (id:string, maxLength:number = 4) => {
+    if (id.length <= maxLength) return id;
+    return `...${id.slice(-maxLength)}`;
+}
+
 export const productTableColumns = (filters:ITableFilters<IProduct>):Index<ColumnType<IProduct>> => {
     return {
         id: {
@@ -16,6 +21,7 @@ export const productTableColumns = (filters:ITableFilters<IProduct>):Index<Colum
             key: "id",
             sorter: (a, b) => `${a.id}`.padStart(10, "0").localeCompare(`${b.id}`.padStart(10, "0")),
             defaultSortOrder: "descend",
+            render: (id:string) => <span>{truncate(id)}</span>,
         },
         thumbnail: {
             title: "Thumbnail",
