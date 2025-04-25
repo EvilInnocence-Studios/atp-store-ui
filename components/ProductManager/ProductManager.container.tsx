@@ -6,7 +6,7 @@ import { IProduct } from "@store-shared/product/types";
 import { productTableColumns } from "@store/lib/product/columns";
 import { useProductList } from "@store/lib/useProductList";
 import { ColumnType } from "antd/es/table";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { Index } from "ts-functional/dist/types";
 import { createInjector, inject, mergeProps } from "unstateless";
@@ -14,14 +14,12 @@ import { ProductManagerComponent } from "./ProductManager.component";
 import { IProductManagerInputProps, IProductManagerProps, ProductManagerProps } from "./ProductManager.d";
 
 const injectProductManagerProps = createInjector(({}:IProductManagerInputProps):IProductManagerProps => {
-    const {products, create, remove, refresh, isLoading} = useProductList();
+    const {products, create, remove, isLoading} = useProductList();
     const [tab, setTab] = useState("Info");
     const navigate = useNavigate();
 
-    useEffect(refresh, []);
-
     const goToProduct = (product:IProduct) => {
-        navigate(`/products/${product.id}`);
+        navigate(`/products/${product.id}`, {});
     }
 
     const filters = useTableFilters(products);
@@ -51,6 +49,7 @@ const injectProductManagerProps = createInjector(({}:IProductManagerInputProps):
         columns,
         tab, setTab, allTabs: Object.keys(columnSets),
         filters: filters.values,
+        goToProduct,
     };
 });
 

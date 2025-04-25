@@ -7,7 +7,7 @@ import { objMap, prop, sort } from "ts-functional";
 import { ProductManagerProps } from "./ProductManager.d";
 import styles from './ProductManager.module.scss';
 
-export const ProductManagerComponent = ({products, isLoading, create, columns, tab, setTab, allTabs, filters}:ProductManagerProps) =>
+export const ProductManagerComponent = ({products, isLoading, create, columns, tab, setTab, allTabs, filters, goToProduct}:ProductManagerProps) =>
     <div className={styles.productManager}>
         <h1>
             <FontAwesomeIcon icon={faShop} /> Products
@@ -32,6 +32,9 @@ export const ProductManagerComponent = ({products, isLoading, create, columns, t
                 rowKey="id"
                 columns={columns}
                 size="small"
+                onRow={(product:IProduct) => ({
+                    onClick: () => {goToProduct(product);},
+                })}
             />
         </Spin>
     </div>;

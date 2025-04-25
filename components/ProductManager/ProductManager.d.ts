@@ -10,6 +10,7 @@ export declare interface IProductManagerProps {
     setTab: Setter<string>;
     allTabs: string[];
     filters: Record<keyof IProduct, string>;
+    goToProduct: (product:IProduct) => void;
 }
 
 // What gets passed into the component from the parent as attributes

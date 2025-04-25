@@ -1,4 +1,6 @@
 import { ITableFilters } from "@core/lib/useTableFilters";
+import { faCheck, faClose } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IProduct } from "@store-shared/product/types";
 import { Image } from "@store/components/Image";
 import { Switch, Tag } from "antd";
@@ -55,13 +57,19 @@ export const productTableColumns = (filters:ITableFilters<IProduct>):Index<Colum
             title: "Enabled",
             dataIndex: "enabled",
             key: "enabled",
-            render: (enabled:boolean) => <Switch checked={enabled} checkedChildren="Enabled" unCheckedChildren="Disabled" />,
+            render: (enabled:boolean) => <div style={{textAlign: "center"}}>
+                {enabled && <FontAwesomeIcon icon={faCheck} style={{color: "green"}} />}
+                {!enabled && <FontAwesomeIcon icon={faClose} style={{color: "red"}} />}
+            </div>,
         },
         subscription: {
             title: "Subscription Only",
             dataIndex: "subscriptionOnly",
             key: "subscriptionOnly",
-            render: (enabled:boolean) => <Switch checked={enabled} checkedChildren="BSP" unCheckedChildren="Regular" />,
+            render: (enabled:boolean) => <div style={{textAlign: "center"}}>
+                {enabled && <FontAwesomeIcon icon={faCheck} style={{color: "green"}} />}
+                {!enabled && <FontAwesomeIcon icon={faClose} style={{color: "red"}} />}
+            </div>,
         },
         releaseDate: {
             title: "Release Date",
