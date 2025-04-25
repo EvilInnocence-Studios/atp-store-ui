@@ -12,9 +12,10 @@ const injectProductSearchProps = createInjector(({}:IProductSearchInputProps):IP
     const [search, setSearch] = useState("");
     const{products, isLoading} = useProductList();
 
-    const matchingProducts = !search ? products : products
-        .filter(product => product.search.toLocaleLowerCase().includes(search.toLocaleLowerCase()))
-        .sort((a, b) => dateDiff(a) - dateDiff(b));
+    const matchingProducts = (!search
+        ? products
+        : products.filter(product => product.search.toLocaleLowerCase().includes(search.toLocaleLowerCase()))
+    ).sort((a, b) => dateDiff(a) - dateDiff(b));
     
     return {products: matchingProducts, search, setSearch: debounce(setSearch, 500), isLoading};
 });
