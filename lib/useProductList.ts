@@ -20,7 +20,7 @@ export const useProductList = () => {
 
     const create = (onCreate?:(product:IProduct) => void) => {
         loader(async () => {
-            product.create({name: 'New Product', description: 'New Description', sku: 'EVI-NEW', url: 'new-product'})
+            product.create({name: 'New Product', description: 'New Description', sku: 'EVI-S', url: 'new-product'})
                 .then(newProduct => {
                     if(onCreate && typeof onCreate === "function") {
                         onCreate(newProduct);
