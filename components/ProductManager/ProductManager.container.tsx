@@ -29,7 +29,7 @@ const injectProductManagerProps = createInjector(({}:IProductManagerInputProps):
             title: "Actions",
             key: "actions",
             render: (product:IProduct) => <>
-                <Link to={`/products/${product.id}`}><FontAwesomeIcon icon={faEdit} /> Edit</Link>
+                <Link to={`/products/${product.id}`} onClick={(e) => {e.stopPropagation();}}><FontAwesomeIcon icon={faEdit} /> Edit</Link>
                 <DeleteBtn entityType="product" onClick={remove(product.id)} />
             </>,
         }
