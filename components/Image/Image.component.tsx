@@ -1,13 +1,12 @@
-import clsx from "clsx";
-import { imgHost } from "../ProductMediaEditor/ProductMediaEditor.component";
-import {ImageProps} from "./Image.d";
-import styles from './Image.module.scss';
 import { Spin } from "antd";
+import clsx from "clsx";
+import { ImageProps } from "./Image.d";
+import styles from './Image.module.scss';
 
-export const ImageComponent = ({productId, image, isLoading}:ImageProps) => <Spin spinning={isLoading}>
+export const ImageComponent = ({image, isLoading, imgHost}:ImageProps) => <Spin spinning={isLoading}>
     <img
-        src={image
-            ? `${imgHost(productId)}${image.url}`
+        src={image && imgHost
+            ? `${imgHost}/${image.url}`
             : '/logo.png'
         }
         alt={image?.alt}

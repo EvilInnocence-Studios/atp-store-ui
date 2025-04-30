@@ -1,6 +1,7 @@
 export declare interface IImageProps {
     image: IProductMedia | null;
     isLoading: boolean;
+    imgHost: string;
 }
 
 // What gets passed into the component from the parent as attributes
