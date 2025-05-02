@@ -1,11 +1,10 @@
 import { Spin } from "antd";
-import { imgHost } from "../ProductMediaEditor/ProductMediaEditor.component";
 import { IPlacedProduct, ProductListProps } from "./ProductList.d";
 import { arrangeProducts, groupProducts } from "./ProductList.helpers";
 import styles from './ProductList.module.scss';
 import { useScreenSize } from "@core/lib/useScreenSize";
 
-export const ProductListComponent = ({products, isLoading}:ProductListProps) => {
+export const ProductListComponent = ({products, isLoading}:ProductListProps) => {    
     const {width} = useScreenSize();
     const gutterSize = 24;
     const columnCount =
@@ -25,7 +24,7 @@ export const ProductListComponent = ({products, isLoading}:ProductListProps) => 
         <div className={styles.gallery} style={{height: galleryHeight}}>
             {arrangedProducts.map((product:IPlacedProduct, i:number) => <img
                 key={i}
-                src={`${imgHost(product.id)}${product.thumbnailUrl}`}
+                src={`${product.thumbnailUrl}`}
                 alt={product.name}
                 style={{
                     top: `${product.origin.y * (imageSize + gutterSize)}px`,
@@ -37,6 +36,3 @@ export const ProductListComponent = ({products, isLoading}:ProductListProps) => 
         </div>
     </Spin>;
 }
-
-
-// KXWJ WKBQ DJTG 7W9M

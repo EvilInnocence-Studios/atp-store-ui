@@ -6,10 +6,13 @@ import { Button, Space, Spin, Upload } from "antd";
 import { ProductMediaEditorProps } from "./ProductMediaEditor.d";
 import styles from './ProductMediaEditor.module.scss';
 import { Image } from "../Image";
+import { useSetting } from "@common/lib/setting/services";
 
-export const imgHost = (id:string) =>
-    // "https:\/\/www.evilinnocence.com\/shop\/media\/catalog\/product";
-   `https://evilinnocence.s3.us-east-1.amazonaws.com/media/product/${id}/`;
+export const useImageHost = (id:string) => {
+    const imgHost = useSetting("imageHost");
+    const imgFolder = useSetting("productImageFolder");
+    return `${imgHost}/${imgFolder}/${id}/`;
+}
 
 export const ProductMediaEditorComponent = ({
     product, media, upload, isLoading,
