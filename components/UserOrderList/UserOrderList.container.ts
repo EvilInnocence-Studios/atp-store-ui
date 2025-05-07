@@ -24,7 +24,10 @@ const injectUserOrderListProps = createInjector(({userId, id}:IUserOrderListInpu
             loader(async () => {
                 services().order.search(userId).then(setOrders);
             });
-        } else if(user.id) {
+        }
+     }, [userId]);
+     useEffect(() => {
+        if(user.id) {
             loader(async () => {
                 services().user.get(user.id).then(setUser);
             });
@@ -32,7 +35,7 @@ const injectUserOrderListProps = createInjector(({userId, id}:IUserOrderListInpu
                 services().order.search(user.id).then(setOrders);
             });
         }
-    }, [userId, user.id]);
+    }, [user.id]);
 
     const selectedOrder = id ? orders.find(order => order.id === id) : undefined;
 
