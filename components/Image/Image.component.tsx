@@ -6,7 +6,7 @@ import styles from './Image.module.scss';
 export const ImageComponent = ({image, isLoading, imgHost}:ImageProps) => <Spin spinning={isLoading}>
     <img
         src={image && imgHost
-            ? `${imgHost}/${image.url}`
+            ? `${imgHost}${image.url}`
             : '/logo.png'
         }
         alt={image?.alt}
