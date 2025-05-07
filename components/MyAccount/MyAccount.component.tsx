@@ -10,7 +10,7 @@ import { UserWishlist } from "../UserWishlist";
 import { SubscriptionEditor } from "../SubscriptionEditor";
 import { LoggedIn } from "@uac/components/LoggedIn";
 
-export const MyAccountComponent = ({tab, id, changeTab}:MyAccountProps) => <>
+export const MyAccountComponent = ({tab, userId, changeTab}:MyAccountProps) => <>
     <LoggedIn yes>
         <div className={styles.myAccount}>
             <h1><FontAwesomeIcon icon={faUser} /> My Account</h1>
@@ -22,13 +22,13 @@ export const MyAccountComponent = ({tab, id, changeTab}:MyAccountProps) => <>
                     <SubscriptionEditor />
                 </Tabs.TabPane>
                 <Tabs.TabPane tab={<><FontAwesomeIcon icon={faCartShopping} /> Orders</>} key="orders">
-                    <UserOrderList id={id}/>
+                    <UserOrderList userId={userId}/>
                 </Tabs.TabPane>
                 <Tabs.TabPane tab={<><FontAwesomeIcon icon={faHeart} /> My Wishlist</>} key="wishlist">
-                    <UserWishlist />
+                    <UserWishlist userId={userId} />
                 </Tabs.TabPane>
                 <Tabs.TabPane tab={<><FontAwesomeIcon icon={faDownload} /> My Files</>} key="files">
-                    <UserFileList />
+                    <UserFileList userId={userId} />
                 </Tabs.TabPane>
             </Tabs>
         </div>
