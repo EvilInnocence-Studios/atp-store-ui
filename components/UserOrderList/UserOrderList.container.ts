@@ -9,7 +9,7 @@ import { UserOrderListComponent } from "./UserOrderList.component";
 import { IUserOrderListInputProps, IUserOrderListProps, UserOrderListProps } from "./UserOrderList.d";
 import { useNavigate } from "react-router";
 
-const injectUserOrderListProps = createInjector(({userId, id}:IUserOrderListInputProps):IUserOrderListProps => {
+const injectUserOrderListProps = createInjector(({userId, id, onSelectOrder}:IUserOrderListInputProps):IUserOrderListProps => {
     const [loggedInUser] = useLoggedInUser();
     const [user, setUser] = useState<SafeUser>(loggedInUser.user);
     const [orders, setOrders] = useState<IOrder[]>([]);
@@ -27,7 +27,7 @@ const injectUserOrderListProps = createInjector(({userId, id}:IUserOrderListInpu
         }
      }, [userId]);
      useEffect(() => {
-        if(user.id) {
+        if(user.id && !userId) {
             loader(async () => {
                 services().user.get(user.id).then(setUser);
             });
@@ -39,7 +39,7 @@ const injectUserOrderListProps = createInjector(({userId, id}:IUserOrderListInpu
 
     const selectedOrder = id ? orders.find(order => order.id === id) : undefined;
 
-    const selectOrder = (order: IOrder) => () => {
+    const selectOrder = !!onSelectOrder ? onSelectOrder : (order: IOrder) => () => {
         navigate(`/my-account/orders/${order.id}`);
     }
 

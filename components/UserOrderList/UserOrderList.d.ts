@@ -13,6 +13,7 @@ export declare interface IUserOrderListProps {
 export declare interface IUserOrderListInputProps {
     userId?: string;
     id?: string;
+    onSelectOrder?: (order: IOrder) => () => void;
 }
 
 export type UserOrderListProps = IUserOrderListInputProps & IUserOrderListProps;
