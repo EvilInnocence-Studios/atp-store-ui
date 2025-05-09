@@ -5,8 +5,9 @@ import { prop, sort } from "ts-functional";
 import { OrderDetails } from "../OrderDetails";
 import { UserOrderListProps } from "./UserOrderList.d";
 import styles from './UserOrderList.module.scss';
+import { CreateOrderForm } from "../CreateOrderForm";
 
-export const UserOrderListComponent = ({user, orders, isLoading, selectOrder, selectedOrder}:UserOrderListProps) => {
+export const UserOrderListComponent = ({user, orders, isLoading, selectOrder, selectedOrder, refresh}:UserOrderListProps) => {
     const columns = [{
         title: 'Order ID',
         dataIndex: 'id',
@@ -44,6 +45,7 @@ export const UserOrderListComponent = ({user, orders, isLoading, selectOrder, se
         <div className={styles.userOrderList}>
             <Row gutter={16}>
                 <Col xs={24} xl={12}>
+                    <CreateOrderForm userId={user.id} onCreateOrder={refresh}/>
                     <h1>Orders for {user.firstName} {user.lastName}</h1>
                     <Table<IOrder>
                         dataSource={orders}

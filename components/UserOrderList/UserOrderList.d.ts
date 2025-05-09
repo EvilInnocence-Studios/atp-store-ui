@@ -7,6 +7,7 @@ export declare interface IUserOrderListProps {
     isLoading: boolean;
     selectedOrder?: IOrder;
     selectOrder: (order: IOrder) => () => void;
+    refresh: () => void;
 }
 
 // What gets passed into the component from the parent as attributes

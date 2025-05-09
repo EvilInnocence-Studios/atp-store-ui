@@ -38,7 +38,7 @@ export const OrderDetailsComponent = ({order, isLoading}:OrderDetailsProps) => {
 
             <h2>All Order Files</h2>
             <div className={styles.orderFiles}>
-                {order.files.map(file => <ProductFileDownloadBtn file={file} />)}
+                {order.files.map(file => <ProductFileDownloadBtn key={file.id} file={file} />)}
             </div>
         </div>}
     </Spin>;

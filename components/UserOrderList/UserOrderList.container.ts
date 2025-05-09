@@ -17,23 +17,25 @@ const injectUserOrderListProps = createInjector(({userId, id, onSelectOrder}:IUs
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (userId) {
+        if (userId && userId !== user.id) {
             loader(async () => {
                 services().user.get(userId).then(setUser);
             });
-            loader(async () => {
-                services().order.search(userId).then(setOrders);
-            });
         }
      }, [userId]);
+
+     const refresh = () => {
+        loader(async () => {
+            services().order.search(user.id).then(setOrders);
+        });
+     }
+
      useEffect(() => {
-        if(user.id && !userId) {
+        if(user.id && user.id !== loggedInUser.user.id) {
             loader(async () => {
                 services().user.get(user.id).then(setUser);
             });
-            loader(async () => {
-                services().order.search(user.id).then(setOrders);
-            });
+            refresh();
         }
     }, [user.id]);
 
@@ -43,7 +45,7 @@ const injectUserOrderListProps = createInjector(({userId, id, onSelectOrder}:IUs
         navigate(`/my-account/orders/${order.id}`);
     }
 
-    return {user, orders, isLoading: loader.isLoading, selectedOrder, selectOrder};
+    return {user, orders, isLoading: loader.isLoading, selectedOrder, selectOrder, refresh};
 });
 
 const connect = inject<IUserOrderListInputProps, UserOrderListProps>(mergeProps(
