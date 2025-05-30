@@ -8,6 +8,7 @@ export declare interface IProductPriceProps {
 // What gets passed into the component from the parent as attributes
 export declare interface IProductPriceInputProps {
     product: IProduct;
+    small?: boolean;
 }
 
 export type ProductPriceProps = IProductPriceInputProps & IProductPriceProps;

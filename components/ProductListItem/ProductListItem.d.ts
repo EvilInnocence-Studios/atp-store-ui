@@ -8,6 +8,7 @@ export declare interface IProductListItemProps {
 export declare interface IProductListItemInputProps {
     product: IProduct;
     textSize?: "small" | "default" | "large";
+    hideTags?: boolean;
 }
 
 export type ProductListItemProps = IProductListItemInputProps & IProductListItemProps;

@@ -34,7 +34,7 @@ export const ProductScrollerComponent = ({title, products, isLoading, scroll}:Pr
                 style={{visibility: scroll.x.canScrollRight ? 'visible' : 'hidden'}}
             />
             <div className={styles.productList} style={{left: scroll.x.offset}} ref={scroll.ref}>
-                {products.map((product) => <ProductListItem product={product} key={product.id} textSize="small"/>)}
+                {products.map((product) => <ProductListItem product={product} key={product.id} textSize="small" hideTags/>)}
             </div>
         </div>
     </Spin>;

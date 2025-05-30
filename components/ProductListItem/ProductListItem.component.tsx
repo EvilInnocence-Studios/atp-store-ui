@@ -6,7 +6,7 @@ import { ProductListItemProps } from "./ProductListItem.d";
 import styles from './ProductListItem.module.scss';
 import clsx from "clsx";
 
-export const ProductListItemComponent = ({product, textSize}:ProductListItemProps) =>
+export const ProductListItemComponent = ({product, textSize, hideTags}:ProductListItemProps) =>
     <div className={styles.productListItem}>
         <div className={styles.productMain}>
             <Link to={`/products/${product.url}`}>
@@ -17,7 +17,7 @@ export const ProductListItemComponent = ({product, textSize}:ProductListItemProp
             </div>
         </div>
         <div className={styles.productDetails}>
-            <ProductPrice product={product} />
+            <ProductPrice product={product} small={hideTags} />
             <AddtoCartBtn product={product} />
         </div>
     </div>;
