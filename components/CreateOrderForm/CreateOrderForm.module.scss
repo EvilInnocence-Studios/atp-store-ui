@@ -1,0 +1,13 @@
+@use "@styles/globals.module.scss";
+
+.createOrderButton {
+    float: right;
+}
+
+.createOrderForm {
+    h3 {
+        button {
+            float: right;
+        }
+    }
+}

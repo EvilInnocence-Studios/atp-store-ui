@@ -9,7 +9,7 @@ export declare interface IUserWishlistProps {
 
 // What gets passed into the component from the parent as attributes
 export declare interface IUserWishlistInputProps {
-    userId?: number;
+    userId?: string;
 }
 
 export type UserWishlistProps = IUserWishlistInputProps & IUserWishlistProps;

@@ -34,7 +34,6 @@ export const useProductList = () => {
     }
 
     const updateSearch = () => {
-        if(synonyms.length === 0) {return;}
         setProducts(old => old.map(p => {
             const searchRaw = `${p.name} ${p.description} ${p.brokeredAt} ${p.tags.join(" ")}`;
             const search = synonymReplace(searchRaw, synonyms);
