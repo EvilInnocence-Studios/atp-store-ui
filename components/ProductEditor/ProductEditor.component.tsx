@@ -2,7 +2,7 @@ import { Editable } from "@core/components/Editable";
 import { Label } from "@core/components/Label";
 import { onDateChange, onNumberChange } from "@core/lib/onInputChange";
 import Editor from "@uiw/react-md-editor";
-import { Card, Col, DatePicker, Radio, Row, Space, Spin, Switch, Tabs } from "antd";
+import { Button, Card, Col, DatePicker, Radio, Row, Space, Spin, Switch, Tabs } from "antd";
 import dayjs from "dayjs";
 import { ProductEditorProps } from "./ProductEditor.d";
 import styles from './ProductEditor.module.scss';
@@ -11,8 +11,10 @@ import { ProductMediaEditor } from "../ProductMediaEditor";
 import { RelatedProductsEditor } from "../RelatedProductsEditor";
 import { ProductFilesEditor } from "../ProductFilesEditor";
 import { SubProductsEditor } from "../SubProductsEditor";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCopy } from "@fortawesome/free-solid-svg-icons";
 
-export const ProductEditorComponent = ({product, isLoading, updateNumber, updateString, updateToggle, UpdateButtons}:ProductEditorProps) =>
+export const ProductEditorComponent = ({product, isLoading, updateNumber, updateString, updateToggle, UpdateButtons, copyUrlFromName}:ProductEditorProps) =>
     <Spin spinning={isLoading}>
         {!!product && <>
             <Row className={styles.productEditor} gutter={8}>
@@ -46,8 +48,13 @@ export const ProductEditorComponent = ({product, isLoading, updateNumber, update
                                 <Label label="SKU"><Editable value={product.sku} onChange={updateString("sku")}/></Label>
 
                                 <Label label="URL">
-                                    <Editable value={product.url} onChange={updateString("url")}/><br/>
+                                    <Editable value={product.url} onChange={updateString("url")}/>
                                 </Label>
+                                <div style={{textAlign: "right"}}>
+                                    <Button onClick={copyUrlFromName}>
+                                        <FontAwesomeIcon icon={faCopy} /> Copy url from name
+                                    </Button>
+                                </div>
 
                                 <Label label="Brokered">
                                     <Editable placeholder="Brokered At" value={product.brokeredAt || ""} onChange={updateString("brokeredAt")} />

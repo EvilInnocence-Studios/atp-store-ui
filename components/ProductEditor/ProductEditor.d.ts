@@ -3,6 +3,7 @@ import { IProduct } from "@store-shared/product/types";
 
 export declare interface IProductEditorProps extends IUpdater<IProduct> {
     product?: IProduct;
+    copyUrlFromName: () => void;
 }
 
 // What gets passed into the component from the parent as attributes

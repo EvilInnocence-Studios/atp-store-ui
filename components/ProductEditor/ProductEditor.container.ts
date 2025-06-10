@@ -15,7 +15,14 @@ const injectProductEditorProps = createInjector(({productId}:IProductEditorInput
         "manual"
     );
 
-    return {product:updater.history.entity, ...updater};
+    const copyUrlFromName = () => {
+        if (!updater.history.entity) return;
+        const name = updater.history.entity.name || "";
+        const url = name.replace(/\s+/g, "-").toLowerCase();
+        updater.updateString("url")(url);
+    }
+
+    return {product:updater.history.entity, ...updater, copyUrlFromName};
 });
 
 const connect = inject<IProductEditorInputProps, ProductEditorProps>(mergeProps(
