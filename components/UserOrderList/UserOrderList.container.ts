@@ -17,6 +17,7 @@ const injectUserOrderListProps = createInjector(({userId, id, onSelectOrder}:IUs
     const navigate = useNavigate();
 
     useEffect(() => {
+        console.log("load user from user id");
         if (userId && userId !== user.id) {
             loader(async () => {
                 services().user.get(userId).then(setUser);
@@ -25,18 +26,20 @@ const injectUserOrderListProps = createInjector(({userId, id, onSelectOrder}:IUs
      }, [userId]);
 
      const refresh = () => {
+        console.log('load orders');
         loader(async () => {
             services().order.search(user.id).then(setOrders);
         });
      }
 
      useEffect(() => {
+        console.log("load user if user id is different from logged in user");
         if(user.id && user.id !== loggedInUser.user.id) {
             loader(async () => {
                 services().user.get(user.id).then(setUser);
             });
-            refresh();
         }
+        refresh();
     }, [user.id]);
 
     const selectedOrder = id ? orders.find(order => order.id === id) : undefined;

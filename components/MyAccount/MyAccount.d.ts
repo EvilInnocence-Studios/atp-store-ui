@@ -6,6 +6,7 @@ export declare interface IMyAccountProps {
 export declare interface IMyAccountInputProps {
     tab: string;
     userId?: string;
+    id?: string;
 }
 
 export type MyAccountProps = IMyAccountInputProps & IMyAccountProps;
