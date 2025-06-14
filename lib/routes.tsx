@@ -4,8 +4,8 @@ import { DiscountEditor } from "@store/components/DiscountEditor";
 import { MyAccount } from "@store/components/MyAccount";
 import { ProductEditor } from "@store/components/ProductEditor";
 import { ProductPage } from "@store/components/ProductPage";
+import { ProductQueue } from "@store/components/ProductQueue";
 import { ProductsPage } from "@store/components/ProductsPage";
-import { Queue } from "@store/components/Queue";
 import { ProductManager } from "../components/ProductManager";
 
 export const storeRoutes = {
@@ -13,7 +13,7 @@ export const storeRoutes = {
         {path: "/products",              component: ProductManager          },
         {path: "/products/:productId",   component: withRoute(ProductEditor)},
         {path: "/discounts",             component: DiscountEditor          },
-        {path: "/queue/:groupId/:tagId", component: withRoute(Queue)        },
+        {path: "/queue/:groupId/:tagId", component: withRoute(ProductQueue) },
     ],
     public: [
         {path: "/my-account/:tab",     component: withRoute(MyAccount)    },

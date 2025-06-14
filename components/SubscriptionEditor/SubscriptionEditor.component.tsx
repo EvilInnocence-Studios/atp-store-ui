@@ -5,7 +5,7 @@ import styles from './SubscriptionEditor.module.scss';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { hasPermission } from "@uac/components/HasPermission";
-import { BSPFaq } from "@public/components/BSPFaq";
+// import { BSPFaq } from "@public/components/BSPFaq";
 
 const IsSubscribed = hasPermission("product.subscription");
 
@@ -19,7 +19,7 @@ export const SubscriptionEditorComponent = ({cancel}:SubscriptionEditorProps) =>
         <br/>
     </IsSubscribed>
     <div className={styles.bspFaq}>
-        <BSPFaq />
+        {/* <BSPFaq />*/}
     </div>
     <br/>
     <IsSubscribed yes>
