@@ -1,4 +1,3 @@
-import { NotFoundPage } from "@core/components/NotFoundPage";
 import { Col, Row, Spin, Tag } from "antd";
 import Markdown from 'marked-react';
 import { AddtoCartBtn } from "../AddtoCartBtn";
@@ -11,7 +10,6 @@ import styles from './ProductPage.module.scss';
 
 export const ProductPageComponent = ({product, media, relatedProducts, subProducts, isLoading}:ProductPageProps) =>
     <Spin spinning={isLoading}>
-        {!isLoading && !product && <NotFoundPage />}
         {product && <div className={styles.productPage}>
             <div className={styles.header}>
                 <h1>{product.name}</h1>
