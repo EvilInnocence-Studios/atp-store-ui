@@ -1,5 +1,4 @@
 import { withRoute } from "@core/lib/withRoute";
-import { BackstagePass } from "@store/components/BackstagePass";
 import { Cart } from "@store/components/Cart";
 import { DiscountEditor } from "@store/components/DiscountEditor";
 import { MyAccount } from "@store/components/MyAccount";
@@ -22,6 +21,5 @@ export const storeRoutes = {
         {path: "/cart",                component: Cart                    },
         {path: "/products",            component: ProductsPage            },
         {path: "/products/:url",       component: withRoute(ProductPage)  },
-        {path: "/backstage-pass",      component: BackstagePass           },
     ]
 }
