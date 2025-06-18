@@ -1,5 +1,5 @@
 import { Alert, Button, Popconfirm } from "antd";
-import { BSPSignupForm } from "../BSPSignupForm";
+import { SignUpForm } from "@subscription/components/SignUpForm";
 import {SubscriptionEditorProps} from "./SubscriptionEditor.d";
 import styles from './SubscriptionEditor.module.scss';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,7 +12,7 @@ const IsSubscribed = hasPermission("product.subscription");
 export const SubscriptionEditorComponent = ({cancel}:SubscriptionEditorProps) => <div className={styles.bspEditor}>
     <h1>Backstage Pass</h1>
     <IsSubscribed no>
-        <BSPSignupForm onSignup={() => {}} />
+        <SignUpForm onSignup={() => {}} />
     </IsSubscribed>
     <IsSubscribed yes>
         <Alert message="You are currently subscribed to our Backstage Pass subscription." />

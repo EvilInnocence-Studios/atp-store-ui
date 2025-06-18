@@ -4,7 +4,7 @@ import { hasPermission } from "@uac/components/HasPermission";
 import { Button, Modal } from "antd";
 import clsx from "clsx";
 import { Link } from "react-router";
-import { BSPSignupForm } from "../BSPSignupForm";
+import { SignUpForm } from "@subscription/components/SignUpForm";
 import { AddtoCartBtnProps } from "./AddtoCartBtn.d";
 import styles from './AddtoCartBtn.module.scss';
 
@@ -32,7 +32,7 @@ export const AddtoCartBtnComponent = ({product, addToCart, bspModal, brokeredLin
             onCancel={bspModal.off}
             footer={<Link to="/backstage-pass">Learn more <FontAwesomeIcon icon={faArrowRight} /></Link>}
         >
-            <BSPSignupForm />
+            <SignUpForm />
         </Modal>
         {!product.subscriptionOnly && <>
             {!product.brokeredAt && <>
