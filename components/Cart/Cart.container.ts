@@ -43,6 +43,14 @@ const injectCartProps = createInjector(({}:ICartInputProps):ICartProps => {
             )
         );
 
+    const onCancel = (data:any) => {
+        services().errorReport("Order Cancelled", data);
+    }
+
+    const onError = (data:any) => {
+        services().errorReport("Order Error", data);
+    }
+
     const completeFreeOrder = () => {
         loader(() => services().order.finalizeFreeOrder(user.id, ids)
             .then(finishOrder)
@@ -55,6 +63,8 @@ const injectCartProps = createInjector(({}:ICartInputProps):ICartProps => {
         userId: user.id,
         createOrder,
         onApprove,
+        onCancel,
+        onError,
         completeFreeOrder,
         loginModal,
     };

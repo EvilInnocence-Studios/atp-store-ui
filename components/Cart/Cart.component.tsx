@@ -9,7 +9,7 @@ import { ProductPrice } from "../ProductPrice";
 import { CartProps } from "./Cart.d";
 import styles from './Cart.module.scss';
 
-export const CartComponent = ({userId, createOrder, onApprove, completeFreeOrder, isLoading, loginModal, ...cart}:CartProps) => {
+export const CartComponent = ({userId, createOrder, onApprove, onCancel, onError, completeFreeOrder, isLoading, loginModal, ...cart}:CartProps) => {
     const columns = [{
         key: 'thumbnailImageId',
         render: (product:IProduct ) => <div className={styles.thumbnail}>
@@ -66,7 +66,7 @@ export const CartComponent = ({userId, createOrder, onApprove, completeFreeOrder
             </div>
             {!!parseInt(userId) && <div className={styles.cartActions}>
                 {cart.totals.total > 0 &&
-                    <PayPalButtons createOrder={createOrder} onApprove={onApprove} />
+                    <PayPalButtons createOrder={createOrder} onApprove={onApprove} onCancel={onCancel} onError={onError} />
                 }
                 {cart.totals.total === 0 && cart.products.length > 0 &&
                     <Button type="primary" onClick={completeFreeOrder}>
