@@ -34,6 +34,20 @@ export const CartComponent = ({userId, createOrder, onApprove, onCancel, onError
         width: 16,
     }];
 
+    const handleCreateOrder = async (data: any, actions: any) => {
+        try {
+            const orderId = await createOrder(data, actions);
+            if (!orderId) {
+                throw new Error("Order ID is undefined or null.");
+            }
+            return orderId;
+        } catch (error) {
+            console.error("Error in createOrder:", error);
+            onError(error);
+            throw error; // Re-throw the error to handle it in the PayPal flow
+        }
+    };
+
     return <div className={styles.cart}>
         <Spin spinning={isLoading}>
             <h1><FontAwesomeIcon icon={faCartShopping} /> Your Cart</h1>
@@ -66,7 +80,15 @@ export const CartComponent = ({userId, createOrder, onApprove, onCancel, onError
             </div>
             {!!parseInt(userId) && <div className={styles.cartActions}>
                 {cart.totals.total > 0 &&
-                    <PayPalButtons createOrder={createOrder} onApprove={onApprove} onCancel={onCancel} onError={onError} />
+                    <PayPalButtons 
+                        createOrder={handleCreateOrder} 
+                        onApprove={onApprove} 
+                        onCancel={onCancel} 
+                        onError={(error) => {
+                            console.error("PayPal onError:", error);
+                            onError(error);
+                        }} 
+                    />
                 }
                 {cart.totals.total === 0 && cart.products.length > 0 &&
                     <Button type="primary" onClick={completeFreeOrder}>
