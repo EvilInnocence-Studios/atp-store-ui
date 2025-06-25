@@ -1,20 +1,24 @@
 import { Editable } from "@core/components/Editable";
 import { Label } from "@core/components/Label";
-import { onDateChange, onNumberChange } from "@core/lib/onInputChange";
+import { onDateChange, onNumberChange, onRadioChange } from "@core/lib/onInputChange";
+import { faCopy } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Editor from "@uiw/react-md-editor";
 import { Button, Card, Col, DatePicker, Radio, Row, Space, Spin, Switch, Tabs } from "antd";
 import dayjs from "dayjs";
+import { ProductFilesEditor } from "../ProductFilesEditor";
+import { ProductMediaEditor } from "../ProductMediaEditor";
+import { ProductTagEditor } from "../ProductTagEditor";
+import { RelatedProductsEditor } from "../RelatedProductsEditor";
+import { SubProductsEditor } from "../SubProductsEditor";
 import { ProductEditorProps } from "./ProductEditor.d";
 import styles from './ProductEditor.module.scss';
-import { ProductTagEditor } from "../ProductTagEditor";
-import { ProductMediaEditor } from "../ProductMediaEditor";
-import { RelatedProductsEditor } from "../RelatedProductsEditor";
-import { ProductFilesEditor } from "../ProductFilesEditor";
-import { SubProductsEditor } from "../SubProductsEditor";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCopy } from "@fortawesome/free-solid-svg-icons";
 
-export const ProductEditorComponent = ({product, isLoading, updateNumber, updateString, updateToggle, UpdateButtons, copyUrlFromName}:ProductEditorProps) =>
+export const ProductEditorComponent = ({
+    product, isLoading,
+    updateNumber, updateString, updateToggle, UpdateButtons,
+    copyUrlFromName,
+}:ProductEditorProps) =>
     <Spin spinning={isLoading}>
         {!!product && <>
             <Row className={styles.productEditor} gutter={8}>
@@ -32,18 +36,18 @@ export const ProductEditorComponent = ({product, isLoading, updateNumber, update
                         <Tabs.TabPane key="details" tab="Details">
                             <Space direction="vertical">
                                 <Space>
-                                    <Radio.Group block optionType="button" buttonStyle="solid" value={product.productType} onChange={(e) => updateString("productType")(e.target.value)}>
+                                    <Radio.Group block optionType="button" buttonStyle="solid" value={product.productType} onChange={onRadioChange(updateString("productType"))}>
                                         <Radio value="digital">Digital</Radio>
                                         <Radio value="grouped">Grouped</Radio>
                                     </Radio.Group>
-                                    <Switch
-                                        checked={product.subscriptionOnly}
-                                        checkedChildren="Subscription Only"
-                                        unCheckedChildren="Not Subscription Only"
-                                        onChange={updateToggle("subscriptionOnly")}
-                                    />
                                     <Label label="Price"><Editable value={`${product.price}`} onChange={onNumberChange(updateNumber("price"))}/></Label>
                                 </Space>
+                                <Switch
+                                        checked={product.subscriptionOnly}
+                                        checkedChildren="Subscription Required"
+                                        unCheckedChildren="No Subscription Required"
+                                        onChange={updateToggle("subscriptionOnly")}
+                                    />
 
                                 <Label label="SKU"><Editable value={product.sku} onChange={updateString("sku")}/></Label>
 
