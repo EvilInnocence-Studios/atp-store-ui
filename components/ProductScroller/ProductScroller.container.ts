@@ -16,7 +16,7 @@ const injectProductScrollerProps = createInjector(({filter, sort, count}:IProduc
             .filter(filter)
             .sort(sort)
             .slice(0, count || 10));
-    }, [products]);
+    }, [products, filter, sort]);
 
     return {products: newProducts, isLoading, scroll};
 });
