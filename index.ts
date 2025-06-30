@@ -1,4 +1,4 @@
-import { IModule } from "@core/lib/module";
+import { IModule } from "@core-shared/module";
 import { storeMenus } from "./lib/menus";
 import { storeRoutes } from "./lib/routes";
 import { storeSettings } from "./lib/settings";
