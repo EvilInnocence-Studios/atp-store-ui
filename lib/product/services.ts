@@ -31,8 +31,13 @@ export const productServices = ({get, post, /*put,*/ patch, remove}: IMethods) =
             remove: (productId:string, relatedId:string) => remove(`product/${productId}/related/${relatedId}`),
         },
         files: {
-            search: (productId:string) => get(`product/${productId}/file`).then(getResults),
-            upload: (productId:string, folder: string, file:File) => {
+            search: (productId:string):Promise<IProductFile[]> => get(`product/${productId}/file`).then(getResults),
+            getUploadUrl: (productId: string, folder: string, fileName:string):Promise<string> =>
+                get(`product/${productId}/file/uploadUrl`, {path: `products/${folder}/${fileName}`})
+                .then(getResults<string>),
+            add: (productId: string, folder: string, fileName:string):Promise<IProductFile> =>
+                post(`product/${productId}/file`, {folder, fileName}).then(getResults<IProductFile>),
+            upload: (productId:string, folder: string, file:File):Promise<IProductFile> => {
                 const formData = new FormData();
                 formData.append('file', file);
                 formData.append('folder', folder);

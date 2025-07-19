@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { IProductFile } from "@store-shared/product/types";
 import { useLoader } from "@core/lib/useLoader";
 import { services } from "@core/lib/api";
+import { s3Upload } from "@core/lib/s3Upload";
+import { flash } from "@core/lib/flash";
 
 const injectProductFilesEditorProps = createInjector(({productId}:IProductFilesEditorInputProps):IProductFilesEditorProps => {
     const [files, setFiles] = useState<IProductFile[]>([]);
@@ -20,10 +22,19 @@ const injectProductFilesEditorProps = createInjector(({productId}:IProductFilesE
     useEffect(refresh, [productId]);
 
     const [folder, setFolder] = useState<string>('');
-    const add = (file:File) => {
+    const add = async (file:File) => {
         loader.start();
-        services().product.files.upload(productId, folder, file)
-            .then(refresh)
+        const url = await services().product.files.getUploadUrl(productId, folder, file.name);
+        console.log("Upload url", url);
+        s3Upload(file, url)
+            .then(() => services().product.files.add(productId, folder, file.name))
+            .then(() => {
+                flash.success("File uploaded successfully");
+                refresh();
+            })
+            .catch(() => {
+                flash.error("Failed to upload file. Please try again.");
+            })
             .finally(loader.stop);
     }
 
