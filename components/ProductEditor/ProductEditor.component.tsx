@@ -13,46 +13,43 @@ import { RelatedProductsEditor } from "../RelatedProductsEditor";
 import { SubProductsEditor } from "../SubProductsEditor";
 import { ProductEditorProps } from "./ProductEditor.d";
 import styles from './ProductEditor.module.scss';
+import { plugins } from "@store/lib/plugin/slots";
 
 export const ProductEditorComponent = ({
-    product, isLoading,
-    updateNumber, updateString, updateToggle, UpdateButtons,
+    product, 
     copyUrlFromName,
+    ...props
 }:ProductEditorProps) =>
-    <Spin spinning={isLoading}>
+    <Spin spinning={props.isLoading}>
         {!!product && <>
             <Row className={styles.productEditor} gutter={8}>
                 <Col span={24}>
                     <Space>
-                        <Switch checked={product.enabled} checkedChildren="Enabled" unCheckedChildren="Disabled" onChange={updateToggle("enabled")}/>
-                        <DatePicker value={product.releaseDate ? dayjs(product.releaseDate) : undefined} onChange={onDateChange(updateString("releaseDate"))}/>
+                        <Switch checked={product.enabled} checkedChildren="Enabled" unCheckedChildren="Disabled" onChange={props.updateToggle("enabled")}/>
+                        <DatePicker value={product.releaseDate ? dayjs(product.releaseDate) : undefined} onChange={onDateChange(props.updateString("releaseDate"))}/>
                     </Space>
-                    <div className={styles.updateButtons}><UpdateButtons /></div>
+                    <div className={styles.updateButtons}><props.UpdateButtons /></div>
                     <h1>
-                        <Label label="Name"><Editable value={product.name} onChange={updateString("name")}/></Label>
+                        <Label label="Name"><Editable value={product.name} onChange={props.updateString("name")}/></Label>
                     </h1>
                     <hr/>
                     <Tabs tabPosition="left">
                         <Tabs.TabPane key="details" tab="Details">
                             <Space direction="vertical">
                                 <Space>
-                                    <Radio.Group block optionType="button" buttonStyle="solid" value={product.productType} onChange={onRadioChange(updateString("productType"))}>
+                                    <Radio.Group block optionType="button" buttonStyle="solid" value={product.productType} onChange={onRadioChange(props.updateString("productType"))}>
                                         <Radio value="digital">Digital</Radio>
                                         <Radio value="grouped">Grouped</Radio>
                                     </Radio.Group>
-                                    <Label label="Price"><Editable value={`${product.price}`} onChange={onNumberChange(updateNumber("price"))}/></Label>
+                                    <Label label="Price"><Editable value={`${product.price}`} onChange={onNumberChange(props.updateNumber("price"))}/></Label>
                                 </Space>
-                                <Switch
-                                        checked={product.subscriptionOnly}
-                                        checkedChildren="Subscription Required"
-                                        unCheckedChildren="No Subscription Required"
-                                        onChange={updateToggle("subscriptionOnly")}
-                                    />
+                                
+                                {plugins.product.editor.details.render(props)}
 
-                                <Label label="SKU"><Editable value={product.sku} onChange={updateString("sku")}/></Label>
+                                <Label label="SKU"><Editable value={product.sku} onChange={props.updateString("sku")}/></Label>
 
                                 <Label label="URL">
-                                    <Editable value={product.url} onChange={updateString("url")}/>
+                                    <Editable value={product.url} onChange={props.updateString("url")}/>
                                 </Label>
                                 <div style={{textAlign: "right"}}>
                                     <Button onClick={copyUrlFromName}>
@@ -61,28 +58,28 @@ export const ProductEditorComponent = ({
                                 </div>
 
                                 <Label label="Brokered">
-                                    <Editable placeholder="Brokered At" value={product.brokeredAt || ""} onChange={updateString("brokeredAt")} />
-                                    <Editable placeholder="Brokered Product Id" value={product.brokerageProductId || ""} onChange={updateString("brokerageProductId")} />
+                                    <Editable placeholder="Brokered At" value={product.brokeredAt || ""} onChange={props.updateString("brokeredAt")} />
+                                    <Editable placeholder="Brokered Product Id" value={product.brokerageProductId || ""} onChange={props.updateString("brokerageProductId")} />
                                 </Label>
 
                                 <Card title="Short Description" size="small">
-                                    <Editor value={product.descriptionShort} onChange={updateString("descriptionShort")}/>
+                                    <Editor value={product.descriptionShort} onChange={props.updateString("descriptionShort")}/>
                                 </Card>
 
                                 <Card title="Description" size="small">
-                                    <Editor value={product.description} onChange={updateString("description")} />
+                                    <Editor value={product.description} onChange={props.updateString("description")} />
                                 </Card>
 
-                                <Label label="Meta Title"><Editable value={product.metaTitle || ""} onChange={updateString("metaTitle")}/></Label>
-                                <Label label="Meta Description"><Editable textArea value={product.metaDescription || ""} onChange={updateString("metaDescription")}/></Label>
-                                <Label label="Meta Keywords"><Editable value={product.metaKeywords || ""} onChange={updateString("metaKeywords")}/></Label>
+                                <Label label="Meta Title"><Editable value={product.metaTitle || ""} onChange={props.updateString("metaTitle")}/></Label>
+                                <Label label="Meta Description"><Editable textArea value={product.metaDescription || ""} onChange={props.updateString("metaDescription")}/></Label>
+                                <Label label="Meta Keywords"><Editable value={product.metaKeywords || ""} onChange={props.updateString("metaKeywords")}/></Label>
                             </Space>
                         </Tabs.TabPane>
                         <Tabs.TabPane key="tags" tab="Tags">
                             <ProductTagEditor productId={product.id} />
                         </Tabs.TabPane>
                         <Tabs.TabPane key="media" tab="Media">
-                            <ProductMediaEditor product={product} update={updateString}/>
+                            <ProductMediaEditor product={product} update={props.updateString}/>
                         </Tabs.TabPane>
                         <Tabs.TabPane key="related" tab="Related">
                             <RelatedProductsEditor productId={product.id} />
