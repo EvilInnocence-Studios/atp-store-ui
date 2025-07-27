@@ -4,7 +4,6 @@ import { IProduct } from "@store-shared/product/types";
 export declare interface IAddtoCartBtnProps {
     addToCart: () => void;
     brokeredLink: string;
-    bspModal: IToggle;
 }
 
 // What gets passed into the component from the parent as attributes

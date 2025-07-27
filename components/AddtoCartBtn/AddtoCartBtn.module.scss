@@ -1,8 +1,2 @@
 @use "@styles/globals.module.scss";
 
-.bspModal {
-    :global(.ant-modal) {
-        width: 768px !important;
-        max-width: 100%;
-    }
-}

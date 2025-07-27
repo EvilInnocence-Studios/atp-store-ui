@@ -1,5 +1,4 @@
 import { flash } from "@core/lib/flash";
-import { useToggle } from "@core/lib/useToggle";
 import { useCart } from "@store/lib/useCart";
 import { switchOn } from "ts-functional";
 import { createInjector, inject, mergeProps } from "unstateless";
@@ -7,7 +6,6 @@ import { AddtoCartBtnComponent } from "./AddtoCartBtn.component";
 import { AddtoCartBtnProps, IAddtoCartBtnInputProps, IAddtoCartBtnProps } from "./AddtoCartBtn.d";
 
 const injectAddtoCartBtnProps = createInjector(({product}:IAddtoCartBtnInputProps):IAddtoCartBtnProps => {
-    const bspModal = useToggle();
     const cart = useCart();
 
     const brokeredLink = switchOn(product.brokeredAt || "", {
@@ -23,7 +21,6 @@ const injectAddtoCartBtnProps = createInjector(({product}:IAddtoCartBtnInputProp
             cart.add(product);
             flash.success("Product added to cart")();
         },
-        bspModal,
         brokeredLink,
     };
 });
