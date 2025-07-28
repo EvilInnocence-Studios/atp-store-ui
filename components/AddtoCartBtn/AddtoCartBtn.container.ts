@@ -1,6 +1,5 @@
 import { flash } from "@core/lib/flash";
 import { useCart } from "@store/lib/useCart";
-import { switchOn } from "ts-functional";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { AddtoCartBtnComponent } from "./AddtoCartBtn.component";
 import { AddtoCartBtnProps, IAddtoCartBtnInputProps, IAddtoCartBtnProps } from "./AddtoCartBtn.d";
@@ -8,20 +7,11 @@ import { AddtoCartBtnProps, IAddtoCartBtnInputProps, IAddtoCartBtnProps } from "
 const injectAddtoCartBtnProps = createInjector(({product}:IAddtoCartBtnInputProps):IAddtoCartBtnProps => {
     const cart = useCart();
 
-    const brokeredLink = switchOn(product.brokeredAt || "", {
-        Daz:         () => `https://www.daz3d.com/${product.brokerageProductId?.split(":")[1]}`,
-        RuntimeDNA:  () => `https://www.daz3d.com/${product.brokerageProductId?.split(":")[1]}`,
-        Renderosity: () => `https://www.renderosity.com/marketplace/products/${product.brokerageProductId?.split(":")[1]}`,
-        HiveWire:    () => "https://hivewire3d.com/",
-        default:     () => "",
-    }) || "";
-
     return {
         addToCart: () => {
             cart.add(product);
             flash.success("Product added to cart")();
         },
-        brokeredLink,
     };
 });
 
