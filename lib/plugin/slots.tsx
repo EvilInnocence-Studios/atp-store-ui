@@ -9,7 +9,7 @@ export interface IAddToCartPluginProps {
     addToCart: () => void;
 }
 
-export const plugins = {
+export const storePlugins = {
     product: {
         editor: {
             header: rendererPlugins<IUpdater<IProduct>>(),

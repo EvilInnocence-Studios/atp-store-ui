@@ -1,10 +1,9 @@
 import { IModule } from "@core/lib/module";
 import { storeMenus } from "./lib/menus";
+import { registerMyAccountTabPlugins } from "./lib/plugin/myAccountTabs";
 import { storeRoutes } from "./lib/routes";
 import { storeSettings } from "./lib/settings";
-import { uacPlugins } from "@uac/lib/plugin/slots";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import { UserOrderList } from "./components/UserOrderList";
+import { registerProductEditorDetailsPlugins } from "./lib/plugin/productEditorDetails";
 
 export const module:IModule = {
     name: "store",
@@ -13,10 +12,5 @@ export const module:IModule = {
     settings: storeSettings,
 }
 
-uacPlugins.myAccount.tabs.register({
-    key: "orders",
-    title: "My Orders",
-    icon: faCartShopping,
-    priority: 800,
-    component: UserOrderList,
-});
+registerMyAccountTabPlugins();
+registerProductEditorDetailsPlugins();
