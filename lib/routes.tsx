@@ -1,7 +1,6 @@
 import { withRoute } from "@core/lib/withRoute";
 import { Cart } from "@store/components/Cart";
 import { DiscountEditor } from "@store/components/DiscountEditor";
-import { MyAccount } from "@store/components/MyAccount";
 import { ProductEditor } from "@store/components/ProductEditor";
 import { ProductPage } from "@store/components/ProductPage";
 import { ProductQueue } from "@store/components/ProductQueue";
@@ -16,8 +15,6 @@ export const storeRoutes = {
         {path: "/queue/:groupId/:tagId", component: withRoute(ProductQueue) },
     ],
     public: [
-        {path: "/my-account/:tab",     component: withRoute(MyAccount)    },
-        {path: "/my-account/:tab/:id", component: withRoute(MyAccount)    },
         {path: "/cart",                component: Cart                    },
         {path: "/products",            component: ProductsPage            },
         {path: "/products/:url",       component: withRoute(ProductPage)  },
