@@ -12,6 +12,7 @@ import { Index } from "ts-functional/dist/types";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { ProductManagerComponent } from "./ProductManager.component";
 import { IProductManagerInputProps, IProductManagerProps, ProductManagerProps } from "./ProductManager.d";
+import { storePlugins } from "@store/lib/plugin/slots";
 
 const injectProductManagerProps = createInjector(({}:IProductManagerInputProps):IProductManagerProps => {
     const {products, create, remove, isLoading} = useProductList();
@@ -23,31 +24,14 @@ const injectProductManagerProps = createInjector(({}:IProductManagerInputProps):
     }
 
     const filters = useTableFilters(products);
-    const columnIndex:Index<ColumnType<IProduct>> = {
-        ...productTableColumns(filters),
-        actions: {
-            title: "Actions",
-            key: "actions",
-            render: (product:IProduct) => <>
-                <Link to={`/products/${product.id}`} onClick={(e) => {e.stopPropagation();}}><FontAwesomeIcon icon={faEdit} /> Edit</Link>
-                <DeleteBtn entityType="product" onClick={remove(product.id)} />
-            </>,
-        }
-    };
 
-    const columnSets:Index<string[]> = {
-        Info:    ["id", "thumbnail", "name", "sku",   "url",         "type",       "enabled",     "subscription", "actions"],
-        Details: ["id", "thumbnail", "name", "price", "releaseDate", "brokeredAt", "brokerageId", "actions"                ],
-        Tags:    ["id", "thumbnail", "name", "tags",  "actions"                                                            ],
-    }
-
-    const columns = columnSets[tab].map(key => columnIndex[key]);
+    const columns = storePlugins.product.manager.columns.getColumnSet(tab, {filters, remove});
 
     return {
         products:filters.items, isLoading,
         create: () => (create(goToProduct)), remove,
         columns,
-        tab, setTab, allTabs: Object.keys(columnSets),
+        tab, setTab, allTabs: storePlugins.product.manager.columns.sets(),
         filters: filters.values,
         goToProduct,
     };
