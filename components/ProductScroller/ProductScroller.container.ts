@@ -1,4 +1,3 @@
-import { useScrollable } from "@core/useScrollable";
 import { IProductFull } from "@store-shared/product/types";
 import { useProductList } from "@store/lib/useProductList";
 import { useEffect, useState } from "react";
@@ -8,7 +7,6 @@ import { IProductScrollerInputProps, IProductScrollerProps, ProductScrollerProps
 
 const injectProductScrollerProps = createInjector(({filter, sort, count}:IProductScrollerInputProps):IProductScrollerProps => {
     const {products, isLoading} = useProductList();
-    const scroll = useScrollable(10);
     const [newProducts, setNewProducts] = useState<IProductFull[]>([]);
 
     useEffect(() => {
@@ -18,7 +16,7 @@ const injectProductScrollerProps = createInjector(({filter, sort, count}:IProduc
             .slice(0, count || 10));
     }, [products, filter, sort]);
 
-    return {products: newProducts, isLoading, scroll};
+    return {products: newProducts, isLoading};
 });
 
 const connect = inject<IProductScrollerInputProps, ProductScrollerProps>(mergeProps(
