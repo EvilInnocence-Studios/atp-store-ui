@@ -1,3 +1,4 @@
+import { useSetting } from "@common/lib/setting/services";
 import { synonymReplace, useSynonyms } from "@common/lib/synonym/util";
 import { services } from "@core/lib/api";
 import { flash } from "@core/lib/flash";
@@ -15,12 +16,13 @@ export const useProductList = () => {
     const [products, setProducts] = useProductsRaw();
     const synonyms = useSynonyms();
     const loader =  useLoaderAsync();
+    const defaultSku = useSetting("defaultProductSku");
 
     const product = services().product;
 
     const create = (onCreate?:(product:IProduct) => void) => {
         loader(async () => {
-            product.create({name: 'New Product', description: 'New Description', sku: 'EVI-S', url: 'new-product'})
+            product.create({name: 'New Product', description: 'New Description', sku: defaultSku, url: 'new-product'})
                 .then(newProduct => {
                     if(onCreate && typeof onCreate === "function") {
                         onCreate(newProduct);
