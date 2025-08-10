@@ -1,8 +1,8 @@
 import { ISettingContainer } from "@common/lib/setting/types";
 
 export const storeSettings:ISettingContainer = {
-    "Store": {
-        "General": {
+    Store: {
+        General: {
             defaultProductSku: {
                 displayName: "Default Product SKU",
                 type: "string",
@@ -16,18 +16,18 @@ export const storeSettings:ISettingContainer = {
                 description: "The folder where product images are stored.",
             },
         },
-        "Search": {
+        Search: {
             defaultProductSortBy: {
                 displayName: "Default Sort By",
                 type: "select",
                 defaultValue: "newest",
                 description: "The default sorting order for product listings.",
-                options: [
+                options: () => Promise.resolve([
                     { value: "newest", label: "Newest" },
                     { value: "oldest", label: "Oldest" },
                     { value: "priceLow", label: "Price: Low to High" },
                     { value: "priceHigh", label: "Price: High to Low" },
-                ],
+                ]),
             },
             defaultProductPerPage: {
                 displayName: "Default Products Per Page",
@@ -37,4 +37,14 @@ export const storeSettings:ISettingContainer = {
             },
         }
     },
+    Email: {
+        "Order Confirmation": {
+            orderConfirmationSubject: {
+                displayName: "Order Confirmation Subject",
+                type: "string",
+                defaultValue: "Order Confirmation",
+                description: "The subject line for order confirmation emails.",
+            }
+        }
+    }
 };
