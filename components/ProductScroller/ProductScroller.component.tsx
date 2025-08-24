@@ -14,5 +14,5 @@ export const ProductScrollerComponent = ({title, products, isLoading}:ProductScr
             title={title}
             getId={prop("id")}
             Component={ListItem}
-        />;
+        />
     </Spin>;
