@@ -1,14 +1,13 @@
 import { Editable } from "@core/components/Editable"
 import { Label } from "@core/components/Label"
+import { MarkdownEditor } from "@core/components/MarkdownEditor"
 import { onNumberChange, onRadioChange } from "@core/lib/onInputChange"
 import { IUpdater } from "@core/lib/useUpdater"
 import { faCopy } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { IProduct } from "@store-shared/product/types"
-import Editor from "@uiw/react-md-editor"
 import { Button, Card, Radio, Space } from "antd"
 import { storePlugins } from "./slots"
-
 
 const copyUrlFromName = (product:IProduct, updateString:(field:keyof IProduct) => (value:string) => void) => () => {
     if (!product) return;
@@ -47,11 +46,11 @@ export const registerProductEditorDetailsPlugins = () => {
     // Product descriptions
     storePlugins.product.editor.details.register(400, ({history:{entity:product}, updateString}:IUpdater<IProduct>) => <>
         <Card title="Short Description" size="small">
-            <Editor value={product.descriptionShort} onChange={updateString("descriptionShort")}/>
+            <MarkdownEditor value={product.descriptionShort} onChange={updateString("descriptionShort")}/>
         </Card>
 
         <Card title="Description" size="small">
-            <Editor value={product.description} onChange={updateString("description")} />
+            <MarkdownEditor value={product.description} onChange={updateString("description")} />
         </Card>
     </>);
 
