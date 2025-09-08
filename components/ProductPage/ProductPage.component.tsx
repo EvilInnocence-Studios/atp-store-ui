@@ -1,5 +1,5 @@
 import { Col, Row, Spin, Tag } from "antd";
-import Markdown from 'marked-react';
+import Markdown from 'react-markdown';
 import { AddtoCartBtn } from "../AddtoCartBtn";
 import { MediaSwitcher } from "../MediaSwitcher";
 import { ProductPrice } from "../ProductPrice";
