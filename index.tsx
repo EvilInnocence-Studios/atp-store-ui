@@ -1,5 +1,5 @@
 import { IModule } from "@core/lib/module";
-import { sitePlugins } from "@public/index";
+import { sitePlugins } from "@common/index";
 import { Col } from "antd";
 import { NewProducts } from "./components/NewProducts";
 import { storeMenus } from "./lib/menus";
