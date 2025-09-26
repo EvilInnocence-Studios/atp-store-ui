@@ -5,7 +5,7 @@
     margin: auto;
     @media (max-width: 780px) {
         width: 100%;
-        padding: globals.$padding;
+        padding: var(--padding);
     }
     .thumbnail {
         margin: -14px -14px -18px -12px;
@@ -21,7 +21,7 @@
         font-weight: bold;
     }
     .cartActions {
-        margin-top: globals.$padding;
+        margin-top: var(--padding);
         text-align: right;
         > * {
             display: inline-block;

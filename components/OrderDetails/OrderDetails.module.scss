@@ -1,7 +1,7 @@
 @use "@styles/globals.module.scss";
 
 .orderDetails {
-    padding: globals.$padding;
+    padding: var(--padding);
     .totals {
         text-align: center;
         font-weight: bold;

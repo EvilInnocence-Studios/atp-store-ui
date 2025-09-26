@@ -2,13 +2,13 @@
 
 .miniProduct {
     background-color: var(--bgColor);
-    padding: globals.$padding-sm;
+    padding: var(--paddingSmall);
     border-radius: globals.$border-radius;
     border: solid 1px var(--borderColor);
     img {
         float: left;
         width: 64px;
-        margin-right: globals.$padding;
+        margin-right: var(--padding);
     }
     button {
         float: right;

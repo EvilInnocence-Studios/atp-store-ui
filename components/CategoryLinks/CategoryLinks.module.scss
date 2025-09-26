@@ -9,7 +9,7 @@
     width: 100%;
     a {
         flex-grow: 1;
-        padding: globals.$padding;
+        padding: var(--padding);
         text-align: center;
         display: flex;
         flex-direction: column;

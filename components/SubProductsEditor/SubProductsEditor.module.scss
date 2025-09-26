@@ -4,8 +4,8 @@
     .subProductList {
         display: flex;
         flex-wrap: wrap;
-        gap: globals.$padding;
-        margin: globals.$padding;
+        gap: var(--padding);
+        margin: var(--padding);
         > div {
             position: relative;
             flex-grow: 1;

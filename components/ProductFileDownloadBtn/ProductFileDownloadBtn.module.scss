@@ -8,5 +8,5 @@
         display: block;
         text-align: left !important;
     }
-    margin-bottom: globals.$padding-sm;
+    margin-bottom: var(--paddingSmall);
 }

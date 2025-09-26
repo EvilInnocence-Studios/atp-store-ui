@@ -3,8 +3,8 @@
 .productMediaList {
     display: flex;
     flex-wrap: wrap;
-    gap: globals.$padding;
-    margin-bottom: globals.$padding;
+    gap: var(--padding);
+    margin-bottom: var(--padding);
     img {
         width: 256px;
     }

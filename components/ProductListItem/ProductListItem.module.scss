@@ -32,7 +32,7 @@
         .productInfo {
             position: absolute;
             bottom: 36px;
-            padding: 0 globals.$padding-sm;
+            padding: 0 var(--paddingSmall);
             width: 100%;
             aspect-ratio: 7/2;
             display: flex;
@@ -65,7 +65,7 @@
         bottom: 0;
         left: 0;
         width: 100%;
-        padding: globals.$padding-sm;
+        padding: var(--paddingSmall);
         background-color: var(--bgLightColor);
         p {
             font-size: 1rem;
