@@ -3,7 +3,7 @@
 .miniProduct {
     background-color: var(--bgColor);
     padding: var(--paddingSmall);
-    border-radius: globals.$border-radius;
+    border-radius: var(--borderRadius);
     border: solid 1px var(--borderColor);
     img {
         float: left;
