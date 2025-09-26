@@ -1,10 +1,10 @@
 @use "@styles/globals.module.scss";
 
 .miniProduct {
-    background-color: globals.$brand-bg;
+    background-color: var(--bgColor);
     padding: globals.$padding-sm;
     border-radius: globals.$border-radius;
-    border: solid 1px globals.$brand-border;
+    border: solid 1px var(--borderColor);
     img {
         float: left;
         width: 64px;

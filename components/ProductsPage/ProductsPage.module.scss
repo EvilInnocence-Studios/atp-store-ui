@@ -11,7 +11,7 @@
             clear: both;
         }
         display: none;
-        background-color: globals.$brand-bg-light;
+        background-color: var(--bgLightColor);
         padding: globals.$padding;
         margin-bottom: globals.$padding;
         @media (max-width: 890px) {

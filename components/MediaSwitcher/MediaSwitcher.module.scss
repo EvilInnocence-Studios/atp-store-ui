@@ -46,10 +46,10 @@
         transition: border-color 0.3s;
         overflow: hidden;
         &:hover {
-            border-color: globals.$brand-primary;
+            border-color: var(--primaryColor);
         }
         &.active {
-            border-color: globals.$brand-primary;
+            border-color: var(--primaryColor);
         }
     }
 }

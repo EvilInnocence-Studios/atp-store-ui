@@ -11,7 +11,7 @@
     position: relative;
     overflow: hidden;
     height: 390px;
-    background-color: globals.$brand-bg-light;
+    background-color: var(--bgLightColor);
     padding-bottom: globals.$padding;
     &::after {
         content: "";

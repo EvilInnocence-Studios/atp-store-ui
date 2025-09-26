@@ -3,8 +3,8 @@
 .userOrderList {
     .selected {
         font-weight: bold;
-        color: globals.$brand-primary;
-        background-color: globals.$brand-bg-light;
+        color: var(--primaryColor);
+        background-color: var(--bgLightColor);
     }
     h1 {
         display: inline;

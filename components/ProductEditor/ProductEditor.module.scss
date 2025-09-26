@@ -5,6 +5,6 @@
         float: right;
     }
     hr {
-        border: solid 1px globals.$brand-border;
+        border: solid 1px var(--borderColor);
     }
 }
