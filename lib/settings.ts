@@ -46,5 +46,5 @@ export const storeSettings:ISettingContainer = {
                 description: "The subject line for order confirmation emails.",
             }
         }
-    }
+    },
 };
