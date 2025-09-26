@@ -47,4 +47,14 @@ export const storeSettings:ISettingContainer = {
             }
         }
     },
+    Layout: {
+        Homepage: {
+            "homepage.showNewProductsOnHomepage": {
+                displayName: "Show New Products",
+                type: "boolean",
+                defaultValue: "true",
+                description: "Show new products on the homepage.",
+            },
+        },
+    }
 };
