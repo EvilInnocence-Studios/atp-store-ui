@@ -15,6 +15,12 @@ export const storeSettings:ISettingContainer = {
                 defaultValue: "",
                 description: "The folder where product images are stored.",
             },
+            "store.showFilterBar": {
+                displayName: "Show Filter Bar",
+                type: "boolean",
+                defaultValue: "true",
+                description: "Show the filter bar on product listing pages.",
+            }
         },
         Search: {
             defaultProductSortBy: {
