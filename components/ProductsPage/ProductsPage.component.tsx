@@ -12,13 +12,13 @@ export const ProductsPageComponent = ({
     q, clearAll, clearSearch,
     products, isLoading, paginator,
     sortBy, setSortBy,
-    filters,
+    filters, showFilterBar,
 }:ProductsPageProps) =>
     <div className={styles.productsPage}>
         <Layout>
-            <Layout.Sider theme="light"width={300} className={styles.sider}>
+            {showFilterBar && <Layout.Sider theme="light"width={300} className={styles.sider}>
                 <TagFacets selectedTagIds={selectedTagIds} selectTag={selectTag} removeTag={removeTag} />
-            </Layout.Sider>
+            </Layout.Sider>}
             <Layout.Content className={styles.productListContainer}>
                 <Spin spinning={isLoading}>
                     <CategoryLinks />

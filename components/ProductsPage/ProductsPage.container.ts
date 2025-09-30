@@ -9,6 +9,7 @@ import { createInjector, inject, mergeProps } from "unstateless";
 import { ProductsPageComponent } from "./ProductsPage.component";
 import { IProductsPageInputProps, IProductsPageProps, ProductsPageProps } from "./ProductsPage.d";
 import { synonymReplace, useSynonyms } from "@common/lib/synonym/util";
+import { useSetting } from "@common/lib/setting/services";
 
 const injectProductsPageProps = createInjector(({}:IProductsPageInputProps):IProductsPageProps => {
     const {products, isLoading} = useProductList();
@@ -18,6 +19,7 @@ const injectProductsPageProps = createInjector(({}:IProductsPageInputProps):IPro
     const filters = useToggle();
     const {q, selectedTagIds, ...handlers} = useSearch();
     const paginator = usePaginator(handlers.page, handlers.perPage, handlers.updateQuery);
+    const showFilterBar = useSetting("store.showFilterBar") === "true";
 
     const loader = useLoader();
 
@@ -50,6 +52,7 @@ const injectProductsPageProps = createInjector(({}:IProductsPageInputProps):IPro
         products:filteredProducts,
         isLoading: isLoading || loader.isLoading,
         paginator, filters,
+        showFilterBar,
         ...handlers,
     };
 });

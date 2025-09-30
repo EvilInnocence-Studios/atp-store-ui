@@ -9,6 +9,7 @@ export declare interface IProductsPageProps extends ISearch {
     isLoading: boolean;
     paginator: IPaginator;
     filters: IToggle;
+    showFilterBar: boolean;
 }
 
 // What gets passed into the component from the parent as attributes

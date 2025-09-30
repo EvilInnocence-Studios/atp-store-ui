@@ -26,9 +26,10 @@
     }
 
     .productListContainer {
-        margin: var(--padding);
+        background-color: var(--contentBg);
+        padding: var(--padding);
         .productList {
-            padding: var(--padding) 0;
+            padding: 0;
             > * {
                 width: calc(25% - var(--padding) * 2);
                 @media (max-width: 1600px) {
