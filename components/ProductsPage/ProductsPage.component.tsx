@@ -24,12 +24,12 @@ export const ProductsPageComponent = ({
                     <CategoryLinks />
                     <SelectedTags selectedTagIds={selectedTagIds} clearSearch={clearSearch} q={q} removeTag={removeTag} clearAll={clearAll} />
                     <div className={styles.inlineFacets}>
-                        <div className={styles.filterHeader}>
+                        {showFilterBar && <div className={styles.filterHeader}>
                             Filter Products...
                             <Button onClick={filters.toggle} size="small" type="link">
                                 {filters.isset ? "Hide" : "Show"}
                             </Button>
-                        </div>
+                        </div>}
                         {filters.isset && <>
                             <hr/>
                             <TagFacets selectedTagIds={selectedTagIds} selectTag={selectTag} removeTag={removeTag} />
