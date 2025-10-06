@@ -16,9 +16,11 @@ const copyUrlFromName = (product:IProduct, updateString:(field:keyof IProduct) =
     updateString("url")(url);
 }
 
+const register = storePlugins.product.editor.details.register;
+
 export const registerProductEditorDetailsPlugins = () => {
     // Product type and price controls
-    storePlugins.product.editor.details.register(1000, ({history:{entity:product}, updateString, updateNumber}:IUpdater<IProduct>) => <>
+    register(1000, ({history:{entity:product}, updateString, updateNumber}:IUpdater<IProduct>) => <>
         <Space>
             <Radio.Group block optionType="button" buttonStyle="solid" value={product.productType} onChange={onRadioChange(updateString("productType"))}>
                 <Radio value="digital">Digital</Radio>
@@ -29,12 +31,12 @@ export const registerProductEditorDetailsPlugins = () => {
     </>);
 
     // Product SKU
-    storePlugins.product.editor.details.register(800, ({history:{entity:product}, updateString}:IUpdater<IProduct>) => <>
+    register(800, ({history:{entity:product}, updateString}:IUpdater<IProduct>) => <>
         <Label label="SKU"><Editable value={product.sku} onChange={updateString("sku")}/></Label>
     </>);
 
     // Product URL
-    storePlugins.product.editor.details.register(600, ({history:{entity:product}, updateString}:IUpdater<IProduct>) => <>
+    register(600, ({history:{entity:product}, updateString}:IUpdater<IProduct>) => <>
         <Label label="URL"><Editable value={product.url} onChange={updateString("url")}/></Label>
         <div style={{textAlign: "right"}}>
             <Button onClick={copyUrlFromName(product, updateString)}>
@@ -44,7 +46,7 @@ export const registerProductEditorDetailsPlugins = () => {
     </>);
 
     // Product descriptions
-    storePlugins.product.editor.details.register(400, ({history:{entity:product}, updateString}:IUpdater<IProduct>) => <>
+    register(400, ({history:{entity:product}, updateString}:IUpdater<IProduct>) => <>
         <Card title="Short Description" size="small">
             <MarkdownEditor value={product.descriptionShort} onChange={updateString("descriptionShort")}/>
         </Card>
@@ -55,7 +57,7 @@ export const registerProductEditorDetailsPlugins = () => {
     </>);
 
     // Meta tags
-    storePlugins.product.editor.details.register(200, ({history:{entity:product}, updateString}:IUpdater<IProduct>) => <>
+    register(200, ({history:{entity:product}, updateString}:IUpdater<IProduct>) => <>
         <Label label="Meta Title"><Editable value={product.metaTitle || ""} onChange={updateString("metaTitle")}/></Label>
         <Label label="Meta Description"><Editable textArea value={product.metaDescription || ""} onChange={updateString("metaDescription")}/></Label>
         <Label label="Meta Keywords"><Editable value={product.metaKeywords || ""} onChange={updateString("metaKeywords")}/></Label>
