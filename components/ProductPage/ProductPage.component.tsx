@@ -27,7 +27,7 @@ export const ProductPageComponent = ({product, media, relatedProducts, subProduc
                         <ProductPrice product={product} />
                     </Col>
                     <Col xs={12} className={styles.cartActions}>
-                        <AddtoCartBtn product={product} />
+                        <AddtoCartBtn product={product} size="large" />
                         <WishlistBtn product={product} />
                     </Col>
                 </Row>

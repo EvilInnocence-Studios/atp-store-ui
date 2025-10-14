@@ -1,17 +1,21 @@
+import clsx from "clsx";
 import { Link } from "react-router";
 import { AddtoCartBtn } from "../AddtoCartBtn";
-import { Image } from "../Image";
 import { ProductPrice } from "../ProductPrice";
+import { ProductThumbnail } from "../ProductThumbnail";
 import { ProductListItemProps } from "./ProductListItem.d";
 import styles from './ProductListItem.module.scss';
-import clsx from "clsx";
+
+// TODO: Instead of making productPrice and AddToCartBtn plugins for donation price, make productlist item pluggable
+// It can link to a donation page instead of a product page
+// The donate button will place a donation directly rather than going through the cart process
+// Backend will keep track of donations per user in a new table
+
 
 export const ProductListItemComponent = ({product, textSize, hideTags}:ProductListItemProps) =>
     <div className={styles.productListItem}>
         <div className={styles.productMain}>
-            <Link to={`/products/${product.url}`}>
-                {(product.thumbnailId) && <Image productId={product.id} imageId={product.thumbnailId} />}
-            </Link>
+            <ProductThumbnail product={product} />
             <div className={clsx([styles.productInfo, styles[textSize || "default"]])}>
                 <Link to={`/products/${product.url}`}><h3>{product.name}</h3></Link>
             </div>

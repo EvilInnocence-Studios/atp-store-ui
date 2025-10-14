@@ -25,11 +25,8 @@
         }
     }
     .cartInfo {
-        * {font-size: x-large;}
         :global(.ant-tag) {font-size:medium;}
         button {
-            padding: var(--paddingLarge) !important;
-            width: 100%;
         }
         .cartPrice {
             > span {

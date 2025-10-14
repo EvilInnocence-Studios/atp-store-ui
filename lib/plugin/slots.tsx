@@ -9,11 +9,19 @@ import { AddtoCartButtonBasic } from "@store/components/AddtoCartBtn/AddToCartBt
 export interface IAddToCartPluginProps {
     product: IProduct;
     addToCart: () => void;
+    size?: "small" | "medium" | "large";
 }
 
 export interface IProductTableColumnProps {
     filters: ITableFilters<IProduct>;
     remove: (id:string) => () => void;
+}
+
+export interface IPriceProps {
+    product: IProduct;
+    salePrice: number;
+    isLoading: boolean;
+    small?: boolean;
 }
 
 export const storePlugins = {
@@ -24,7 +32,8 @@ export const storePlugins = {
         },
         manager: {
             columns: tableColumns<IProduct, IProductTableColumnProps>(),
-        }
+        },
+        price: rendererOptionPlugins<IPriceProps>(),
     },
     cart: {
         addButton: rendererOptionPlugins<IAddToCartPluginProps>(AddtoCartButtonBasic),

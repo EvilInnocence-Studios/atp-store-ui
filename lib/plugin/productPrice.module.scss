@@ -1,0 +1,13 @@
+p {
+    margin: 0;
+    display: inline-block;
+    padding-right: var(--paddingSmall);
+    &.onSale {
+        color: var(--warningColor);
+        text-decoration: line-through;
+    }
+    &.salePrice {
+        font-weight: bold;
+        font-style: italic;
+    }
+}
