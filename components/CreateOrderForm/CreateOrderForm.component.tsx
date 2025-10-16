@@ -1,12 +1,15 @@
-import { Button, Modal } from "antd";
-import {CreateOrderFormProps} from "./CreateOrderForm.d";
-import styles from './CreateOrderForm.module.scss';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartPlus, faClose } from "@fortawesome/free-solid-svg-icons";
-import { ProductSearch } from "../ProductSearch";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { hasPermission } from "@uac/components/HasPermission";
+import { Button, Modal } from "antd";
 import { MiniProduct } from "../MiniProduct";
+import { ProductSearch } from "../ProductSearch";
+import { CreateOrderFormProps } from "./CreateOrderForm.d";
+import styles from './CreateOrderForm.module.scss';
 
-export const CreateOrderFormComponent = ({modal, isLoading, products, createOrder}:CreateOrderFormProps) => <>
+const CanCreate = hasPermission("order.create");
+
+export const CreateOrderFormComponent = ({modal, isLoading, products, createOrder}:CreateOrderFormProps) => <CanCreate yes>
     <Button
         className={styles.createOrderButton}
         type="primary"
@@ -44,4 +47,4 @@ export const CreateOrderFormComponent = ({modal, isLoading, products, createOrde
             {products.items.map((product) => <MiniProduct productId={product} key={product} onRemove={products.remove} />)}
         </div>
     </Modal>
-</>;
+</CanCreate>;

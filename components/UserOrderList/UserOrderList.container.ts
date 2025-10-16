@@ -33,7 +33,6 @@ const injectUserOrderListProps = createInjector(({userId, id, onSelectOrder}:IUs
      }
 
      useEffect(() => {
-        console.log("load user if user id is different from logged in user");
         if(user.id && user.id !== loggedInUser.user.id) {
             loader(async () => {
                 services().user.get(user.id).then(setUser);

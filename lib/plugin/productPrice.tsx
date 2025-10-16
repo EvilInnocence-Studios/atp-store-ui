@@ -7,12 +7,12 @@ export const registerProductPricePlugins = () => {
     // Free products
     storePlugins.product.price.register({
         filter: ({product}) => product.price <= 0.0,
-        plugin: ({product, small}) => <span>{small ? <></> : <Tag>Free</Tag>}</span>,
+        plugin: ({/*product,*/ small}) => <span>{small ? <></> : <Tag>Free</Tag>}</span>,
     });
 
     // Regular products
     storePlugins.product.price.register({
-        filter: ({product}) => true,
+        filter: ({/*product*/}) => true,
         plugin: ({product, salePrice, isLoading, small}) => <Spin spinning={isLoading}>
             <p className={clsx([styles.price, salePrice < product.price && styles.onSale])}>
                 ${product.price.toFixed(2)}
