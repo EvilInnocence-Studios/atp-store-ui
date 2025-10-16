@@ -6,7 +6,7 @@ import { IUpdater } from "@core/lib/useUpdater"
 import { faCopy } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { IProduct } from "@store-shared/product/types"
-import { Button, Card, Radio, Space } from "antd"
+import { Button, Card, Radio, Space, Switch } from "antd"
 import { storePlugins } from "./slots"
 
 const copyUrlFromName = (product:IProduct, updateString:(field:keyof IProduct) => (value:string) => void) => () => {
@@ -43,6 +43,13 @@ export const registerProductEditorDetailsPlugins = () => {
                 <FontAwesomeIcon icon={faCopy} /> Copy url from name
             </Button>
         </div>
+    </>);
+
+    // Is Discountable
+    register(500, ({history:{entity:product}, updateToggle}:IUpdater<IProduct>) => <>
+        <Space style={{width: "100%"}}>
+            Discountable: <Switch checked={product.isDiscountable} onChange={updateToggle("isDiscountable")} checkedChildren="Yes" unCheckedChildren="No"/> 
+        </Space>
     </>);
 
     // Product descriptions
