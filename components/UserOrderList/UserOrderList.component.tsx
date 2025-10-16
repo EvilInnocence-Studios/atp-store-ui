@@ -46,7 +46,7 @@ export const UserOrderListComponent = ({user, orders, isLoading, selectOrder, se
             <Row gutter={16}>
                 <Col xs={24} xl={12}>
                     <CreateOrderForm userId={user.id} onCreateOrder={refresh}/>
-                    <h1>Orders for {user.firstName} {user.lastName}</h1>
+                    <h1>Orders for {user.userName}</h1>
                     <Table<IOrder>
                         dataSource={orders}
                         columns={columns}

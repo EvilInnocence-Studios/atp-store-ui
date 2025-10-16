@@ -8,6 +8,7 @@ import { registerMyAccountTabPlugins } from "./lib/plugin/myAccountTabs";
 import { registerProductEditorDetailsPlugins } from "./lib/plugin/productEditorDetails";
 import { registerProductManagerColumnPlugins } from "./lib/plugin/productManagerColumns";
 import { registerProductPricePlugins } from "./lib/plugin/productPrice";
+import { registerUserManagerTabPlugins } from "./lib/plugin/userManagerTabs";
 import { storeRoutes } from "./lib/routes";
 import { storeSettings } from "./lib/settings";
 
@@ -19,6 +20,7 @@ export const module:IModule = {
 }
 
 registerMyAccountTabPlugins();
+registerUserManagerTabPlugins();
 registerProductEditorDetailsPlugins();
 registerProductManagerColumnPlugins();
 registerProductPricePlugins();
