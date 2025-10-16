@@ -17,9 +17,11 @@ export declare interface ICart {
     isLoading: boolean;
 }
 
+const useCouponCodeRaw = useLocalStorage.string<string>("cartCouponCode", "");
+
 export const useCart = ():ICart => {
     const [products, setProducts] = useLocalStorage.object<IProduct[]>("cartProducts", [])();
-    const [couponCode, setCouponCode] = useLocalStorage.string("cartCouponCode", "")();
+    const [couponCode, setCouponCode] = useCouponCodeRaw();
     const [totals, setTotals] = useState<ICartTotals>({subtotal: 0, total: 0, discount: 0});
     const loader = useLoaderAsync();
     const [user] = useLoggedInUser();

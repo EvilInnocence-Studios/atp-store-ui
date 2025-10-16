@@ -37,7 +37,8 @@ export const useProductList = () => {
 
     const updateSearch = () => {
         setProducts(old => old.map(p => {
-            const searchRaw = `${p.name} ${p.description} ${p.brokeredAt} ${p.tags.join(" ")}`;
+            // TODO: Make this pluggable so that brokered products can add their own fields
+            const searchRaw = `${p.name} ${p.description} ${p.tags.join(" ")}`;
             const search = synonymReplace(searchRaw, synonyms);
             return {...p, search};
         }));
