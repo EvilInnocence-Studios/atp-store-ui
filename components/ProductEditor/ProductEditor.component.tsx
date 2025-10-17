@@ -24,6 +24,7 @@ export const ProductEditorComponent = ({
                     <Space>
                         <Switch checked={product.enabled} checkedChildren="Enabled" unCheckedChildren="Disabled" onChange={props.updateToggle("enabled")}/>
                         <DatePicker value={product.releaseDate ? dayjs(product.releaseDate) : undefined} onChange={onDateChange(props.updateString("releaseDate"))}/>
+                        <Switch checked={product.pinned} checkedChildren="Pinned" unCheckedChildren="Not Pinned" onChange={props.updateToggle("pinned")}/>
                     </Space>
                     <div className={styles.updateButtons}><props.UpdateButtons /></div>
                     <h1>
