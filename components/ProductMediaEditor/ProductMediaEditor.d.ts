@@ -7,6 +7,7 @@ export declare interface IProductMediaEditorProps {
     updateThumbnail: (id:string) => void;
     updateMainImage: (id:string) => void;
     remove: (id:string) => () => void;
+    move: (id:string, direction:"up" | "down") => () => void;
 }
 
 // What gets passed into the component from the parent as attributes

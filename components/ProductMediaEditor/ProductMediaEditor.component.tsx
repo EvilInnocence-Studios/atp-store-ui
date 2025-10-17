@@ -1,12 +1,13 @@
 import { DeleteBtn } from "@core/components/DeleteBtn";
 import { handle } from "@core/lib/onInputChange";
-import { faUpload } from "@fortawesome/free-solid-svg-icons";
+import { faCaretLeft, faCaretRight, faUpload } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button, Space, Spin, Upload } from "antd";
 import { ProductMediaEditorProps } from "./ProductMediaEditor.d";
 import styles from './ProductMediaEditor.module.scss';
 import { Image } from "../Image";
 import { useSetting } from "@common/lib/setting/services";
+import { prop, sort } from "ts-functional";
 
 export const useImageHost = (id:string) => {
     const imgHost = useSetting("imageHost");
@@ -16,12 +17,18 @@ export const useImageHost = (id:string) => {
 
 export const ProductMediaEditorComponent = ({
     product, media, upload, isLoading,
-    updateThumbnail, updateMainImage, remove
+    updateThumbnail, updateMainImage, remove, move,
 }:ProductMediaEditorProps) =>
     <Spin spinning={isLoading}>
         {!!product && <>
             <div className={styles.productMediaList}>
-                {media.map(m => <div className={styles.mediaItem}>
+                {media.sort(sort.by(prop<any, any>("order")).asc).map(m => <div className={styles.mediaItem}>
+                    {media[0].id !== m.id && <Button type="link" className={styles.leftBtn} onClick={move(m.id, "up")} title="Move left">
+                        <FontAwesomeIcon icon={faCaretLeft} />
+                    </Button>}
+                    {media[media.length -1].id !== m.id && <Button type="link" className={styles.rightBtn} onClick={move(m.id, "down")} title="Move right">
+                        <FontAwesomeIcon icon={faCaretRight} />
+                    </Button>}
                     <Image productId={product.id} imageId={m.id} /><br/>
                     <Space.Compact>
                         <Button

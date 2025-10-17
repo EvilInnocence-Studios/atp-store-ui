@@ -5,7 +5,26 @@
     flex-wrap: wrap;
     gap: var(--padding);
     margin-bottom: var(--padding);
-    img {
-        width: 256px;
+    .mediaItem {
+        position: relative;
+        img {
+            width: 256px;
+        }
+        .leftBtn {
+            position: absolute;
+            top: calc(50% - 24px);
+            left: -8px;
+            transform: translateY(-50%);
+            z-index: 99;
+            font-size: 48px;
+        }
+        .rightBtn {
+            position: absolute;
+            top: calc(50% - 24px);
+            right: -8px;
+            transform: translateY(-50%);
+            font-size: 48px;
+            z-index: 99;
+        }
     }
 }

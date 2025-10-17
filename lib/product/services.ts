@@ -19,6 +19,7 @@ export const productServices = ({get, post, /*put,*/ patch, remove}: IMethods) =
             get: (productId:string, mediaId:string):Promise<IProductMedia> => get(`product/${productId}/media/${mediaId}`).then(getResults),
             search: (productId:string):Promise<IProductMedia[]> => get(`product/${productId}/media`).then(getResults),
             remove: (productId:string, mediaId:string) => remove(`product/${productId}/media/${mediaId}`),
+            sort: (productId:string, id:string, newIndex:number):Promise<IProductMedia[]> => post(`product/${productId}/media/sort`, {id, newIndex}).then(getResults),
         },
         tag: {
             search: (productId:string):Promise<ITag[]> => get(`product/${productId}/tag`).then(getResults),
