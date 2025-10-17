@@ -21,6 +21,19 @@ const injectProductsPageProps = createInjector(({}:IProductsPageInputProps):IPro
     const paginator = usePaginator(handlers.page, handlers.perPage, handlers.updateQuery);
     const showFilterBar = useSetting("store.showFilterBar") === "true";
 
+    // Calculate column count from screen width and settings
+    // since we can't use CSS variables in media queries
+    const fiveColumnMinWidth  = useSetting("store.fiveColumnMinWidth" );
+    const fourColumnMinWidth  = useSetting("store.fourColumnMinWidth" );
+    const threeColumnMinWidth = useSetting("store.threeColumnMinWidth");
+    const twoColumnMinWidth   = useSetting("store.twoColumnMinWidth"  );
+    const columns =
+        window.innerWidth >= Number(fiveColumnMinWidth)  ? "Five"  :
+        window.innerWidth >= Number(fourColumnMinWidth)  ? "Four"  :
+        window.innerWidth >= Number(threeColumnMinWidth) ? "Three" :
+        window.innerWidth >= Number(twoColumnMinWidth)   ? "Two"   :
+                                                           "One"   ;
+
     const loader = useLoader();
 
     const selectedFiltersByGroup = groups
@@ -53,6 +66,7 @@ const injectProductsPageProps = createInjector(({}:IProductsPageInputProps):IPro
         isLoading: isLoading || loader.isLoading,
         paginator, filters,
         showFilterBar,
+        columns,
         ...handlers,
     };
 });

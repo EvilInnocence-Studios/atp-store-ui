@@ -30,18 +30,21 @@
         padding: var(--padding);
         .productList {
             padding: 0;
-            > * {
-                width: calc(25% - var(--padding) * 2);
-                @media (max-width: 1600px) {
-                    width: calc(33.33% - var(--padding) * 2);
-                }
-                @media (max-width: 1200px) {
-                    width: calc(50% - var(--padding) * 2);
-                }
-                @media (max-width: 600px) {
-                    width: calc(100% - var(--padding) * 2);
-                }
+            &.columnsFive > * {
+                width: calc(20% - var(--padding) * 2);
             }
+            &.columnsFour > * {
+                width: calc(25% - var(--padding) * 2);
+            }
+            &.columnsThree > * {
+                width: calc(33.3333% - var(--padding) * 2);
+            }
+            &.columnsTwo > * {
+                width: calc(50% - var(--padding) * 2);
+            }
+            &.columnsOne > * {
+                width: calc(100% - var(--padding) * 2);
+            }            
         }
     }
 

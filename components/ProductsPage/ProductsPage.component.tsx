@@ -6,6 +6,7 @@ import { ProductListItem } from "../ProductListItem";
 import { ProductsPageProps } from "./ProductsPage.d";
 import styles from './ProductsPage.module.scss';
 import { CategoryLinks } from "../CategoryLinks";
+import clsx from "clsx";
 
 export const ProductsPageComponent = ({
     selectTag, removeTag, selectedTagIds,
@@ -13,6 +14,7 @@ export const ProductsPageComponent = ({
     products, isLoading, paginator,
     sortBy, setSortBy,
     filters, showFilterBar,
+    columns,
 }:ProductsPageProps) =>
     <div className={styles.productsPage}>
         <Layout>
@@ -45,7 +47,7 @@ export const ProductsPageComponent = ({
                         </Select>
                     </div>
                     <Pagination {...paginator} total={products.length} align="center" showSizeChanger/>
-                    <div className={styles.productList}>
+                    <div className={clsx([styles.productList, styles[`columns${columns}`]])}>
                         {products
                             .sort(switchOn(sortBy, {
                                 newest:    () => (a, b) => new Date(b.releaseDate).getTime() - new Date(a.releaseDate).getTime(),
