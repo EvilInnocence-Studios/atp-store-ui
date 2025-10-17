@@ -41,6 +41,32 @@ export const storeSettings:ISettingContainer = {
                 defaultValue: "12",
                 description: "The default number of products displayed per page.",
             },
+        },
+        "Product Listing": {
+            "store.fiveColumnMinWidth": {
+                displayName: "Five Column Min Width",
+                type: "string",
+                defaultValue: "1200px",
+                description: "The minimum width for five-column product listings.",
+            },
+            "store.fourColumnMinWidth": {
+                displayName: "Four Column Min Width",
+                type: "string",
+                defaultValue: "992px",
+                description: "The minimum width for four-column product listings.",
+            },
+            "store.threeColumnMinWidth": {
+                displayName: "Three Column Min Width",
+                type: "string",
+                defaultValue: "768px",
+                description: "The minimum width for three-column product listings.",
+            },
+            "store.twoColumnMinWidth": {
+                displayName: "Two Column Min Width",
+                type: "string",
+                defaultValue: "576px",
+                description: "The minimum width for two-column product listings.",
+            },
         }
     },
     Email: {
