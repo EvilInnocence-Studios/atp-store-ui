@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { ProductPageComponent } from "./ProductPage.component";
 import { IProductPageInputProps, IProductPageProps, ProductPageProps } from "./ProductPage.d";
+import { prop, sort } from "ts-functional";
 
 const injectProductPageProps = createInjector(({url}:IProductPageInputProps):IProductPageProps => {
     const [product, setProduct] = useState<IProductFull | null>(null);
@@ -25,7 +26,7 @@ const injectProductPageProps = createInjector(({url}:IProductPageInputProps):IPr
             // Load media
             loader(async () => {
                 const media = await services().product.media.search(product.id);
-                setMedia(media);
+                setMedia(media.sort(sort.by(prop<any, any>("order")).asc));
             });
 
             // Load related products
