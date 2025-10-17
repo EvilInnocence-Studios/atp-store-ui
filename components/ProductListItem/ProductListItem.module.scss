@@ -9,7 +9,6 @@
     margin: 1rem;
     overflow: hidden;
     .productMain {
-        aspect-ratio: 2/3;
         width: 100%;
         img {
             border-bottom-right-radius: 0;
@@ -30,7 +29,6 @@
             opacity: 0.125;
             width: 100%;
             height: 100%;
-            background-image: url("/logo.png") ;
             background-size: 32px;
         }
         .productInfo {
