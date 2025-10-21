@@ -43,12 +43,11 @@ const injectProductMediaEditorProps = createInjector(({product, update}:IProduct
     const updateThumbnail = update("thumbnailId");
     const updateMainImage = update("mainImageId");
     
-    const move = (id:string, direction:"up" | "down") => () => {
-        const item = media.find(m => m.id === id) as IProductMedia;
-        loader(() => services().product.media.sort(product.id, id, direction === "up" ? item.order - 1 : item.order + 1).then(setMedia));
+    const sort = (id:string, newIndex: number) => {
+        loader(() => services().product.media.sort(product.id, id, newIndex).then(setMedia));
     }
 
-    return {media, upload, isLoading: loader.isLoading, updateThumbnail, updateMainImage, remove, move};
+    return {media, upload, isLoading: loader.isLoading, updateThumbnail, updateMainImage, remove, sort};
 });
 
 const connect = inject<IProductMediaEditorInputProps, ProductMediaEditorProps>(mergeProps(
