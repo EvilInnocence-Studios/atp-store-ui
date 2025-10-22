@@ -1,7 +1,9 @@
+import { MediaSwitcher } from "@core/components/MediaSwitcher";
 import { Col, Row, Spin, Tag } from "antd";
 import Markdown from 'react-markdown';
+import { prop } from "ts-functional";
 import { AddtoCartBtn } from "../AddtoCartBtn";
-import { MediaSwitcher } from "../MediaSwitcher";
+import { Image } from "../Image";
 import { ProductPrice } from "../ProductPrice";
 import { ProductScroller } from "../ProductScroller";
 import { WishlistBtn } from "../WishlistBtn";
@@ -16,9 +18,10 @@ export const ProductPageComponent = ({product, media, relatedProducts, subProduc
             </div>
             <div className={styles.media}>
                 <MediaSwitcher
-                    productId={product.id}
                     media={media.filter(item => item.id !== product.thumbnailId || item.id === product.mainImageId)}
                     defaultMediaId={product.mainImageId}
+                    render={image => <Image key={image.id} productId={product.id} imageId={image.id} />}
+                    getId={prop('id')}
                 />
             </div>
             <div className={styles.productInfo}>
