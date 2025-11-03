@@ -12,7 +12,7 @@ export const ProductScrollerComponent = ({title, products, isLoading}:ProductScr
         <Scroller
             items={products}
             title={title}
-            getId={prop("id")}
+            getId={prop<any, any>("id")}
             Component={ListItem}
         />
     </Spin>;
