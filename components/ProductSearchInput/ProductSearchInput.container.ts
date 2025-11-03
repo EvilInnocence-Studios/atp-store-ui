@@ -1,8 +1,9 @@
-import { createInjector, inject, mergeProps } from "unstateless";
-import {ProductSearchInputComponent} from "./ProductSearchInput.component";
-import {IProductSearchInputInputProps, ProductSearchInputProps, IProductSearchInputProps} from "./ProductSearchInput.d";
+import { overridable } from "@core/lib/overridable";
 import { useSearch } from "@store/lib/useSearch";
 import { useEffect, useState } from "react";
+import { createInjector, inject, mergeProps } from "unstateless";
+import { ProductSearchInputComponent } from "./ProductSearchInput.component";
+import { IProductSearchInputInputProps, IProductSearchInputProps, ProductSearchInputProps } from "./ProductSearchInput.d";
 
 const injectProductSearchInputProps = createInjector(({}:IProductSearchInputInputProps):IProductSearchInputProps => {
     const {q, search} = useSearch();
@@ -23,4 +24,4 @@ const connect = inject<IProductSearchInputInputProps, ProductSearchInputProps>(m
     injectProductSearchInputProps,
 ));
 
-export const ProductSearchInput = connect(ProductSearchInputComponent);
+export const ProductSearchInput = overridable<IProductSearchInputInputProps>(connect(ProductSearchInputComponent));

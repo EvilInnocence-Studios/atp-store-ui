@@ -1,10 +1,11 @@
-import { createInjector, inject, mergeProps } from "unstateless";
-import {SubProductsEditorComponent} from "./SubProductsEditor.component";
-import {ISubProductsEditorInputProps, SubProductsEditorProps, ISubProductsEditorProps} from "./SubProductsEditor.d";
-import { IProduct } from "@store-shared/product/types";
-import { useLoaderAsync } from "@core/lib/useLoader";
-import { useEffect, useState } from "react";
 import { services } from "@core/lib/api";
+import { overridable } from "@core/lib/overridable";
+import { useLoaderAsync } from "@core/lib/useLoader";
+import { IProduct } from "@store-shared/product/types";
+import { useEffect, useState } from "react";
+import { createInjector, inject, mergeProps } from "unstateless";
+import { SubProductsEditorComponent } from "./SubProductsEditor.component";
+import { ISubProductsEditorInputProps, ISubProductsEditorProps, SubProductsEditorProps } from "./SubProductsEditor.d";
 
 const injectSubProductsEditorProps = createInjector(({productId}:ISubProductsEditorInputProps):ISubProductsEditorProps => {
     const [subProducts, setSubProducts] = useState<IProduct[]>([]);
@@ -37,4 +38,4 @@ const connect = inject<ISubProductsEditorInputProps, SubProductsEditorProps>(mer
     injectSubProductsEditorProps,
 ));
 
-export const SubProductsEditor = connect(SubProductsEditorComponent);
+export const SubProductsEditor = overridable<ISubProductsEditorInputProps>(connect(SubProductsEditorComponent));

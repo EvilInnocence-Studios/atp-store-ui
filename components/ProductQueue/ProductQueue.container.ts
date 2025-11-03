@@ -1,6 +1,7 @@
+import { overridable } from "@core/lib/overridable";
 import { createInjector, inject, mergeProps } from "unstateless";
-import {ProductQueueComponent} from "./ProductQueue.component";
-import {IProductQueueInputProps, ProductQueueProps, IProductQueueProps} from "./ProductQueue.d";
+import { ProductQueueComponent } from "./ProductQueue.component";
+import { IProductQueueInputProps, IProductQueueProps, ProductQueueProps } from "./ProductQueue.d";
 
 const injectProductQueueProps = createInjector(({}:IProductQueueInputProps):IProductQueueProps => {
     return {};
@@ -10,4 +11,4 @@ const connect = inject<IProductQueueInputProps, ProductQueueProps>(mergeProps(
     injectProductQueueProps,
 ));
 
-export const ProductQueue = connect(ProductQueueComponent);
+export const ProductQueue = overridable<IProductQueueInputProps>(connect(ProductQueueComponent));

@@ -1,15 +1,16 @@
 import { services } from "@core/lib/api";
+import { flash } from "@core/lib/flash";
+import { overridable } from "@core/lib/overridable";
+import { useLoaderAsync } from "@core/lib/useLoader";
+import { IOrder } from "@store-shared/order/types";
 import { useCart } from "@store/lib/useCart";
 import { useLoggedInUser } from "@uac/lib/login/services";
+import { useLoginForm } from "@uac/lib/useLoginForm";
+import { useNavigate } from "react-router";
 import { prop } from "ts-functional";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { CartComponent } from "./Cart.component";
 import { CartProps, ICartInputProps, ICartProps } from "./Cart.d";
-import { useNavigate } from "react-router";
-import { flash } from "@core/lib/flash";
-import { useLoaderAsync } from "@core/lib/useLoader";
-import { IOrder } from "@store-shared/order/types";
-import { useLoginForm } from "@uac/lib/useLoginForm";
 
 const injectCartProps = createInjector(({}:ICartInputProps):ICartProps => {
     const [{user}] = useLoggedInUser();
@@ -74,4 +75,4 @@ const connect = inject<ICartInputProps, CartProps>(mergeProps(
     injectCartProps,
 ));
 
-export const Cart = connect(CartComponent);
+export const Cart = overridable<ICartInputProps>(connect(CartComponent));

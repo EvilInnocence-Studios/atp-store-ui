@@ -1,4 +1,5 @@
 import { services } from "@core/lib/api";
+import { overridable } from "@core/lib/overridable";
 import { useLoaderAsync } from "@core/lib/useLoader";
 import { IOrderFull } from "@store-shared/order/types";
 import { useEffect, useState } from "react";
@@ -23,4 +24,4 @@ const connect = inject<IOrderDetailsInputProps, OrderDetailsProps>(mergeProps(
     injectOrderDetailsProps,
 ));
 
-export const OrderDetails = connect(OrderDetailsComponent);
+export const OrderDetails = overridable<IOrderDetailsInputProps>(connect(OrderDetailsComponent));

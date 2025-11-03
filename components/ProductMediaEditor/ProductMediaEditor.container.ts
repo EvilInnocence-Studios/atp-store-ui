@@ -1,5 +1,6 @@
 import { services } from "@core/lib/api";
 import { flash } from "@core/lib/flash";
+import { overridable } from "@core/lib/overridable";
 import { useLoaderAsync } from "@core/lib/useLoader";
 import { IProductMedia } from "@store-shared/product/types";
 import { useEffect, useState } from "react";
@@ -54,4 +55,4 @@ const connect = inject<IProductMediaEditorInputProps, ProductMediaEditorProps>(m
     injectProductMediaEditorProps,
 ));
 
-export const ProductMediaEditor = connect(ProductMediaEditorComponent);
+export const ProductMediaEditor = overridable<IProductMediaEditorInputProps>(connect(ProductMediaEditorComponent));

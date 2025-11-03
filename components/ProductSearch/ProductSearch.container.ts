@@ -1,3 +1,4 @@
+import { overridable } from "@core/lib/overridable";
 import { IProductFull } from "@store-shared/product/types";
 import { useProductList } from "@store/lib/useProductList";
 import { debounce } from "lodash";
@@ -24,4 +25,4 @@ const connect = inject<IProductSearchInputProps, ProductSearchProps>(mergeProps(
     injectProductSearchProps,
 ));
 
-export const ProductSearch = connect(ProductSearchComponent);
+export const ProductSearch = overridable<IProductSearchInputProps>(connect(ProductSearchComponent));

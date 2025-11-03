@@ -1,12 +1,13 @@
-import { createInjector, inject, mergeProps } from "unstateless";
-import {ProductFilesEditorComponent} from "./ProductFilesEditor.component";
-import {IProductFilesEditorInputProps, ProductFilesEditorProps, IProductFilesEditorProps} from "./ProductFilesEditor.d";
-import { useEffect, useState } from "react";
-import { IProductFile } from "@store-shared/product/types";
-import { useLoader } from "@core/lib/useLoader";
 import { services } from "@core/lib/api";
-import { s3Upload } from "@core/lib/s3Upload";
 import { flash } from "@core/lib/flash";
+import { overridable } from "@core/lib/overridable";
+import { s3Upload } from "@core/lib/s3Upload";
+import { useLoader } from "@core/lib/useLoader";
+import { IProductFile } from "@store-shared/product/types";
+import { useEffect, useState } from "react";
+import { createInjector, inject, mergeProps } from "unstateless";
+import { ProductFilesEditorComponent } from "./ProductFilesEditor.component";
+import { IProductFilesEditorInputProps, IProductFilesEditorProps, ProductFilesEditorProps } from "./ProductFilesEditor.d";
 
 const injectProductFilesEditorProps = createInjector(({productId}:IProductFilesEditorInputProps):IProductFilesEditorProps => {
     const [files, setFiles] = useState<IProductFile[]>([]);
@@ -64,4 +65,4 @@ const connect = inject<IProductFilesEditorInputProps, ProductFilesEditorProps>(m
     injectProductFilesEditorProps,
 ));
 
-export const ProductFilesEditor = connect(ProductFilesEditorComponent);
+export const ProductFilesEditor = overridable<IProductFilesEditorInputProps>(connect(ProductFilesEditorComponent));

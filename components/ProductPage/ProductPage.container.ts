@@ -1,11 +1,12 @@
 import { services } from "@core/lib/api";
+import { overridable } from "@core/lib/overridable";
 import { useLoaderAsync } from "@core/lib/useLoader";
 import { IProduct, IProductFull, IProductMedia } from "@store-shared/product/types";
 import { useEffect, useState } from "react";
+import { prop, sort } from "ts-functional";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { ProductPageComponent } from "./ProductPage.component";
 import { IProductPageInputProps, IProductPageProps, ProductPageProps } from "./ProductPage.d";
-import { prop, sort } from "ts-functional";
 
 const injectProductPageProps = createInjector(({url}:IProductPageInputProps):IProductPageProps => {
     const [product, setProduct] = useState<IProductFull | null>(null);
@@ -52,4 +53,4 @@ const connect = inject<IProductPageInputProps, ProductPageProps>(mergeProps(
     injectProductPageProps,
 ));
 
-export const ProductPage = connect(ProductPageComponent);
+export const ProductPage = overridable<IProductPageInputProps>(connect(ProductPageComponent));

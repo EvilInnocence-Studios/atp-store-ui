@@ -1,7 +1,8 @@
-import { createInjector, inject, mergeProps } from "unstateless";
-import {CartBtnComponent} from "./CartBtn.component";
-import {ICartBtnInputProps, CartBtnProps, ICartBtnProps} from "./CartBtn.d";
+import { overridable } from "@core/lib/overridable";
 import { useCart } from "@store/lib/useCart";
+import { createInjector, inject, mergeProps } from "unstateless";
+import { CartBtnComponent } from "./CartBtn.component";
+import { CartBtnProps, ICartBtnInputProps, ICartBtnProps } from "./CartBtn.d";
 
 const injectCartBtnProps = createInjector(({}:ICartBtnInputProps):ICartBtnProps => {
     const cart = useCart();
@@ -12,4 +13,4 @@ const connect = inject<ICartBtnInputProps, CartBtnProps>(mergeProps(
     injectCartBtnProps,
 ));
 
-export const CartBtn = connect(CartBtnComponent);
+export const CartBtn = overridable<ICartBtnInputProps>(connect(CartBtnComponent));

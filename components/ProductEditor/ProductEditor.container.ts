@@ -1,9 +1,10 @@
 import { services } from "@core/lib/api";
+import { overridable } from "@core/lib/overridable";
+import { useUpdater } from "@core/lib/useUpdater";
 import { IProduct } from "@store-shared/product/types";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { ProductEditorComponent } from "./ProductEditor.component";
 import { IProductEditorInputProps, IProductEditorProps, ProductEditorProps } from "./ProductEditor.d";
-import { useUpdater } from "@core/lib/useUpdater";
 
 const injectProductEditorProps = createInjector(({productId}:IProductEditorInputProps):IProductEditorProps => {
     const updater = useUpdater<IProduct>(
@@ -29,4 +30,4 @@ const connect = inject<IProductEditorInputProps, ProductEditorProps>(mergeProps(
     injectProductEditorProps,
 ));
 
-export const ProductEditor = connect(ProductEditorComponent);
+export const ProductEditor = overridable<IProductEditorInputProps>(connect(ProductEditorComponent));

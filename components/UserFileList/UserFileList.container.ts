@@ -1,12 +1,13 @@
-import { createInjector, inject, mergeProps } from "unstateless";
-import {UserFileListComponent} from "./UserFileList.component";
-import {IUserFileListInputProps, UserFileListProps, IUserFileListProps} from "./UserFileList.d";
+import { services } from "@core/lib/api";
+import { overridable } from "@core/lib/overridable";
+import { useLoaderAsync } from "@core/lib/useLoader";
+import { IProductFile } from "@store-shared/product/types";
+import { SafeUser } from "@uac-shared/user/types";
 import { useLoggedInUser } from "@uac/lib/login/services";
 import { useEffect, useState } from "react";
-import { SafeUser } from "@uac-shared/user/types";
-import { IProductFile } from "@store-shared/product/types";
-import { useLoaderAsync } from "@core/lib/useLoader";
-import { services } from "@core/lib/api";
+import { createInjector, inject, mergeProps } from "unstateless";
+import { UserFileListComponent } from "./UserFileList.component";
+import { IUserFileListInputProps, IUserFileListProps, UserFileListProps } from "./UserFileList.d";
 
 const injectUserFileListProps = createInjector(({userId}:IUserFileListInputProps):IUserFileListProps => {
     const [loggedInUser] = useLoggedInUser();
@@ -43,4 +44,4 @@ const connect = inject<IUserFileListInputProps, UserFileListProps>(mergeProps(
     injectUserFileListProps,
 ));
 
-export const UserFileList = connect(UserFileListComponent);
+export const UserFileList = overridable<IUserFileListInputProps>(connect(UserFileListComponent));

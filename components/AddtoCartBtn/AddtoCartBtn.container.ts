@@ -1,4 +1,5 @@
 import { flash } from "@core/lib/flash";
+import { overridable } from "@core/lib/overridable";
 import { useCart } from "@store/lib/useCart";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { AddtoCartBtnComponent } from "./AddtoCartBtn.component";
@@ -19,4 +20,4 @@ const connect = inject<IAddtoCartBtnInputProps, AddtoCartBtnProps>(mergeProps(
     injectAddtoCartBtnProps,
 ));
 
-export const AddtoCartBtn = connect(AddtoCartBtnComponent);
+export const AddtoCartBtn = overridable<IAddtoCartBtnInputProps>(connect(AddtoCartBtnComponent));

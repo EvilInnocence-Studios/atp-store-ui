@@ -1,10 +1,11 @@
 import { services } from "@core/lib/api";
+import { overridable } from "@core/lib/overridable";
 import { useLoaderAsync } from "@core/lib/useLoader";
+import { IOrder } from "@store-shared/order/types";
 import { useEffect, useState } from "react";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { SalesReportComponent } from "./SalesReport.component";
 import { ISalesReportInputProps, ISalesReportProps, SalesReportProps } from "./SalesReport.d";
-import { IOrder } from "@store-shared/order/types";
 
 const injectSalesReportProps = createInjector(({}:ISalesReportInputProps):ISalesReportProps => {
     const [data, setData] = useState<IOrder[]>([]);
@@ -66,4 +67,4 @@ const connect = inject<ISalesReportInputProps, SalesReportProps>(mergeProps(
     injectSalesReportProps,
 ));
 
-export const SalesReport = connect(SalesReportComponent);
+export const SalesReport = overridable<ISalesReportInputProps>(connect(SalesReportComponent));

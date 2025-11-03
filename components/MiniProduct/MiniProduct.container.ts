@@ -1,10 +1,11 @@
-import { createInjector, inject, mergeProps } from "unstateless";
-import {MiniProductComponent} from "./MiniProduct.component";
-import {IMiniProductInputProps, MiniProductProps, IMiniProductProps} from "./MiniProduct.d";
-import { useEffect, useState } from "react";
-import { IProduct } from "@store-shared/product/types";
-import { useLoaderAsync } from "@core/lib/useLoader";
 import { services } from "@core/lib/api";
+import { overridable } from "@core/lib/overridable";
+import { useLoaderAsync } from "@core/lib/useLoader";
+import { IProduct } from "@store-shared/product/types";
+import { useEffect, useState } from "react";
+import { createInjector, inject, mergeProps } from "unstateless";
+import { MiniProductComponent } from "./MiniProduct.component";
+import { IMiniProductInputProps, IMiniProductProps, MiniProductProps } from "./MiniProduct.d";
 
 const injectMiniProductProps = createInjector(({product, productId}:IMiniProductInputProps):IMiniProductProps => {
     const loader = useLoaderAsync();
@@ -27,4 +28,4 @@ const connect = inject<IMiniProductInputProps, MiniProductProps>(mergeProps(
     injectMiniProductProps,
 ));
 
-export const MiniProduct = connect(MiniProductComponent);
+export const MiniProduct = overridable<IMiniProductInputProps>(connect(MiniProductComponent));

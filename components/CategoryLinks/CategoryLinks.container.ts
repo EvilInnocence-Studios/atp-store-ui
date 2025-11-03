@@ -1,9 +1,10 @@
-import { createInjector, inject, mergeProps } from "unstateless";
-import {CategoryLinksComponent} from "./CategoryLinks.component";
-import {ICategoryLinksInputProps, CategoryLinksProps, ICategoryLinksProps} from "./CategoryLinks.d";
-import { useEffect, useState } from "react";
-import { ITagGroup, ITag } from "@common-shared/tag/types";
+import { ITag, ITagGroup } from "@common-shared/tag/types";
 import { services } from "@core/lib/api";
+import { overridable } from "@core/lib/overridable";
+import { useEffect, useState } from "react";
+import { createInjector, inject, mergeProps } from "unstateless";
+import { CategoryLinksComponent } from "./CategoryLinks.component";
+import { CategoryLinksProps, ICategoryLinksInputProps, ICategoryLinksProps } from "./CategoryLinks.d";
 
 const injectCategoryLinksProps = createInjector(({}:ICategoryLinksInputProps):ICategoryLinksProps => {
     const [group, setGroup] = useState<ITagGroup | null>(null);
@@ -26,4 +27,4 @@ const connect = inject<ICategoryLinksInputProps, CategoryLinksProps>(mergeProps(
     injectCategoryLinksProps,
 ));
 
-export const CategoryLinks = connect(CategoryLinksComponent);
+export const CategoryLinks = overridable<ICategoryLinksInputProps>(connect(CategoryLinksComponent));

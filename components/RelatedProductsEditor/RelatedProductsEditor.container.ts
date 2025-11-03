@@ -1,11 +1,12 @@
-import { createInjector, inject, mergeProps } from "unstateless";
-import {RelatedProductsEditorComponent} from "./RelatedProductsEditor.component";
-import {IRelatedProductsEditorInputProps, RelatedProductsEditorProps, IRelatedProductsEditorProps} from "./RelatedProductsEditor.d";
-import { useEffect, useState } from "react";
-import { IProduct } from "@store-shared/product/types";
-import { useLoader } from "@core/lib/useLoader";
 import { services } from "@core/lib/api";
 import { flash } from "@core/lib/flash";
+import { overridable } from "@core/lib/overridable";
+import { useLoader } from "@core/lib/useLoader";
+import { IProduct } from "@store-shared/product/types";
+import { useEffect, useState } from "react";
+import { createInjector, inject, mergeProps } from "unstateless";
+import { RelatedProductsEditorComponent } from "./RelatedProductsEditor.component";
+import { IRelatedProductsEditorInputProps, IRelatedProductsEditorProps, RelatedProductsEditorProps } from "./RelatedProductsEditor.d";
 
 const injectRelatedProductsEditorProps = createInjector(({productId}:IRelatedProductsEditorInputProps):IRelatedProductsEditorProps => {
     const [related, setRelated] = useState<IProduct[]>([]);
@@ -45,4 +46,4 @@ const connect = inject<IRelatedProductsEditorInputProps, RelatedProductsEditorPr
     injectRelatedProductsEditorProps,
 ));
 
-export const RelatedProductsEditor = connect(RelatedProductsEditorComponent);
+export const RelatedProductsEditor = overridable<IRelatedProductsEditorInputProps>(connect(RelatedProductsEditorComponent));

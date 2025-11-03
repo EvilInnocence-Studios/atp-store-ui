@@ -1,13 +1,14 @@
 import { services } from "@core/lib/api";
+import { overridable } from "@core/lib/overridable";
 import { useLoaderAsync } from "@core/lib/useLoader";
 import { IOrder } from "@store-shared/order/types";
 import { SafeUser } from "@uac-shared/user/types";
 import { useLoggedInUser } from "@uac/lib/login/services";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { UserOrderListComponent } from "./UserOrderList.component";
 import { IUserOrderListInputProps, IUserOrderListProps, UserOrderListProps } from "./UserOrderList.d";
-import { useNavigate } from "react-router";
 
 const injectUserOrderListProps = createInjector(({userId, id, onSelectOrder}:IUserOrderListInputProps):IUserOrderListProps => {
     const [loggedInUser] = useLoggedInUser();
@@ -54,4 +55,4 @@ const connect = inject<IUserOrderListInputProps, UserOrderListProps>(mergeProps(
     injectUserOrderListProps,
 ));
 
-export const UserOrderList = connect(UserOrderListComponent);
+export const UserOrderList = overridable<IUserOrderListInputProps>(connect(UserOrderListComponent));

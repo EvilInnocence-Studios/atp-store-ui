@@ -1,12 +1,13 @@
-import { createInjector, inject, mergeProps } from "unstateless";
-import {DiscountEditorComponent} from "./DiscountEditor.component";
-import {IDiscountEditorInputProps, DiscountEditorProps, IDiscountEditorProps} from "./DiscountEditor.d";
-import { useEffect, useState } from "react";
-import { IDiscount } from "@store-shared/discount/types";
-import { useLoaderAsync } from "@core/lib/useLoader";
 import { services } from "@core/lib/api";
 import { flash } from "@core/lib/flash";
+import { overridable } from "@core/lib/overridable";
+import { useLoaderAsync } from "@core/lib/useLoader";
+import { IDiscount } from "@store-shared/discount/types";
 import { IPermission } from "@uac-shared/permissions/types";
+import { useEffect, useState } from "react";
+import { createInjector, inject, mergeProps } from "unstateless";
+import { DiscountEditorComponent } from "./DiscountEditor.component";
+import { DiscountEditorProps, IDiscountEditorInputProps, IDiscountEditorProps } from "./DiscountEditor.d";
 
 const injectDiscountEditorProps = createInjector(({}:IDiscountEditorInputProps):IDiscountEditorProps => {
     const [discounts, setDiscounts] = useState<IDiscount[]>([]);
@@ -58,4 +59,4 @@ const connect = inject<IDiscountEditorInputProps, DiscountEditorProps>(mergeProp
     injectDiscountEditorProps,
 ));
 
-export const DiscountEditor = connect(DiscountEditorComponent);
+export const DiscountEditor = overridable<IDiscountEditorInputProps>(connect(DiscountEditorComponent));

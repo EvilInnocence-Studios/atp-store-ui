@@ -1,11 +1,12 @@
-import { createInjector, inject, mergeProps } from "unstateless";
-import {CreateOrderFormComponent} from "./CreateOrderForm.component";
-import {ICreateOrderFormInputProps, CreateOrderFormProps, ICreateOrderFormProps} from "./CreateOrderForm.d";
-import { useModal } from "@core/lib/useModal";
-import { useLoaderAsync } from "@core/lib/useLoader";
-import { useArray } from "@core/lib/useArray";
 import { services } from "@core/lib/api";
 import { flash } from "@core/lib/flash";
+import { overridable } from "@core/lib/overridable";
+import { useArray } from "@core/lib/useArray";
+import { useLoaderAsync } from "@core/lib/useLoader";
+import { useModal } from "@core/lib/useModal";
+import { createInjector, inject, mergeProps } from "unstateless";
+import { CreateOrderFormComponent } from "./CreateOrderForm.component";
+import { CreateOrderFormProps, ICreateOrderFormInputProps, ICreateOrderFormProps } from "./CreateOrderForm.d";
 
 const injectCreateOrderFormProps = createInjector(({userId, onCreateOrder}:ICreateOrderFormInputProps):ICreateOrderFormProps => {
     const modal = useModal();
@@ -33,4 +34,4 @@ const connect = inject<ICreateOrderFormInputProps, CreateOrderFormProps>(mergePr
     injectCreateOrderFormProps,
 ));
 
-export const CreateOrderForm = connect(CreateOrderFormComponent);
+export const CreateOrderForm = overridable<ICreateOrderFormInputProps>(connect(CreateOrderFormComponent));

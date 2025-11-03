@@ -1,3 +1,4 @@
+import { overridable } from "@core/lib/overridable";
 import { useTableFilters } from "@core/lib/useTableFilters";
 import { IProduct } from "@store-shared/product/types";
 import { storePlugins } from "@store/lib/plugin/slots";
@@ -35,4 +36,4 @@ const connect = inject<IProductManagerInputProps, ProductManagerProps>(mergeProp
     injectProductManagerProps,
 ));
 
-export const ProductManager = connect(ProductManagerComponent);
+export const ProductManager = overridable<IProductManagerInputProps>(connect(ProductManagerComponent));

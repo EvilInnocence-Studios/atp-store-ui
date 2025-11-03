@@ -1,4 +1,5 @@
 import { services } from "@core/lib/api";
+import { overridable } from "@core/lib/overridable";
 import { useLoaderAsync } from "@core/lib/useLoader";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { ProductFileDownloadBtnComponent } from "./ProductFileDownloadBtn.component";
@@ -26,4 +27,4 @@ const connect = inject<IProductFileDownloadBtnInputProps, ProductFileDownloadBtn
     injectProductFileDownloadBtnProps,
 ));
 
-export const ProductFileDownloadBtn = connect(ProductFileDownloadBtnComponent);
+export const ProductFileDownloadBtn = overridable<IProductFileDownloadBtnInputProps>(connect(ProductFileDownloadBtnComponent));

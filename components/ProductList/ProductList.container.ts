@@ -1,3 +1,4 @@
+import { overridable } from "@core/lib/overridable";
 import { IProductFull } from "@store-shared/product/types";
 import { useProductList } from "@store/lib/useProductList";
 import { prop, sort } from "ts-functional";
@@ -18,4 +19,4 @@ const connect = inject<IProductListInputProps, ProductListProps>(mergeProps(
     injectProductListProps,
 ));
 
-export const ProductList = connect(ProductListComponent);
+export const ProductList = overridable<IProductListInputProps>(connect(ProductListComponent));

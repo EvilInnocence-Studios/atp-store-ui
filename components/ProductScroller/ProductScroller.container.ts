@@ -1,3 +1,4 @@
+import { overridable } from "@core/lib/overridable";
 import { IProductFull } from "@store-shared/product/types";
 import { useProductList } from "@store/lib/useProductList";
 import { useEffect, useState } from "react";
@@ -23,4 +24,4 @@ const connect = inject<IProductScrollerInputProps, ProductScrollerProps>(mergePr
     injectProductScrollerProps,
 ));
 
-export const ProductScroller = connect(ProductScrollerComponent);
+export const ProductScroller = overridable<IProductScrollerInputProps>(connect(ProductScrollerComponent));

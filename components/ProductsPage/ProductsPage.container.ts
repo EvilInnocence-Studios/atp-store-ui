@@ -1,4 +1,7 @@
+import { useSetting } from "@common/lib/setting/services";
+import { synonymReplace, useSynonyms } from "@common/lib/synonym/util";
 import { useTagGroups } from "@common/lib/useTagGroups";
+import { overridable } from "@core/lib/overridable";
 import { useLoader } from "@core/lib/useLoader";
 import { usePaginator } from "@core/lib/usePaginator";
 import { useToggle } from "@core/lib/useToggle";
@@ -8,8 +11,6 @@ import { useEffect, useState } from "react";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { ProductsPageComponent } from "./ProductsPage.component";
 import { IProductsPageInputProps, IProductsPageProps, ProductsPageProps } from "./ProductsPage.d";
-import { synonymReplace, useSynonyms } from "@common/lib/synonym/util";
-import { useSetting } from "@common/lib/setting/services";
 
 const injectProductsPageProps = createInjector(({}:IProductsPageInputProps):IProductsPageProps => {
     const {products, isLoading} = useProductList();
@@ -75,4 +76,4 @@ const connect = inject<IProductsPageInputProps, ProductsPageProps>(mergeProps(
     injectProductsPageProps,
 ));
 
-export const ProductsPage = connect(ProductsPageComponent);
+export const ProductsPage = overridable<IProductsPageInputProps>(connect(ProductsPageComponent));
