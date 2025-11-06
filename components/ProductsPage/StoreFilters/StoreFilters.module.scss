@@ -1,0 +1,19 @@
+@use "@styles/globals.module.scss";
+
+.inlineFacets {
+    .filterHeader {
+        button {
+            float: right;
+        }
+    }
+    hr {
+        clear: both;
+    }
+    display: none;
+    background-color: var(--bgLightColor);
+    padding: var(--padding);
+    margin-bottom: var(--padding);
+    @media (max-width: 890px) {
+        display: block;
+    }
+}

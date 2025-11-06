@@ -2,6 +2,7 @@ import { useSetting } from "@common/lib/setting/services";
 import { useNavigate, useSearchParams } from "react-router";
 import { objFilter, objMap, unique } from "ts-functional";
 import { Index } from "ts-functional/dist/types";
+import { createInjector } from "unstateless";
 
 interface IParams extends Index<string> {
 }
@@ -91,3 +92,5 @@ export const useSearch = ():ISearch => {
         clearAll, clearSearch,
     };
 }
+
+export const injectSearch = createInjector((():ISearch => useSearch()));

@@ -1,0 +1,14 @@
+@use "@styles/globals.module.scss";
+
+.orderSelect {
+    width: 150px;
+    float: right;
+    > * {
+        width: 100%;
+    }
+    @media (max-width: 460px) {
+        float: none;
+        width: 100%;
+        margin: var(--padding) 0;
+    }
+}

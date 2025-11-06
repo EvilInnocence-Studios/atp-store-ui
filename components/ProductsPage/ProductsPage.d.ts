@@ -4,13 +4,8 @@ import { IToggle } from "@core/lib/useToggle";
 import { ISearch } from "@store/lib/useSearch";
 import { Setter } from "unstateless";
 
-export declare interface IProductsPageProps extends ISearch {
-    products: IProductFull[];
-    isLoading: boolean;
-    paginator: IPaginator;
-    filters: IToggle;
-    showFilterBar: boolean;
-    columns: string;
+export declare interface IProductsPageProps {
+
 }
 
 // What gets passed into the component from the parent as attributes

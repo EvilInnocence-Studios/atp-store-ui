@@ -1,24 +1,6 @@
 @use "@styles/globals.module.scss";
 
 .productsPage {
-    .inlineFacets {
-        .filterHeader {
-            button {
-                float: right;
-            }
-        }
-        hr {
-            clear: both;
-        }
-        display: none;
-        background-color: var(--bgLightColor);
-        padding: var(--padding);
-        margin-bottom: var(--padding);
-        @media (max-width: 890px) {
-            display: block;
-        }
-    }
-
     .sider {
         @media (max-width: 890px) {
             display: none;
@@ -28,37 +10,5 @@
     .productListContainer {
         background-color: var(--contentBg);
         padding: var(--padding);
-        .productList {
-            clear: both;
-            padding: 0;
-            &.columnsFive > * {
-                width: calc(20% - var(--padding) * 2);
-            }
-            &.columnsFour > * {
-                width: calc(25% - var(--padding) * 2);
-            }
-            &.columnsThree > * {
-                width: calc(33.3333% - var(--padding) * 2);
-            }
-            &.columnsTwo > * {
-                width: calc(50% - var(--padding) * 2);
-            }
-            &.columnsOne > * {
-                width: calc(100% - var(--padding) * 2);
-            }            
-        }
-    }
-
-    .orderSelect {
-        width: 150px;
-        float: right;
-        > * {
-            width: 100%;
-        }
-        @media (max-width: 460px) {
-            float: none;
-            width: 100%;
-            margin: var(--padding) 0;
-        }
     }
 }
