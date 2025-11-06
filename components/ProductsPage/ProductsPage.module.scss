@@ -29,6 +29,7 @@
         background-color: var(--contentBg);
         padding: var(--padding);
         .productList {
+            clear: both;
             padding: 0;
             &.columnsFive > * {
                 width: calc(20% - var(--padding) * 2);

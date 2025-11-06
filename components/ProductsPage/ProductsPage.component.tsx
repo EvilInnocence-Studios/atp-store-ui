@@ -53,7 +53,7 @@ export const ProductsPageComponent = ({
                             <Select.Option value="priceHigh">Price: High to Low</Select.Option>
                         </Select>
                     </div>
-                    <Pagination {...paginator} total={products.length} align="center" showSizeChanger/>
+                    <Pagination {...paginator} total={products.length} align="center" showSizeChanger hideOnSinglePage/>
                     <div className={clsx([styles.productList, styles[`columns${columns}`]])}>
                         {products
                             .sort(withPinnedFirst(switchOn(sortBy, {
@@ -68,7 +68,7 @@ export const ProductsPageComponent = ({
                             .map(product => <ProductListItem key={product.id} product={product} />)
                         }
                     </div>
-                    <Pagination {...paginator} total={products.length} align="center" showSizeChanger/>
+                    <Pagination {...paginator} total={products.length} align="center" showSizeChanger hideOnSinglePage/>
                 </Spin>
             </Layout.Content>
         </Layout>
