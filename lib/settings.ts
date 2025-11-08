@@ -49,11 +49,11 @@ export const storeSettings:ISettingContainer = {
                 defaultValue: "true",
                 description: "Show category links on product listings.",
             },
-            "store.showPerPageSelector": {
-                displayName: "Show Per Page Selector",
+            "store.showSortBtSelector": {
+                displayName: "Show Sort By Selector",
                 type: "boolean",
                 defaultValue: "true",
-                description: "Show the products per page selector on product listings.",
+                description: "Show the products sort by selector on product listings.",
             },
             "store.fiveColumnMinWidth": {
                 displayName: "Five Column Min Width",
