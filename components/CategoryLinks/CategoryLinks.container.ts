@@ -5,10 +5,12 @@ import { useEffect, useState } from "react";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { CategoryLinksComponent } from "./CategoryLinks.component";
 import { CategoryLinksProps, ICategoryLinksInputProps, ICategoryLinksProps } from "./CategoryLinks.d";
+import { useSetting } from "@common/lib/setting/services";
 
 const injectCategoryLinksProps = createInjector(({}:ICategoryLinksInputProps):ICategoryLinksProps => {
     const [group, setGroup] = useState<ITagGroup | null>(null);
     const [tags, setTags] = useState<ITag[]>([]);
+    const showCategoryLinks = useSetting("store.showCategoryLinks") === 'true';
 
     useEffect(() => {
         services().tagGroup.search({name: "Product Type"}).then(([group]) => setGroup(group));
@@ -20,7 +22,10 @@ const injectCategoryLinksProps = createInjector(({}:ICategoryLinksInputProps):IC
         }
     }, [group]);
     
-    return {links: tags.map(tag => ({name: tag.name, url: `/products?tags=${tag.id}`}))};
+    return {
+        links: tags.map(tag => ({name: tag.name, url: `/products?tags=${tag.id}`})),
+        showCategoryLinks,
+    };
 });
 
 const connect = inject<ICategoryLinksInputProps, CategoryLinksProps>(mergeProps(

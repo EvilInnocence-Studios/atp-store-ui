@@ -3,6 +3,7 @@ export declare interface ICategoryLinksProps {
         name: string;
         url: string;
     }[];
+    showCategoryLinks: boolean;
 }
 
 // What gets passed into the component from the parent as attributes
