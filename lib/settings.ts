@@ -49,7 +49,7 @@ export const storeSettings:ISettingContainer = {
                 defaultValue: "true",
                 description: "Show category links on product listings.",
             },
-            "store.showSortBtSelector": {
+            "store.showSortBySelector": {
                 displayName: "Show Sort By Selector",
                 type: "boolean",
                 defaultValue: "true",
