@@ -1,0 +1,13 @@
+@use "@styles/globals.module.scss";
+
+.shopLink {
+    padding: 0;
+    @include globals.splashButton;
+    svg {
+        display: none;
+    }
+    @media (max-width: 330px) {
+        svg {display: inline;}
+        span {display: none;}
+    }
+}
