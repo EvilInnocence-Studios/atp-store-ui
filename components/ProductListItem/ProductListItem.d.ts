@@ -9,6 +9,7 @@ export declare interface IProductListItemInputProps {
     product: IProduct;
     textSize?: "small" | "default" | "large";
     hideTags?: boolean;
+    hideCartButton?: boolean;
 }
 
 export type ProductListItemProps = IProductListItemInputProps & IProductListItemProps;

@@ -9,6 +9,8 @@ export declare interface INewProductsProps {
 export declare interface INewProductsInputProps {
     count?: number;
     title?: string;
+    hideCartButton?: boolean;
+    className?: string;
 }
 
 export type NewProductsProps = INewProductsInputProps & INewProductsProps;

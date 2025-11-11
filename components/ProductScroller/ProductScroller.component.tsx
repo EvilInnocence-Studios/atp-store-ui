@@ -5,14 +5,15 @@ import { prop } from "ts-functional";
 import { ProductListItem } from "../ProductListItem";
 import { ProductScrollerProps } from "./ProductScroller.d";
 
-const ListItem = (({item}:{item: IProductFull}) => <ProductListItem product={item} textSize="small" hideTags />);
+const ListItem = (hideCartButton?: boolean) => (({item}:{item: IProductFull}) => <ProductListItem product={item} textSize="small" hideTags hideCartButton={hideCartButton} />);
 
-export const ProductScrollerComponent = ({title, products, isLoading}:ProductScrollerProps) =>
+export const ProductScrollerComponent = ({title, products, isLoading, hideCartButton, className}:ProductScrollerProps) =>
     <Spin spinning={isLoading}>
         <Scroller
             items={products}
             title={title}
             getId={prop<any, any>("id")}
-            Component={ListItem}
+            Component={ListItem(hideCartButton)}
+            className={className}
         />
     </Spin>;

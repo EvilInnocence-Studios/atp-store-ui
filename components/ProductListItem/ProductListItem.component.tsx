@@ -14,7 +14,7 @@ import { faThumbTack } from "@fortawesome/free-solid-svg-icons";
 // Backend will keep track of donations per user in a new table
 
 
-export const ProductListItemComponent = ({product, textSize, hideTags}:ProductListItemProps) =>
+export const ProductListItemComponent = ({product, textSize, hideTags, hideCartButton}:ProductListItemProps) =>
     <div className={styles.productListItem}>
         {product.pinned && <FontAwesomeIcon
             icon={faThumbTack}
@@ -29,6 +29,6 @@ export const ProductListItemComponent = ({product, textSize, hideTags}:ProductLi
         </div>
         <div className={styles.productDetails}>
             <ProductPrice product={product} small={hideTags} />
-            <AddtoCartBtn product={product} />
+            {!hideCartButton && <AddtoCartBtn product={product} />}
         </div>
     </div>;
