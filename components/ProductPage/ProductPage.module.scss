@@ -1,8 +1,10 @@
 @use "@styles/globals.module.scss";
 
 .productPage {
+    @include globals.contentBlock;
     max-width: 1024px;
     margin: auto;
+    margin-bottom: 128px;
     padding: var(--padding);
     padding-bottom: 128px;
     .media, .productInfo {
@@ -30,9 +32,13 @@
         button {
         }
         .cartPrice {
-            > span {
+            > * {
                 padding: var(--paddingSmall);
+                font-size: 48px !important;
             }
+        }
+        .cartActions {
+            text-align: right;
         }
     }
 }

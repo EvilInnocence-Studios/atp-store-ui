@@ -9,7 +9,7 @@ import { AddtoCartButtonBasic } from "@store/components/AddtoCartBtn/AddToCartBt
 export interface IAddToCartPluginProps {
     product: IProduct;
     addToCart: () => void;
-    size?: "small" | "medium" | "large";
+    size?: "small" | "large";
 }
 
 export interface IProductTableColumnProps {

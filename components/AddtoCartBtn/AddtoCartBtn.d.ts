@@ -8,7 +8,7 @@ export declare interface IAddtoCartBtnProps {
 // What gets passed into the component from the parent as attributes
 export declare interface IAddtoCartBtnInputProps {
     product: IProduct;
-    size?: "small" | "medium" | "large";
+    size?: "small" | "large";
 }
 
 export type AddtoCartBtnProps = IAddtoCartBtnInputProps & IAddtoCartBtnProps;
