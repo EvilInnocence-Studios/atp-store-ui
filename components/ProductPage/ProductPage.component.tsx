@@ -26,10 +26,10 @@ export const ProductPageComponent = ({product, media, relatedProducts, subProduc
             </div>
             <div className={styles.productInfo}>
                 <Row className={styles.cartInfo}>
-                    <Col xs={12} className={styles.cartPrice}>
+                    <Col xs={24} sm={12} md={24} lg={12} className={styles.cartPrice}>
                         <ProductPrice product={product} />
                     </Col>
-                    <Col xs={12} className={styles.cartActions}>
+                    <Col xs={24} sm={12} md={24} lg={12} className={styles.cartActions}>
                         <AddtoCartBtn product={product} size="large" />
                         <WishlistBtn product={product} />
                     </Col>
