@@ -8,6 +8,7 @@ export declare interface INewProductsProps {
 // What gets passed into the component from the parent as attributes
 export declare interface INewProductsInputProps {
     count?: number;
+    title?: string;
 }
 
 export type NewProductsProps = INewProductsInputProps & INewProductsProps;
