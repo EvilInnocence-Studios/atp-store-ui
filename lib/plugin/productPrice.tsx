@@ -1,7 +1,7 @@
 import { Spin, Tag } from "antd";
 import { storePlugins } from "./slots"
 import clsx from "clsx";
-import styles from './ProductPrice.module.scss';
+import styles from './productPrice.module.scss';
 
 export const registerProductPricePlugins = () => {
     // Free products

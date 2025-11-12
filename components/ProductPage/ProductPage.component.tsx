@@ -39,8 +39,9 @@ export const ProductPageComponent = ({product, media, relatedProducts, subProduc
                     {product.tags.map((tag) => <Tag key={tag}>{tag}</Tag>)}
                 </div>
                 <h2>Description</h2>
-                <Markdown>{product.description}</Markdown>
-
+                <div className={styles.description}>
+                    <Markdown>{product.description}</Markdown>
+                </div>
             </div>
             <div className={styles.relatedProductsLists}>
                 {product.productType === 'grouped' && <>
