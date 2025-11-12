@@ -24,8 +24,8 @@
         }
         .description {
             p {
-                margin-bottom: var(--paddingSmall);
-                line-height: 2em;
+                margin-bottom: var(--padding);
+                line-height: 1.5em;
             }
         }
         @media (max-width: 780px) {
