@@ -4,8 +4,9 @@ import { SearchPageSidebar } from "./SearchPageSidebar";
 import { SearchResults } from "./SearchResults";
 import { ProductsPageProps } from "./ProductsPage.d";
 import styles from './ProductsPage.module.scss';
+import { overridable } from "@core/lib/overridable";
 
-export const ProductsPageComponent = ({}:ProductsPageProps) =>
+export const ProductsPageComponent = overridable(({}:ProductsPageProps) =>
     <div className={styles.productsPage}>
         <Layout>
             <SearchPageSidebar />
@@ -14,4 +15,5 @@ export const ProductsPageComponent = ({}:ProductsPageProps) =>
                 <SearchResults />
             </Layout.Content>
         </Layout>
-    </div>;
+    </div>
+);
