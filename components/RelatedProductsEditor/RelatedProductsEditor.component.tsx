@@ -4,8 +4,9 @@ import { RelatedProductsEditorProps } from "./RelatedProductsEditor.d";
 import styles from './RelatedProductsEditor.module.scss';
 import { Image } from "../Image";
 import { DeleteBtn } from "@core/components/DeleteBtn";
+import { overridable } from "@core/lib/overridable";
 
-export const RelatedProductsEditorComponent = ({related, add, remove, isLoading}:RelatedProductsEditorProps) =>
+export const RelatedProductsEditorComponent = overridable(({related, add, remove, isLoading}:RelatedProductsEditorProps) =>
     <Spin spinning={isLoading}>
         <ProductSearch onSelect={add} placeholder="Add related product"/>
 
@@ -16,4 +17,5 @@ export const RelatedProductsEditorComponent = ({related, add, remove, isLoading}
                 {p.name}
             </div>)}
         </div>
-    </Spin>;
+    </Spin>
+);

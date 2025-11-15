@@ -6,8 +6,9 @@ import { OrderDetails } from "../OrderDetails";
 import { UserOrderListProps } from "./UserOrderList.d";
 import styles from './UserOrderList.module.scss';
 import { CreateOrderForm } from "../CreateOrderForm";
+import { overridable } from "@core/lib/overridable";
 
-export const UserOrderListComponent = ({user, orders, isLoading, selectOrder, selectedOrder, refresh}:UserOrderListProps) => {
+export const UserOrderListComponent = overridable(({user, orders, isLoading, selectOrder, selectedOrder, refresh}:UserOrderListProps) => {
     const columns = [{
         title: 'Order ID',
         dataIndex: 'id',
@@ -60,4 +61,4 @@ export const UserOrderListComponent = ({user, orders, isLoading, selectOrder, se
             </Row>            
         </div>
     </Spin>;
-}
+});

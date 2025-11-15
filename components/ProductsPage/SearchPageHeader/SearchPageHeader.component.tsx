@@ -5,7 +5,7 @@ import { SortBySelect } from "../SortBySelect";
 import { StoreFilters } from "../StoreFilters";
 import { SearchPageHeaderProps } from "./SearchPageHeader.d";
 
-export const SearchPageHeaderComponent = overridable<SearchPageHeaderProps>(({}:SearchPageHeaderProps) =><>
+export const SearchPageHeaderComponent = overridable(({}:SearchPageHeaderProps) =><>
     <CategoryLinks />
     <SelectedStoreTags />
     <StoreFilters />

@@ -4,7 +4,7 @@ import styles from './StoreFilters.module.scss';
 import { Button } from "antd";
 import { TagFacets } from "@common/components/TagFacets";
 
-export const StoreFiltersComponent = overridable<StoreFiltersProps>(({showFilterBar, filters, selectedTagIds, selectTag, removeTag}:StoreFiltersProps) =>
+export const StoreFiltersComponent = overridable(({showFilterBar, filters, selectedTagIds, selectTag, removeTag}:StoreFiltersProps) =>
     <div className={styles.inlineFacets}>
         {showFilterBar && <div className={styles.filterHeader}>
             Filter Products...

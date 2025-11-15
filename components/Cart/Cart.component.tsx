@@ -8,8 +8,9 @@ import { Image } from "../Image";
 import { ProductPrice } from "../ProductPrice";
 import { CartProps } from "./Cart.d";
 import styles from './Cart.module.scss';
+import { overridable } from "@core/lib/overridable";
 
-export const CartComponent = ({userId, createOrder, onApprove, onCancel, onError, completeFreeOrder, isLoading, loginModal, ...cart}:CartProps) => {
+export const CartComponent = overridable(({userId, createOrder, onApprove, onCancel, onError, completeFreeOrder, isLoading, loginModal, ...cart}:CartProps) => {
     const columns = [{
         key: 'thumbnailImageId',
         render: (product:IProduct ) => <div className={styles.thumbnail}>
@@ -103,4 +104,4 @@ export const CartComponent = ({userId, createOrder, onApprove, onCancel, onError
             </div>}
         </Spin>
     </div>;
-}
+});

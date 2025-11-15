@@ -3,8 +3,9 @@ import { IPlacedProduct, ProductListProps } from "./ProductList.d";
 import { arrangeProducts, groupProducts } from "./ProductList.helpers";
 import styles from './ProductList.module.scss';
 import { useScreenSize } from "@core/lib/useScreenSize";
+import { overridable } from "@core/lib/overridable";
 
-export const ProductListComponent = ({products, isLoading}:ProductListProps) => {    
+export const ProductListComponent = overridable(({products, isLoading}:ProductListProps) => {    
     const {width} = useScreenSize();
     const gutterSize = 24;
     const columnCount =
@@ -35,4 +36,4 @@ export const ProductListComponent = ({products, isLoading}:ProductListProps) => 
             />)}
         </div>
     </Spin>;
-}
+});

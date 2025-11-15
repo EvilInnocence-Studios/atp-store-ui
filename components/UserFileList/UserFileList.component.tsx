@@ -3,8 +3,9 @@ import {UserFileListProps} from "./UserFileList.d";
 import styles from './UserFileList.module.scss';
 import { ProductFileDownloadBtn } from "../ProductFileDownloadBtn";
 import { onInputChange } from "@core/lib/onInputChange";
+import { overridable } from "@core/lib/overridable";
 
-export const UserFileListComponent = ({user, files, isLoading, q, setQ}:UserFileListProps) =>
+export const UserFileListComponent = overridable(({user, files, isLoading, q, setQ}:UserFileListProps) =>
     <Spin spinning={isLoading}>
         <Row>
             <Col xs={12}>
@@ -18,4 +19,5 @@ export const UserFileListComponent = ({user, files, isLoading, q, setQ}:UserFile
         <div className={styles.userFileList}>
             {files.map(file => <ProductFileDownloadBtn file={file} />)}
         </div>
-    </Spin>;
+    </Spin>
+);

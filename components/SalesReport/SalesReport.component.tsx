@@ -3,8 +3,9 @@ import {SalesReportProps} from "./SalesReport.d";
 import styles from './SalesReport.module.scss';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRefresh } from "@fortawesome/free-solid-svg-icons";
+import { overridable } from "@core/lib/overridable";
 
-export const SalesReportComponent = ({data, salesByDate, salesByWeek, salesByMonth, isLoading, refresh}:SalesReportProps) =>
+export const SalesReportComponent = overridable(({data, salesByDate, salesByWeek, salesByMonth, isLoading, refresh}:SalesReportProps) =>
     <Spin spinning={isLoading} tip="Loading sales report...">
         <div className={styles.salesReport}>
             <h1>Sales Report</h1>
@@ -57,4 +58,5 @@ export const SalesReportComponent = ({data, salesByDate, salesByWeek, salesByMon
                 </Tabs>
             }
         </div>
-    </Spin>;
+    </Spin>
+);

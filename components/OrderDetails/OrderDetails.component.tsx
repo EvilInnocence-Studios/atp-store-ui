@@ -5,8 +5,9 @@ import { ProductFileDownloadBtn } from "../ProductFileDownloadBtn";
 import { IProduct } from "@store-shared/product/types";
 import { Image } from "../Image";
 import dayjs from "dayjs";
+import { overridable } from "@core/lib/overridable";
 
-export const OrderDetailsComponent = ({order, isLoading}:OrderDetailsProps) => {
+export const OrderDetailsComponent = overridable(({order, isLoading}:OrderDetailsProps) => {
     const columns = [{
         title: '',
         key: 'thumbnail',
@@ -42,4 +43,4 @@ export const OrderDetailsComponent = ({order, isLoading}:OrderDetailsProps) => {
             </div>
         </div>}
     </Spin>;
-}
+});

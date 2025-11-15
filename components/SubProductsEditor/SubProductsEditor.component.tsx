@@ -4,8 +4,9 @@ import styles from './SubProductsEditor.module.scss';
 import { ProductSearch } from "../ProductSearch";
 import { MiniProduct } from "../MiniProduct";
 import { DeleteBtn } from "@core/components/DeleteBtn";
+import { overridable } from "@core/lib/overridable";
 
-export const SubProductsEditorComponent = ({subProducts, isLoading, add, remove}:SubProductsEditorProps) =>
+export const SubProductsEditorComponent = overridable(({subProducts, isLoading, add, remove}:SubProductsEditorProps) =>
     <Spin spinning={isLoading}>
         <div className={styles.subProductEditor}>
             <h2>Sub Products</h2>
@@ -19,4 +20,5 @@ export const SubProductsEditorComponent = ({subProducts, isLoading, add, remove}
                 )}
             </div>
         </div>
-    </Spin>;
+    </Spin>
+);

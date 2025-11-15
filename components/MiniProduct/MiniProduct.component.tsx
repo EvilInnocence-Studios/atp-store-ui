@@ -4,8 +4,9 @@ import { Button, Spin } from "antd";
 import { Image } from "../Image";
 import { MiniProductProps } from "./MiniProduct.d";
 import styles from './MiniProduct.module.scss';
+import { overridable } from "@core/lib/overridable";
 
-export const MiniProductComponent = ({product, isLoading, onRemove}:MiniProductProps) => <div className={styles.miniProduct}>
+export const MiniProductComponent = overridable(({product, isLoading, onRemove}:MiniProductProps) => <div className={styles.miniProduct}>
     <Spin spinning={isLoading}>
         {!!product && <>
             {onRemove && <Button danger type="link" size="small" onClick={() => onRemove(product.id)}>
@@ -16,4 +17,4 @@ export const MiniProductComponent = ({product, isLoading, onRemove}:MiniProductP
             <div style={{clear: "both"}} />
         </>}
     </Spin>
-</div>;
+</div>);

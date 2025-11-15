@@ -5,8 +5,9 @@ import { onInputChange } from "@core/lib/onInputChange";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import { DeleteBtn } from "@core/components/DeleteBtn";
+import { overridable } from "@core/lib/overridable";
 
-export const ProductFilesEditorComponent = ({files, isLoading, folder, setFolder, add, remove, download}:ProductFilesEditorProps) =>
+export const ProductFilesEditorComponent = overridable(({files, isLoading, folder, setFolder, add, remove, download}:ProductFilesEditorProps) =>
     <Spin spinning={isLoading}>
         <Row gutter={32} className={styles.productFilesEditor}>
             <Col xs={6} className={styles.folder}>
@@ -32,4 +33,5 @@ export const ProductFilesEditorComponent = ({files, isLoading, folder, setFolder
                 )}
             </Col>
         </Row>
-    </Spin>;
+    </Spin>
+);

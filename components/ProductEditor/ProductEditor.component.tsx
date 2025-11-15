@@ -11,8 +11,9 @@ import { RelatedProductsEditor } from "../RelatedProductsEditor";
 import { SubProductsEditor } from "../SubProductsEditor";
 import { ProductEditorProps } from "./ProductEditor.d";
 import styles from './ProductEditor.module.scss';
+import { overridable } from "@core/lib/overridable";
 
-export const ProductEditorComponent = ({
+export const ProductEditorComponent = overridable(({
     product, 
     copyUrlFromName,
     ...props
@@ -56,4 +57,5 @@ export const ProductEditorComponent = ({
                 </Col>
             </Row>
         </>}
-    </Spin>;
+    </Spin>
+);

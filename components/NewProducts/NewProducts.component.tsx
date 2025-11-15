@@ -1,7 +1,8 @@
+import { overridable } from "@core/lib/overridable";
 import { ProductScroller } from "../ProductScroller";
 import { NewProductsProps } from "./NewProducts.d";
 
-export const NewProductsComponent = ({count, title, hideCartButton, className}:NewProductsProps) =>
+export const NewProductsComponent = overridable(({count, title, hideCartButton, className}:NewProductsProps) =>
     <ProductScroller
         title={title || "New Products"}
         count={count}
@@ -9,4 +10,5 @@ export const NewProductsComponent = ({count, title, hideCartButton, className}:N
         hideCartButton={hideCartButton}
         className={className}
         sort={(a, b) => new Date(b.releaseDate).getTime() - new Date(a.releaseDate).getTime()}
-    />;
+    />
+);

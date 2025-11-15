@@ -9,8 +9,9 @@ import { ProductScroller } from "../ProductScroller";
 import { WishlistBtn } from "../WishlistBtn";
 import { ProductPageProps } from "./ProductPage.d";
 import styles from './ProductPage.module.scss';
+import { overridable } from "@core/lib/overridable";
 
-export const ProductPageComponent = ({product, media, relatedProducts, subProducts, isLoading}:ProductPageProps) =>
+export const ProductPageComponent = overridable(({product, media, relatedProducts, subProducts, isLoading}:ProductPageProps) =>
     <Spin spinning={isLoading}>
         {product && <div className={styles.productPage}>
             <div className={styles.header}>
@@ -64,3 +65,4 @@ export const ProductPageComponent = ({product, media, relatedProducts, subProduc
             </div>
         </div>}
     </Spin>
+);

@@ -6,10 +6,11 @@ import { MiniProduct } from "../MiniProduct";
 import { ProductSearch } from "../ProductSearch";
 import { CreateOrderFormProps } from "./CreateOrderForm.d";
 import styles from './CreateOrderForm.module.scss';
+import { overridable } from "@core/lib/overridable";
 
 const CanCreate = hasPermission("order.create");
 
-export const CreateOrderFormComponent = ({modal, isLoading, products, createOrder}:CreateOrderFormProps) => <CanCreate yes>
+export const CreateOrderFormComponent = overridable(({modal, isLoading, products, createOrder}:CreateOrderFormProps) => <CanCreate yes>
     <Button
         className={styles.createOrderButton}
         type="primary"
@@ -47,4 +48,4 @@ export const CreateOrderFormComponent = ({modal, isLoading, products, createOrde
             {products.items.map((product) => <MiniProduct productId={product} key={product} onRemove={products.remove} />)}
         </div>
     </Modal>
-</CanCreate>;
+</CanCreate>);

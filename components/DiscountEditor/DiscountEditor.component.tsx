@@ -8,11 +8,12 @@ import { Button, Col, Row, Select, Spin, Table } from "antd";
 import { DiscountEditorProps } from "./DiscountEditor.d";
 import styles from './DiscountEditor.module.scss';
 import { ClearCacheButton } from "@common/components/ClearCacheButton";
+import { overridable } from "@core/lib/overridable";
 
 const CanUpdate = hasPermission("discount.update");
 const CanDelete = hasPermission("discount.delete");
 
-export const DiscountEditorComponent = ({discounts, permissions, isLoading, update, remove, create}:DiscountEditorProps) => {
+export const DiscountEditorComponent = overridable(({discounts, permissions, isLoading, update, remove, create}:DiscountEditorProps) => {
     const columns = [
         {
             title: 'Name',
@@ -102,4 +103,4 @@ export const DiscountEditorComponent = ({discounts, permissions, isLoading, upda
             </Row>
         </div>
     </Spin>;
-}
+});

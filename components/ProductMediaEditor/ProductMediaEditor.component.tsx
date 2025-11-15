@@ -10,6 +10,7 @@ import { prop, sort } from "ts-functional";
 import { Image } from "../Image";
 import { ProductMediaEditorProps } from "./ProductMediaEditor.d";
 import styles from './ProductMediaEditor.module.scss';
+import { overridable } from "@core/lib/overridable";
 
 export const useImageHost = (id:string) => {
     const imgHost = useSetting("imageHost");
@@ -25,7 +26,7 @@ interface IItemProps {
     remove: (id:string) => () => void;
 }
 
-const ImageItem = ({item:m, product, updateThumbnail, updateMainImage, remove}:IItemProps) => <div className={styles.mediaItem}>
+export const ImageItem = overridable(({item:m, product, updateThumbnail, updateMainImage, remove}:IItemProps) => <div className={styles.mediaItem}>
     <Image productId={product.id} imageId={m.id} /><br/>
     <Space.Compact>
         <Button
@@ -42,9 +43,9 @@ const ImageItem = ({item:m, product, updateThumbnail, updateMainImage, remove}:I
         </Button>
     </Space.Compact>
     <DeleteBtn entityType="image" onClick={remove(m.id)} />
-</div>;
+</div>);
 
-export const ProductMediaEditorComponent = ({
+export const ProductMediaEditorComponent = overridable(({
     product, media, upload, isLoading,
     updateThumbnail, updateMainImage, remove, sort:sortMedia,
 }:ProductMediaEditorProps) =>
@@ -69,4 +70,5 @@ export const ProductMediaEditorComponent = ({
                 <p className="ant-upload-text">Click or drag file to this area to upload</p>
             </Upload.Dragger>
         </>}
-    </Spin>;
+    </Spin>
+);

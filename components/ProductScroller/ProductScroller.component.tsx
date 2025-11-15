@@ -4,10 +4,11 @@ import { Spin } from "antd";
 import { prop } from "ts-functional";
 import { ProductListItem } from "../ProductListItem";
 import { ProductScrollerProps } from "./ProductScroller.d";
+import { overridable } from "@core/lib/overridable";
 
 const ListItem = (hideCartButton?: boolean) => (({item}:{item: IProductFull}) => <ProductListItem product={item} textSize="small" hideTags hideCartButton={hideCartButton} />);
 
-export const ProductScrollerComponent = ({title, products, isLoading, hideCartButton, className}:ProductScrollerProps) =>
+export const ProductScrollerComponent = overridable(({title, products, isLoading, hideCartButton, className}:ProductScrollerProps) =>
     <Spin spinning={isLoading}>
         <Scroller
             items={products}
@@ -16,4 +17,5 @@ export const ProductScrollerComponent = ({title, products, isLoading, hideCartBu
             Component={ListItem(hideCartButton)}
             className={className}
         />
-    </Spin>;
+    </Spin>
+);

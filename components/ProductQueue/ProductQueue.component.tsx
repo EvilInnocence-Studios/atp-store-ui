@@ -4,8 +4,9 @@ import {ProductQueueProps} from "./ProductQueue.d";
 import { prop } from "ts-functional";
 import { IProductFull } from "@store-shared/product/types";
 import { ProductEditor } from "../ProductEditor";
+import { overridable } from "@core/lib/overridable";
 
-export const ProductQueueComponent = ({groupId, tagId}:ProductQueueProps) =>
+export const ProductQueueComponent = overridable(({groupId, tagId}:ProductQueueProps) =>
     <Queue
         groupId={groupId}
         tagId={tagId}
@@ -16,4 +17,5 @@ export const ProductQueueComponent = ({groupId, tagId}:ProductQueueProps) =>
         getId={prop<IProductFull, "id">("id")}
         getName={prop<IProductFull, "name">("name")}
         getEditor={(item: IProductFull) => <ProductEditor productId={item.id} />}
-    />;
+    />
+);

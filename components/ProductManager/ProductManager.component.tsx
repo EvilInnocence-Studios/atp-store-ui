@@ -6,8 +6,9 @@ import { Button, Space, Spin, Table, Tabs, Tag } from "antd";
 import { objMap, prop, sort } from "ts-functional";
 import { ProductManagerProps } from "./ProductManager.d";
 import styles from './ProductManager.module.scss';
+import { overridable } from "@core/lib/overridable";
 
-export const ProductManagerComponent = ({products, isLoading, create, columns, tab, setTab, allTabs, filters, goToProduct}:ProductManagerProps) =>
+export const ProductManagerComponent = overridable(({products, isLoading, create, columns, tab, setTab, allTabs, filters, goToProduct}:ProductManagerProps) =>
     <div className={styles.productManager}>
         <h1>
             <FontAwesomeIcon icon={faShop} /> Products
@@ -41,4 +42,5 @@ export const ProductManagerComponent = ({products, isLoading, create, columns, t
                 })}
             />
         </Spin>
-    </div>;
+    </div>
+);

@@ -4,8 +4,9 @@ import styles from './UserWishlist.module.scss';
 import { ProductListItem } from "../ProductListItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { overridable } from "@core/lib/overridable";
 
-export const UserWishlistComponent = ({user, wishlist, isLoading, remove}:UserWishlistProps) =>
+export const UserWishlistComponent = overridable(({user, wishlist, isLoading, remove}:UserWishlistProps) =>
     <Spin spinning={isLoading}>
         <div className={styles.wishlistContainer}>
             <h1>Wishlist for {user.firstName} {user.lastName}</h1>
@@ -18,4 +19,5 @@ export const UserWishlistComponent = ({user, wishlist, isLoading, remove}:UserWi
                 </div>)}
             </div>
         </div>
-    </Spin>;
+    </Spin>
+);
