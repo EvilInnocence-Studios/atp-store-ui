@@ -15,6 +15,6 @@ const connect = inject<ISortBySelectInputProps, SortBySelectProps>(mergeProps(
     injectSortBySelectProps,
     injectSearch,
 ));
+export const connectSortBySelect = connect;
 
 export const SortBySelect = overridable<ISortBySelectInputProps>(connect(SortBySelectComponent));
-export const connectSortBySelect = connect;

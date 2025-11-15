@@ -52,5 +52,6 @@ const injectProductPageProps = createInjector(({url}:IProductPageInputProps):IPr
 const connect = inject<IProductPageInputProps, ProductPageProps>(mergeProps(
     injectProductPageProps,
 ));
+export const connectProductPage = connect;
 
 export const ProductPage = overridable<IProductPageInputProps>(connect(ProductPageComponent));

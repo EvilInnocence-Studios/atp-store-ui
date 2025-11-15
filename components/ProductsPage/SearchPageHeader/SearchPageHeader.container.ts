@@ -10,6 +10,6 @@ const injectSearchPageHeaderProps = createInjector(({}:ISearchPageHeaderInputPro
 const connect = inject<ISearchPageHeaderInputProps, SearchPageHeaderProps>(mergeProps(
     injectSearchPageHeaderProps,
 ));
+export const connectSearchPageHeader = connect;
 
 export const SearchPageHeader = overridable<ISearchPageHeaderInputProps>(connect(SearchPageHeaderComponent));
-export const connectSearchPageHeader = connect;

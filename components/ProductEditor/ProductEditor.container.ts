@@ -29,5 +29,6 @@ const injectProductEditorProps = createInjector(({productId}:IProductEditorInput
 const connect = inject<IProductEditorInputProps, ProductEditorProps>(mergeProps(
     injectProductEditorProps,
 ));
+export const connectProductEditor = connect;
 
 export const ProductEditor = overridable<IProductEditorInputProps>(connect(ProductEditorComponent));

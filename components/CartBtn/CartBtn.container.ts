@@ -11,6 +11,6 @@ const injectCartBtnProps = createInjector(({}:ICartBtnInputProps):ICartBtnProps 
 
 const connect = inject<ICartBtnInputProps, CartBtnProps>(mergeProps(
     injectCartBtnProps,
-));
+));export const connectCartBtn = connect;
 
 export const CartBtn = overridable<ICartBtnInputProps>(connect(CartBtnComponent));

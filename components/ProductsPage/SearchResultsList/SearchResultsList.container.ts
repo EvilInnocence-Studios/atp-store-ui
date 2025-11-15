@@ -10,6 +10,6 @@ const injectSearchResultsListProps = createInjector(({}:ISearchResultsListInputP
 const connect = inject<ISearchResultsListInputProps, SearchResultsListProps>(mergeProps(
     injectSearchResultsListProps,
 ));
+export const connectSearchResultsList = connect;
 
 export const SearchResultsList = overridable<ISearchResultsListInputProps>(connect(SearchResultsListComponent));
-export const connectSearchResultsList = connect;

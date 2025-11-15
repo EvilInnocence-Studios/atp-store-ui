@@ -54,5 +54,6 @@ const injectProductMediaEditorProps = createInjector(({product, update}:IProduct
 const connect = inject<IProductMediaEditorInputProps, ProductMediaEditorProps>(mergeProps(
     injectProductMediaEditorProps,
 ));
+export const connectProductMediaEditor = connect;
 
 export const ProductMediaEditor = overridable<IProductMediaEditorInputProps>(connect(ProductMediaEditorComponent));

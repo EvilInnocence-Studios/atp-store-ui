@@ -71,6 +71,6 @@ const injectSearchResultsProps = createInjector(({}:ISearchResultsInputProps):IS
 const connect = inject<ISearchResultsInputProps, SearchResultsProps>(mergeProps(
     injectSearchResultsProps,
 ));
+export const connectSearchResults = connect;
 
 export const SearchResults = overridable<ISearchResultsInputProps>(connect(SearchResultsComponent));
-export const connectSearchResults = connect;

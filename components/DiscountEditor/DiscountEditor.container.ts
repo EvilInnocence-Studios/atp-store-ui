@@ -58,5 +58,6 @@ const injectDiscountEditorProps = createInjector(({}:IDiscountEditorInputProps):
 const connect = inject<IDiscountEditorInputProps, DiscountEditorProps>(mergeProps(
     injectDiscountEditorProps,
 ));
+export const connectDiscountEditor = connect;
 
 export const DiscountEditor = overridable<IDiscountEditorInputProps>(connect(DiscountEditorComponent));

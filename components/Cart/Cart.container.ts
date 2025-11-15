@@ -74,5 +74,6 @@ const injectCartProps = createInjector(({}:ICartInputProps):ICartProps => {
 const connect = inject<ICartInputProps, CartProps>(mergeProps(
     injectCartProps,
 ));
+export const connectCart = connect;
 
 export const Cart = overridable<ICartInputProps>(connect(CartComponent));

@@ -10,5 +10,6 @@ const injectProductQueueProps = createInjector(({}:IProductQueueInputProps):IPro
 const connect = inject<IProductQueueInputProps, ProductQueueProps>(mergeProps(
     injectProductQueueProps,
 ));
+export const connectProductQueue = connect;
 
 export const ProductQueue = overridable<IProductQueueInputProps>(connect(ProductQueueComponent));

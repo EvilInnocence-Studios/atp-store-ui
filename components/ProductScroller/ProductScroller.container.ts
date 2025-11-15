@@ -23,5 +23,6 @@ const injectProductScrollerProps = createInjector(({filter, sort, count}:IProduc
 const connect = inject<IProductScrollerInputProps, ProductScrollerProps>(mergeProps(
     injectProductScrollerProps,
 ));
+export const connectProductScroller = connect;
 
 export const ProductScroller = overridable<IProductScrollerInputProps>(connect(ProductScrollerComponent));

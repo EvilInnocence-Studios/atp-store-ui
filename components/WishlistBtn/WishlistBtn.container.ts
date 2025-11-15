@@ -30,5 +30,6 @@ const injectWishlistBtnProps = createInjector(({product}:IWishlistBtnInputProps)
 const connect = inject<IWishlistBtnInputProps, WishlistBtnProps>(mergeProps(
     injectWishlistBtnProps,
 ));
+export const connectWishlistBtn = connect;
 
 export const WishlistBtn = overridable<IWishlistBtnInputProps>(connect(WishlistBtnComponent));

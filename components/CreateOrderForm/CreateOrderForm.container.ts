@@ -33,5 +33,6 @@ const injectCreateOrderFormProps = createInjector(({userId, onCreateOrder}:ICrea
 const connect = inject<ICreateOrderFormInputProps, CreateOrderFormProps>(mergeProps(
     injectCreateOrderFormProps,
 ));
+export const connectCreateOrderForm = connect;
 
 export const CreateOrderForm = overridable<ICreateOrderFormInputProps>(connect(CreateOrderFormComponent));

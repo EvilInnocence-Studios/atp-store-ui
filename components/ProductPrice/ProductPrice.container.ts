@@ -20,5 +20,6 @@ const injectProductPriceProps = createInjector(({product}:IProductPriceInputProp
 const connect = inject<IProductPriceInputProps, ProductPriceProps>(mergeProps(
     injectProductPriceProps,
 ));
+export const connectProductPrice = connect;
 
 export const ProductPrice = overridable<IProductPriceInputProps>(connect(ProductPriceComponent));

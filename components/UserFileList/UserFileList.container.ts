@@ -43,5 +43,6 @@ const injectUserFileListProps = createInjector(({userId}:IUserFileListInputProps
 const connect = inject<IUserFileListInputProps, UserFileListProps>(mergeProps(
     injectUserFileListProps,
 ));
+export const connectUserFileList = connect;
 
 export const UserFileList = overridable<IUserFileListInputProps>(connect(UserFileListComponent));

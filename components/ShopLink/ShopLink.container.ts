@@ -13,6 +13,7 @@ const injectShopLinkProps = createInjector(({}:IShopLinkInputProps):IShopLinkPro
 const connect = inject<IShopLinkInputProps, ShopLinkProps>(mergeProps(
     injectShopLinkProps,
 ));
+export const ShopLinkPropsInjector = injectShopLinkProps;
 
 export const ShopLink = overridable<IShopLinkInputProps>(connect(ShopLinkComponent));
 export const connectShopLink = connect;

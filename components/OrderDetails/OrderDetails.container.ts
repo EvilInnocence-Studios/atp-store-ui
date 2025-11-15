@@ -23,5 +23,6 @@ const injectOrderDetailsProps = createInjector(({userId, orderId}:IOrderDetailsI
 const connect = inject<IOrderDetailsInputProps, OrderDetailsProps>(mergeProps(
     injectOrderDetailsProps,
 ));
+export const connectOrderDetails = connect;
 
 export const OrderDetails = overridable<IOrderDetailsInputProps>(connect(OrderDetailsComponent));

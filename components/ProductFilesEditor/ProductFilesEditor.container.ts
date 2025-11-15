@@ -64,5 +64,6 @@ const injectProductFilesEditorProps = createInjector(({productId}:IProductFilesE
 const connect = inject<IProductFilesEditorInputProps, ProductFilesEditorProps>(mergeProps(
     injectProductFilesEditorProps,
 ));
+export const connectProductFilesEditor = connect;
 
 export const ProductFilesEditor = overridable<IProductFilesEditorInputProps>(connect(ProductFilesEditorComponent));

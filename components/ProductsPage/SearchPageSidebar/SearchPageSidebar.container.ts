@@ -15,6 +15,6 @@ const connect = inject<ISearchPageSidebarInputProps, SearchPageSidebarProps>(mer
     injectSearchPageSidebarProps,
     injectSearch,
 ));
+export const connectSearchPageSidebar = connect;
 
 export const SearchPageSidebar = overridable<ISearchPageSidebarInputProps>(connect(SearchPageSidebarComponent));
-export const connectSearchPageSidebar = connect;

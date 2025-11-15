@@ -10,5 +10,6 @@ const injectProductTagEditorProps = createInjector(({}:IProductTagEditorInputPro
 const connect = inject<IProductTagEditorInputProps, ProductTagEditorProps>(mergeProps(
     injectProductTagEditorProps,
 ));
+export const connectProductTagEditor = connect;
 
 export const ProductTagEditor = overridable<IProductTagEditorInputProps>(connect(ProductTagEditorComponent));

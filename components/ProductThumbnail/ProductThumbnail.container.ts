@@ -10,5 +10,6 @@ const injectProductThumbnailProps = createInjector(({}:IProductThumbnailInputPro
 const connect = inject<IProductThumbnailInputProps, ProductThumbnailProps>(mergeProps(
     injectProductThumbnailProps,
 ));
+export const connectProductThumbnail = connect;
 
 export const ProductThumbnail = overridable<IProductThumbnailInputProps>(connect(ProductThumbnailComponent));

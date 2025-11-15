@@ -45,5 +45,6 @@ const injectRelatedProductsEditorProps = createInjector(({productId}:IRelatedPro
 const connect = inject<IRelatedProductsEditorInputProps, RelatedProductsEditorProps>(mergeProps(
     injectRelatedProductsEditorProps,
 ));
+export const connectRelatedProductsEditor = connect;
 
 export const RelatedProductsEditor = overridable<IRelatedProductsEditorInputProps>(connect(RelatedProductsEditorComponent));

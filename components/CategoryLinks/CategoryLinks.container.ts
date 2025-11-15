@@ -31,5 +31,6 @@ const injectCategoryLinksProps = createInjector(({}:ICategoryLinksInputProps):IC
 const connect = inject<ICategoryLinksInputProps, CategoryLinksProps>(mergeProps(
     injectCategoryLinksProps,
 ));
+export const connectCategoryLinks = connect;
 
 export const CategoryLinks = overridable<ICategoryLinksInputProps>(connect(CategoryLinksComponent));

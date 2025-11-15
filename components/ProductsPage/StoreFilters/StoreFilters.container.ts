@@ -17,6 +17,6 @@ const connect = inject<IStoreFiltersInputProps, StoreFiltersProps>(mergeProps(
     injectStoreFiltersProps,
     injectSearch,
 ));
+export const connectStoreFilters = connect;
 
 export const StoreFilters = overridable<IStoreFiltersInputProps>(connect(StoreFiltersComponent));
-export const connectStoreFilters = connect;

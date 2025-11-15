@@ -10,5 +10,6 @@ const injectProductListItemProps = createInjector(({}:IProductListItemInputProps
 const connect = inject<IProductListItemInputProps, ProductListItemProps>(mergeProps(
     injectProductListItemProps,
 ));
+export const connectProductListItem = connect;
 
 export const ProductListItem = overridable<IProductListItemInputProps>(connect(ProductListItemComponent));

@@ -23,5 +23,6 @@ const injectProductSearchInputProps = createInjector(({}:IProductSearchInputInpu
 const connect = inject<IProductSearchInputInputProps, ProductSearchInputProps>(mergeProps(
     injectProductSearchInputProps,
 ));
+export const connectProductSearchInput = connect;
 
 export const ProductSearchInput = overridable<IProductSearchInputInputProps>(connect(ProductSearchInputComponent));

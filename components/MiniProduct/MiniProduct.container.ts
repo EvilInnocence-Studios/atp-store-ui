@@ -26,6 +26,6 @@ const injectMiniProductProps = createInjector(({product, productId}:IMiniProduct
 
 const connect = inject<IMiniProductInputProps, MiniProductProps>(mergeProps(
     injectMiniProductProps,
-));
+));export const connectMiniProduct = connect;
 
 export const MiniProduct = overridable<IMiniProductInputProps>(connect(MiniProductComponent));

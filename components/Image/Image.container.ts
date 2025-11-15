@@ -15,5 +15,6 @@ const injectImageProps = createInjector(({productId, imageId}:IImageInputProps):
 const connect = inject<IImageInputProps, ImageProps>(mergeProps(
     injectImageProps,
 ));
+export const connectImage = connect;
 
 export const Image = overridable<IImageInputProps>(connect(ImageComponent));

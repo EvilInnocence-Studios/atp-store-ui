@@ -10,5 +10,6 @@ const injectNewProductsProps = createInjector(({}:INewProductsInputProps):INewPr
 const connect = inject<INewProductsInputProps, NewProductsProps>(mergeProps(
     injectNewProductsProps,
 ));
+export const connectNewProducts = connect;
 
 export const NewProducts = overridable<INewProductsInputProps>(connect(NewProductsComponent));

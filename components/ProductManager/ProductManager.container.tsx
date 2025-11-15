@@ -35,5 +35,6 @@ const injectProductManagerProps = createInjector(({}:IProductManagerInputProps):
 const connect = inject<IProductManagerInputProps, ProductManagerProps>(mergeProps(
     injectProductManagerProps,
 ));
+export const connectProductManager = connect;
 
 export const ProductManager = overridable<IProductManagerInputProps>(connect(ProductManagerComponent));

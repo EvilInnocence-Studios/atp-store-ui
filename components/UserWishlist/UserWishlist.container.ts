@@ -38,5 +38,6 @@ const injectUserWishlistProps = createInjector(({userId}:IUserWishlistInputProps
 const connect = inject<IUserWishlistInputProps, UserWishlistProps>(mergeProps(
     injectUserWishlistProps,
 ));
+export const connectUserWishlist = connect;
 
 export const UserWishlist = overridable<IUserWishlistInputProps>(connect(UserWishlistComponent));

@@ -12,6 +12,6 @@ const connect = inject<ISelectedStoreTagsInputProps, SelectedStoreTagsProps>(mer
     injectSelectedStoreTagsProps,
     injectSearch,
 ));
+export const connectSelectedStoreTags = connect;
 
 export const SelectedStoreTags = overridable<ISelectedStoreTagsInputProps>(connect(SelectedStoreTagsComponent));
-export const connectSelectedStoreTags = connect;

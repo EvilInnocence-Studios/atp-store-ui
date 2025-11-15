@@ -26,5 +26,6 @@ const injectProductFileDownloadBtnProps = createInjector(({file}:IProductFileDow
 const connect = inject<IProductFileDownloadBtnInputProps, ProductFileDownloadBtnProps>(mergeProps(
     injectProductFileDownloadBtnProps,
 ));
+export const connectProductFileDownloadBtn = connect;
 
 export const ProductFileDownloadBtn = overridable<IProductFileDownloadBtnInputProps>(connect(ProductFileDownloadBtnComponent));

@@ -54,5 +54,6 @@ const injectUserOrderListProps = createInjector(({userId, id, onSelectOrder}:IUs
 const connect = inject<IUserOrderListInputProps, UserOrderListProps>(mergeProps(
     injectUserOrderListProps,
 ));
+export const connectUserOrderList = connect;
 
 export const UserOrderList = overridable<IUserOrderListInputProps>(connect(UserOrderListComponent));

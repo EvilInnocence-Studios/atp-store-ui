@@ -66,5 +66,6 @@ const injectSalesReportProps = createInjector(({}:ISalesReportInputProps):ISales
 const connect = inject<ISalesReportInputProps, SalesReportProps>(mergeProps(
     injectSalesReportProps,
 ));
+export const connectSalesReport = connect;
 
 export const SalesReport = overridable<ISalesReportInputProps>(connect(SalesReportComponent));
