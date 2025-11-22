@@ -12,7 +12,7 @@ const injectProductScrollerProps = createInjector(({filter, sort, count}:IProduc
 
     useEffect(() => {
         setNewProducts(products
-            .filter(filter)
+            .filter(filter || (() => true))
             .sort(sort)
             .slice(0, count || 10));
     }, [products, filter, sort]);

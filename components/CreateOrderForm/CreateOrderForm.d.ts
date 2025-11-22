@@ -12,6 +12,7 @@ export declare interface ICreateOrderFormProps {
 export declare interface ICreateOrderFormInputProps {
     userId: string;
     onCreateOrder?: (orderId: string) => void;
+    classes?: any;
 }
 
 export type CreateOrderFormProps = ICreateOrderFormInputProps & ICreateOrderFormProps;

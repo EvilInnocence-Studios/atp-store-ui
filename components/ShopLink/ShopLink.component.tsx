@@ -5,8 +5,8 @@ import { Link } from "react-router";
 import { ShopLinkProps } from "./ShopLink.d";
 import styles from './ShopLink.module.scss';
 
-export const ShopLinkComponent = overridable(({showShopLink}:ShopLinkProps) => <>
-    {showShopLink && <span className={styles.shopLink}>
+export const ShopLinkComponent = overridable(({ showShopLink, classes = styles }: ShopLinkProps) => <>
+    {showShopLink && <span className={classes.shopLink}>
         <Link to="/products">
             <FontAwesomeIcon icon={faShop} />
             <span>Shop</span>

@@ -15,6 +15,7 @@ export declare interface IUserOrderListInputProps {
     userId?: string;
     id?: string;
     onSelectOrder?: (order: IOrder) => () => void;
+    classes?: any;
 }
 
 export type UserOrderListProps = IUserOrderListInputProps & IUserOrderListProps;

@@ -14,24 +14,25 @@ import styles from './ProductEditor.module.scss';
 import { overridable } from "@core/lib/overridable";
 
 export const ProductEditorComponent = overridable(({
-    product, 
+    product,
     copyUrlFromName,
+    classes = styles,
     ...props
-}:ProductEditorProps) =>
+}: ProductEditorProps) =>
     <Spin spinning={props.isLoading}>
         {!!product && <>
-            <Row className={styles.productEditor} gutter={8}>
+            <Row className={classes.productEditor} gutter={8}>
                 <Col span={24}>
                     <Space>
-                        <Switch checked={product.enabled} checkedChildren="Enabled" unCheckedChildren="Disabled" onChange={props.updateToggle("enabled")}/>
-                        <DatePicker value={product.releaseDate ? dayjs(product.releaseDate) : undefined} onChange={onDateChange(props.updateString("releaseDate"))}/>
-                        <Switch checked={product.pinned} checkedChildren="Pinned" unCheckedChildren="Not Pinned" onChange={props.updateToggle("pinned")}/>
+                        <Switch checked={product.enabled} checkedChildren="Enabled" unCheckedChildren="Disabled" onChange={props.updateToggle("enabled")} />
+                        <DatePicker value={product.releaseDate ? dayjs(product.releaseDate) : undefined} onChange={onDateChange(props.updateString("releaseDate"))} />
+                        <Switch checked={product.pinned} checkedChildren="Pinned" unCheckedChildren="Not Pinned" onChange={props.updateToggle("pinned")} />
                     </Space>
-                    <div className={styles.updateButtons}><props.UpdateButtons /></div>
+                    <div className={classes.updateButtons}><props.UpdateButtons /></div>
                     <h1>
-                        <Label label="Name"><Editable value={product.name} onChange={props.updateString("name")}/></Label>
+                        <Label label="Name"><Editable value={product.name} onChange={props.updateString("name")} /></Label>
                     </h1>
-                    <hr/>
+                    <hr />
                     <Tabs tabPosition="left">
                         <Tabs.TabPane key="details" tab="Details">
                             <Space direction="vertical">
@@ -42,7 +43,7 @@ export const ProductEditorComponent = overridable(({
                             <ProductTagEditor productId={product.id} />
                         </Tabs.TabPane>
                         <Tabs.TabPane key="media" tab="Media">
-                            <ProductMediaEditor product={product} update={props.updateString}/>
+                            <ProductMediaEditor product={product} update={props.updateString} />
                         </Tabs.TabPane>
                         <Tabs.TabPane key="related" tab="Related">
                             <RelatedProductsEditor productId={product.id} />

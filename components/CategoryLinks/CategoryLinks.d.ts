@@ -8,7 +8,7 @@ export declare interface ICategoryLinksProps {
 
 // What gets passed into the component from the parent as attributes
 export declare interface ICategoryLinksInputProps {
-
+    classes?: any;
 }
 
 export type CategoryLinksProps = ICategoryLinksInputProps & ICategoryLinksProps;

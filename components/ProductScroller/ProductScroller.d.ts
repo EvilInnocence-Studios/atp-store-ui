@@ -7,8 +7,9 @@ export declare interface IProductScrollerProps {
 
 // What gets passed into the component from the parent as attributes
 export declare interface IProductScrollerInputProps {
-    filter: (p:IProductFull) => boolean;
-    sort: (a:IProductFull, b:IProductFull) => number;
+    filter?: (product: IProductFull) => boolean;
+    sort?: (a: IProductFull, b: IProductFull) => number;
+    classes?: any;
     count?: number;
     title: string;
     hideCartButton?: boolean;

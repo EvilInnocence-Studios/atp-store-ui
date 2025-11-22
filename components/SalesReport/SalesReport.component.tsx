@@ -1,18 +1,18 @@
 import { Button, Spin, Table, Tabs } from "antd";
-import {SalesReportProps} from "./SalesReport.d";
+import { SalesReportProps } from "./SalesReport.d";
 import styles from './SalesReport.module.scss';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRefresh } from "@fortawesome/free-solid-svg-icons";
 import { overridable } from "@core/lib/overridable";
 
-export const SalesReportComponent = overridable(({data, salesByDate, salesByWeek, salesByMonth, isLoading, refresh}:SalesReportProps) =>
+export const SalesReportComponent = overridable(({ data, salesByDate, salesByWeek, salesByMonth, isLoading, refresh, classes = styles }: SalesReportProps) =>
     <Spin spinning={isLoading} tip="Loading sales report...">
-        <div className={styles.salesReport}>
+        <div className={classes.salesReport}>
             <h1>Sales Report</h1>
             <Button onClick={refresh} disabled={isLoading}><FontAwesomeIcon icon={faRefresh} /> Refresh</Button>
             {!isLoading && data.length === 0 && <p>No sales data available.</p>}
             {!isLoading && data.length > 0 &&
-                <Tabs defaultActiveKey="date" className={styles.tabs}>
+                <Tabs defaultActiveKey="date" className={classes.tabs}>
                     <Tabs.TabPane tab="All Orders" key="allOrders">
                         <Table dataSource={data} rowKey="id">
                             <Table.Column title="Order ID" dataIndex="id" key="id" />

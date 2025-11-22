@@ -1,11 +1,11 @@
 import { Col, Input, Row, Spin } from "antd";
-import {UserFileListProps} from "./UserFileList.d";
+import { UserFileListProps } from "./UserFileList.d";
 import styles from './UserFileList.module.scss';
 import { ProductFileDownloadBtn } from "../ProductFileDownloadBtn";
 import { onInputChange } from "@core/lib/onInputChange";
 import { overridable } from "@core/lib/overridable";
 
-export const UserFileListComponent = overridable(({user, files, isLoading, q, setQ}:UserFileListProps) =>
+export const UserFileListComponent = overridable(({ user, files, isLoading, q, setQ, classes = styles }: UserFileListProps) =>
     <Spin spinning={isLoading}>
         <Row>
             <Col xs={12}>
@@ -15,8 +15,8 @@ export const UserFileListComponent = overridable(({user, files, isLoading, q, se
                 <Input.Search placeholder="Search files" value={q} onChange={onInputChange(setQ)} />
             </Col>
         </Row>
-        
-        <div className={styles.userFileList}>
+
+        <div className={classes.userFileList}>
             {files.map(file => <ProductFileDownloadBtn file={file} />)}
         </div>
     </Spin>

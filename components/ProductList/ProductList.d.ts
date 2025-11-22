@@ -8,7 +8,7 @@ export declare interface IProductListProps {
 
 // What gets passed into the component from the parent as attributes
 export declare interface IProductListInputProps {
-
+    classes?: any;
 }
 
 export type ProductListProps = IProductListInputProps & IProductListProps;

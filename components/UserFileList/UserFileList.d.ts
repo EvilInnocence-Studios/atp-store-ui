@@ -12,6 +12,7 @@ export declare interface IUserFileListProps {
 // What gets passed into the component from the parent as attributes
 export declare interface IUserFileListInputProps {
     userId?: string;
+    classes?: any;
 }
 
 export type UserFileListProps = IUserFileListInputProps & IUserFileListProps;

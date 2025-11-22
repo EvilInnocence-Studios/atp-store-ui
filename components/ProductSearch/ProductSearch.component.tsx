@@ -4,7 +4,7 @@ import { ProductSearchProps } from "./ProductSearch.d";
 import styles from './ProductSearch.module.scss';
 import { overridable } from "@core/lib/overridable";
 
-export const ProductSearchComponent = overridable(({products, setSearch, onSelect, placeholder}:ProductSearchProps) => <div className={styles.productSearch}>
+export const ProductSearchComponent = overridable(({ products, setSearch, onSelect, placeholder, classes = styles }: ProductSearchProps) => <div className={classes.productSearch}>
     <Select
         showSearch
         placeholder={placeholder}

@@ -12,7 +12,7 @@ import { ProductMediaEditorProps } from "./ProductMediaEditor.d";
 import styles from './ProductMediaEditor.module.scss';
 import { overridable } from "@core/lib/overridable";
 
-export const useImageHost = (id:string) => {
+export const useImageHost = (id: string) => {
     const imgHost = useSetting("imageHost");
     const imgFolder = useSetting("productImageFolder");
     return `${imgHost}/${imgFolder}/${id}/`;
@@ -21,16 +21,16 @@ export const useImageHost = (id:string) => {
 interface IItemProps {
     item: IProductMedia,
     product: IProduct;
-    updateThumbnail: (id:string) => void;
-    updateMainImage: (id:string) => void;
-    remove: (id:string) => () => void;
+    updateThumbnail: (id: string) => void;
+    updateMainImage: (id: string) => void;
+    remove: (id: string) => () => void;
 }
 
-export const ImageItem = overridable(({item:m, product, updateThumbnail, updateMainImage, remove}:IItemProps) => <div className={styles.mediaItem}>
-    <Image productId={product.id} imageId={m.id} /><br/>
+export const ImageItem = overridable(({ item: m, product, updateThumbnail, updateMainImage, remove, classes = styles }: IItemProps & { classes?: any }) => <div className={classes.mediaItem}>
+    <Image productId={product.id} imageId={m.id} /><br />
     <Space.Compact>
         <Button
-            type={m.id === product.thumbnailId ? "primary" : "default"} 
+            type={m.id === product.thumbnailId ? "primary" : "default"}
             onClick={handle(updateThumbnail)(m.id)}
         >
             Thumbnail
@@ -47,11 +47,12 @@ export const ImageItem = overridable(({item:m, product, updateThumbnail, updateM
 
 export const ProductMediaEditorComponent = overridable(({
     product, media, upload, isLoading,
-    updateThumbnail, updateMainImage, remove, sort:sortMedia,
-}:ProductMediaEditorProps) =>
+    updateThumbnail, updateMainImage, remove, sort: sortMedia,
+    classes = styles,
+}: ProductMediaEditorProps) =>
     <Spin spinning={isLoading}>
         {!!product && <>
-            <div className={styles.productMediaList}>
+            <div className={classes.productMediaList}>
                 <SortableList
                     items={media.sort(sort.by(prop<any, any>("order")).asc)}
                     direction="horizontal"
@@ -59,14 +60,14 @@ export const ProductMediaEditorComponent = overridable(({
                     getListId={(image, index) => `${image.id}:${index}`}
                     sort={sortMedia}
                     ItemComponent={ImageItem}
-                    itemProps={{product, updateThumbnail, updateMainImage, remove}}
+                    itemProps={{ product, updateThumbnail, updateMainImage, remove, classes }}
                 />
             </div>
             <Upload.Dragger
-                customRequest={({file}) => upload(file as File)}
+                customRequest={({ file }) => upload(file as File)}
                 showUploadList={false}
             >
-                <FontAwesomeIcon icon={faUpload} size="3x"/><br/>
+                <FontAwesomeIcon icon={faUpload} size="3x" /><br />
                 <p className="ant-upload-text">Click or drag file to this area to upload</p>
             </Upload.Dragger>
         </>}

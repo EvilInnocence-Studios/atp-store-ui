@@ -10,9 +10,9 @@ import { overridable } from "@core/lib/overridable";
 
 const CanCreate = hasPermission("order.create");
 
-export const CreateOrderFormComponent = overridable(({modal, isLoading, products, createOrder}:CreateOrderFormProps) => <CanCreate yes>
+export const CreateOrderFormComponent = overridable(({ modal, isLoading, products, createOrder, classes = styles }: CreateOrderFormProps) => <CanCreate yes>
     <Button
-        className={styles.createOrderButton}
+        className={classes.createOrderButton}
         type="primary"
         size="small"
         onClick={modal.open}
@@ -40,9 +40,9 @@ export const CreateOrderFormComponent = overridable(({modal, isLoading, products
                 <FontAwesomeIcon icon={faClose} /> Cancel
             </Button>
         </>}
-        className={styles.createOrderModal}
-        >
-        <div className={styles.createOrderForm}>
+        className={classes.createOrderModal}
+    >
+        <div className={classes.createOrderForm}>
             <ProductSearch onSelect={products.add} />
             <h3>Selected Products <Button danger size="small" onClick={products.clear}>Clear</Button></h3>
             {products.items.map((product) => <MiniProduct productId={product} key={product} onRemove={products.remove} />)}

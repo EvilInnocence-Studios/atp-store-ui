@@ -13,12 +13,12 @@ import { overridable } from "@core/lib/overridable";
 const CanUpdate = hasPermission("discount.update");
 const CanDelete = hasPermission("discount.delete");
 
-export const DiscountEditorComponent = overridable(({discounts, permissions, isLoading, update, remove, create}:DiscountEditorProps) => {
+export const DiscountEditorComponent = overridable(({ discounts, permissions, isLoading, update, remove, create, classes = styles }: DiscountEditorProps) => {
     const columns = [
         {
             title: 'Name',
             key: 'name',
-            render: (_:any, discount:IDiscount) => <>
+            render: (_: any, discount: IDiscount) => <>
                 <CanUpdate yes>
                     <Editable value={discount.name} onChange={update(discount.id, "name")} />
                 </CanUpdate>
@@ -30,9 +30,9 @@ export const DiscountEditorComponent = overridable(({discounts, permissions, isL
         {
             title: "Type",
             key: "type",
-            render: (_:any, discount:IDiscount) => <>
+            render: (_: any, discount: IDiscount) => <>
                 <CanUpdate yes>
-                    <Select value={discount.type} onChange={update(discount.id, "type")} style={{width: 100}}>
+                    <Select value={discount.type} onChange={update(discount.id, "type")} style={{ width: 100 }}>
                         <Select.Option value="product">Product</Select.Option>
                         <Select.Option value="cart">Cart</Select.Option>
                     </Select>
@@ -45,7 +45,7 @@ export const DiscountEditorComponent = overridable(({discounts, permissions, isL
         {
             title: 'Amount',
             key: 'amount',
-            render: (_:any, discount:IDiscount) => <>
+            render: (_: any, discount: IDiscount) => <>
                 <CanUpdate yes>
                     <Editable value={`${discount.amount}`} onChange={update(discount.id, "amount")} />
                 </CanUpdate>
@@ -57,12 +57,12 @@ export const DiscountEditorComponent = overridable(({discounts, permissions, isL
         {
             title: "Permission",
             key: "permission",
-            render: (_:any, discount:IDiscount) => <>
+            render: (_: any, discount: IDiscount) => <>
                 <CanUpdate yes>
                     <Select
                         value={discount.permissionId}
                         onChange={update(discount.id, "permissionId")}
-                        style={{width: 200}}
+                        style={{ width: 200 }}
                         allowClear
                     >
                         {permissions.map(p => <Select.Option key={p.id} value={p.id}>{p.name}</Select.Option>)}
@@ -77,20 +77,20 @@ export const DiscountEditorComponent = overridable(({discounts, permissions, isL
             title: 'Actions',
             dataIndex: 'id',
             key: 'actions',
-            render: (id:string) => <>
+            render: (id: string) => <>
                 <CanDelete yes>
                     <DeleteBtn entityType="discount" onClick={remove(id)} />
                 </CanDelete>
             </>,
         },
     ]
-    
+
     return <Spin spinning={isLoading}>
-        <div className={styles.discounts}>
+        <div className={classes.discounts}>
             <h1><FontAwesomeIcon icon={faMoneyBill} /> Discounts</h1>
             <Row gutter={16}>
                 <Col xs={6}>
-                    <Button onClick={create} type="primary"><FontAwesomeIcon icon={faPlus} /> Create Discount</Button><br/><br/>
+                    <Button onClick={create} type="primary"><FontAwesomeIcon icon={faPlus} /> Create Discount</Button><br /><br />
                     <ClearCacheButton entity="discount" cacheType="discount" />
                 </Col>
                 <Col xs={12}>

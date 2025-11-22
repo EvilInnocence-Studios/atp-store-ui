@@ -8,7 +8,8 @@ export declare interface IProductEditorProps extends IUpdater<IProduct> {
 
 // What gets passed into the component from the parent as attributes
 export declare interface IProductEditorInputProps {
-    productId:string;
+    productId: string;
+    classes?: any;
 }
 
 export type ProductEditorProps = IProductEditorInputProps & IProductEditorProps;

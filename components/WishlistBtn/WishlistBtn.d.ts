@@ -10,6 +10,7 @@ export declare interface IWishlistBtnProps {
 // What gets passed into the component from the parent as attributes
 export declare interface IWishlistBtnInputProps {
     product: IProduct;
+    classes?: any;
 }
 
 export type WishlistBtnProps = IWishlistBtnInputProps & IWishlistBtnProps;

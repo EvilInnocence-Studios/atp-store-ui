@@ -10,7 +10,7 @@ export declare interface IProductsPageProps {
 
 // What gets passed into the component from the parent as attributes
 export declare interface IProductsPageInputProps {
-
+    classes?: any;
 }
 
 export type ProductsPageProps = IProductsPageInputProps & IProductsPageProps;

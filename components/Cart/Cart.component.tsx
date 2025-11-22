@@ -10,27 +10,27 @@ import { CartProps } from "./Cart.d";
 import styles from './Cart.module.scss';
 import { overridable } from "@core/lib/overridable";
 
-export const CartComponent = overridable(({userId, createOrder, onApprove, onCancel, onError, completeFreeOrder, isLoading, loginModal, ...cart}:CartProps) => {
+export const CartComponent = overridable(({ userId, createOrder, onApprove, onCancel, onError, completeFreeOrder, isLoading, loginModal, classes = styles, ...cart }: CartProps) => {
     const columns = [{
         key: 'thumbnailImageId',
-        render: (product:IProduct ) => <div className={styles.thumbnail}>
+        render: (product: IProduct) => <div className={classes.thumbnail}>
             <Image productId={product.id} imageId={product.thumbnailId} />
         </div>,
         width: 64,
-    },{
+    }, {
         title: 'Product',
         key: 'product',
-        render: (_:any, product:IProduct) => <>
-            <span className={styles.productName}>{product.name}</span>
-            <span className={styles.priceContainer}>
+        render: (_: any, product: IProduct) => <>
+            <span className={classes.productName}>{product.name}</span>
+            <span className={classes.priceContainer}>
                 <ProductPrice product={product} />
             </span>
         </>,
     }, {
         dataIndex: 'actions',
         key: 'actions',
-        render: (_:any , product:IProduct) => <>
-            <DeleteBtn entityType="product" onClick={() => cart.remove(product)}/>
+        render: (_: any, product: IProduct) => <>
+            <DeleteBtn entityType="product" onClick={() => cart.remove(product)} />
         </>,
         width: 16,
     }];
@@ -49,15 +49,15 @@ export const CartComponent = overridable(({userId, createOrder, onApprove, onCan
         }
     };
 
-    return <div className={styles.cart}>
+    return <div className={classes.cart}>
         <Spin spinning={isLoading}>
             <h1><FontAwesomeIcon icon={faCartShopping} /> Your Cart</h1>
-            <div className={styles.cartActions}>
+            <div className={classes.cartActions}>
                 <Button type="link" danger onClick={cart.clear}>
                     <FontAwesomeIcon icon={faTrashAlt} /> Clear Cart
                 </Button>
             </div>
-            <div className={styles.cartItems}>
+            <div className={classes.cartItems}>
                 <Table<IProduct>
                     dataSource={cart.products}
                     columns={columns}
@@ -66,29 +66,29 @@ export const CartComponent = overridable(({userId, createOrder, onApprove, onCan
                         emptyText: <><FontAwesomeIcon icon={faShoppingCart} /> Your cart is empty.</>,
                     }}
                     rowKey="id"
-                    footer={() => <div className={styles.cartFooter}>
-                        {cart.totals.subtotal !== cart.totals.total && <div className={styles.cartSubTotal}>
+                    footer={() => <div className={classes.cartFooter}>
+                        {cart.totals.subtotal !== cart.totals.total && <div className={classes.cartSubTotal}>
                             Subtotal: ${cart.totals.subtotal.toFixed(2)}
                         </div>}
-                        {!!cart.totals.discount && <div className={styles.cartDiscount}>
+                        {!!cart.totals.discount && <div className={classes.cartDiscount}>
                             Discount: ${cart.totals.discount.toFixed(2)}
                         </div>}
-                        <div className={styles.cartTotal}>
+                        <div className={classes.cartTotal}>
                             Total: ${cart.totals.total.toFixed(2)}
                         </div>
                     </div>}
                 />
             </div>
-            {!!parseInt(userId) && <div className={styles.cartActions}>
+            {!!parseInt(userId) && <div className={classes.cartActions}>
                 {cart.totals.total > 0 &&
-                    <PayPalButtons 
-                        createOrder={handleCreateOrder} 
-                        onApprove={onApprove} 
-                        onCancel={onCancel} 
+                    <PayPalButtons
+                        createOrder={handleCreateOrder}
+                        onApprove={onApprove}
+                        onCancel={onCancel}
                         onError={(error) => {
                             console.error("PayPal onError:", error);
                             onError(error);
-                        }} 
+                        }}
                     />
                 }
                 {cart.totals.total === 0 && cart.products.length > 0 &&
@@ -97,7 +97,7 @@ export const CartComponent = overridable(({userId, createOrder, onApprove, onCan
                     </Button>
                 }
             </div>}
-            {!parseInt(userId) && <div className={styles.cartActions}>
+            {!parseInt(userId) && <div className={classes.cartActions}>
                 <Button type="primary" onClick={loginModal.open}>
                     <FontAwesomeIcon icon={faSignIn} /> Login to Checkout
                 </Button>

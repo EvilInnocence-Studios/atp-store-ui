@@ -4,12 +4,13 @@ export declare interface IUserWishlistProps {
     user: SafeUser;
     wishlist: IProduct[];
     isLoading: boolean;
-    remove: (productId:string) => () => void;
+    remove: (productId: string) => () => void;
 }
 
 // What gets passed into the component from the parent as attributes
 export declare interface IUserWishlistInputProps {
     userId?: string;
+    classes?: any;
 }
 
 export type UserWishlistProps = IUserWishlistInputProps & IUserWishlistProps;

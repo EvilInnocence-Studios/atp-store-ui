@@ -9,20 +9,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbTack } from "@fortawesome/free-solid-svg-icons";
 import { overridable } from "@core/lib/overridable";
 
-export const ProductListItemComponent = overridable(({product, textSize, hideTags, hideCartButton}:ProductListItemProps) =>
-    <div className={styles.productListItem}>
+export const ProductListItemComponent = overridable(({ product, textSize, hideTags, hideCartButton, classes = styles }: ProductListItemProps) =>
+    <div className={classes.productListItem}>
         {product.pinned && <FontAwesomeIcon
             icon={faThumbTack}
-            className={styles.pinnedIcon}
+            className={classes.pinnedIcon}
             title="Pinned Product"
         />}
-        <div className={styles.productMain}>
+        <div className={classes.productMain}>
             <ProductThumbnail product={product} />
-            <div className={clsx([styles.productInfo, styles[textSize || "default"]])}>
+            <div className={clsx([classes.productInfo, classes[textSize || "default"]])}>
                 <Link to={`/products/${product.url}`}><h3>{product.name}</h3></Link>
             </div>
         </div>
-        <div className={styles.productDetails}>
+        <div className={classes.productDetails}>
             <ProductPrice product={product} small={hideTags} />
             {!hideCartButton && <AddtoCartBtn product={product} />}
         </div>

@@ -1,4 +1,5 @@
 import { ClearCacheButton } from "@common/components/ClearCacheButton";
+import { overridable } from "@core/lib/overridable";
 import { faPlus, faShop } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IProduct } from "@store-shared/product/types";
@@ -6,21 +7,20 @@ import { Button, Space, Spin, Table, Tabs, Tag } from "antd";
 import { objMap, prop, sort } from "ts-functional";
 import { ProductManagerProps } from "./ProductManager.d";
 import styles from './ProductManager.module.scss';
-import { overridable } from "@core/lib/overridable";
 
-export const ProductManagerComponent = overridable(({products, isLoading, create, columns, tab, setTab, allTabs, filters, goToProduct}:ProductManagerProps) =>
-    <div className={styles.productManager}>
+export const ProductManagerComponent = overridable(({ products, isLoading, create, columns, tab, setTab, allTabs, filters, goToProduct, classes = styles }: ProductManagerProps) =>
+    <div className={classes.productManager}>
         <h1>
             <FontAwesomeIcon icon={faShop} /> Products
         </h1>
 
-        <p>Filters: {Object.values(objMap((value:string, key) => <Tag key={key}>{key}: {value}</Tag>)(filters))}</p>
+        <p>Filters: {Object.values(objMap((value: string, key) => <Tag key={key}>{key}: {value}</Tag>)(filters))}</p>
 
         <Spin spinning={isLoading}>
             <Tabs
                 defaultActiveKey={tab}
                 onChange={setTab}
-                items={allTabs.map(tab => ({key: tab, label: tab}))}
+                items={allTabs.map(tab => ({ key: tab, label: tab }))}
                 tabBarExtraContent={<>
                     <Space.Compact>
                         <Button type="primary" onClick={create}><FontAwesomeIcon icon={faPlus} /> New Product</Button>
@@ -37,8 +37,8 @@ export const ProductManagerComponent = overridable(({products, isLoading, create
                     position: ["bottomRight", "topRight"],
                     defaultPageSize: 20,
                 }}
-                onRow={(product:IProduct) => ({
-                    onClick: () => {goToProduct(product);},
+                onRow={(product: IProduct) => ({
+                    onClick: () => { goToProduct(product); },
                 })}
             />
         </Spin>

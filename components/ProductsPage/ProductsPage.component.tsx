@@ -6,11 +6,11 @@ import { ProductsPageProps } from "./ProductsPage.d";
 import styles from './ProductsPage.module.scss';
 import { overridable } from "@core/lib/overridable";
 
-export const ProductsPageComponent = overridable(({}:ProductsPageProps) =>
-    <div className={styles.productsPage}>
+export const ProductsPageComponent = overridable(({ classes = styles }: ProductsPageProps) =>
+    <div className={classes.productsPage}>
         <Layout>
             <SearchPageSidebar />
-            <Layout.Content className={styles.productListContainer}>
+            <Layout.Content className={classes.productListContainer}>
                 <SearchPageHeader />
                 <SearchResults />
             </Layout.Content>

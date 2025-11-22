@@ -8,6 +8,7 @@ export declare interface IProductFileDownloadBtnProps {
 export declare interface IProductFileDownloadBtnInputProps {
     file: IProductFile;
     small?: boolean;
+    classes?: any;
 }
 
 export type ProductFileDownloadBtnProps = IProductFileDownloadBtnInputProps & IProductFileDownloadBtnProps;

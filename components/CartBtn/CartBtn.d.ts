@@ -4,7 +4,7 @@ export declare interface ICartBtnProps {
 
 // What gets passed into the component from the parent as attributes
 export declare interface ICartBtnInputProps {
-
+    classes?: any;
 }
 
 export type CartBtnProps = ICartBtnInputProps & ICartBtnProps;
