@@ -6,6 +6,7 @@ export declare interface IProductPageProps {
     media: IProductMedia[];
     isLoading: boolean;
     subProducts: IProduct[];
+    infoUrl: string;
 }
 
 // What gets passed into the component from the parent as attributes

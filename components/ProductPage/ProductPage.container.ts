@@ -5,12 +5,15 @@ import { useEffect, useState } from "react";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { ProductPageComponent } from "./ProductPage.component";
 import { IProductPageInputProps, IProductPageProps, ProductPageProps } from "./ProductPage.d";
+import { useSetting } from "@common/lib/setting/services";
 
 const injectProductPageProps = createInjector(({url}:IProductPageInputProps):IProductPageProps => {
     const [product, setProduct] = useState<IProductFull | null>(null);
     const [relatedProducts, setRelatedProducts] = useState<IProduct[]>([]);
     const [media, setMedia] = useState<IProductMedia[]>([]);
     const [subProducts, setSubProducts] = useState<IProduct[]>([]);
+    const infoUrl = useSetting("subscriptionInfoUrl");
+    
     const loader = useLoaderAsync();
 
     useEffect(() => {
@@ -44,7 +47,7 @@ const injectProductPageProps = createInjector(({url}:IProductPageInputProps):IPr
         }
     }, [product]);
     
-    return {product, media, relatedProducts, isLoading: loader.isLoading, subProducts};
+    return {product, media, relatedProducts, isLoading: loader.isLoading, subProducts, infoUrl};
 });
 
 const connect = inject<IProductPageInputProps, ProductPageProps>(mergeProps(

@@ -1,4 +1,4 @@
-import { Col, Row, Spin, Tag } from "antd";
+import { Alert, Col, Row, Spin, Tag } from "antd";
 import Markdown from 'react-markdown';
 import { AddtoCartBtn } from "../AddtoCartBtn";
 import { MediaSwitcher } from "../MediaSwitcher";
@@ -7,8 +7,11 @@ import { ProductScroller } from "../ProductScroller";
 import { WishlistBtn } from "../WishlistBtn";
 import { ProductPageProps } from "./ProductPage.d";
 import styles from './ProductPage.module.scss';
+import { Link } from "react-router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
-export const ProductPageComponent = ({product, media, relatedProducts, subProducts, isLoading}:ProductPageProps) =>
+export const ProductPageComponent = ({product, media, relatedProducts, subProducts, isLoading, infoUrl}:ProductPageProps) =>
     <Spin spinning={isLoading}>
         {product && <div className={styles.productPage}>
             <div className={styles.header}>
@@ -31,6 +34,16 @@ export const ProductPageComponent = ({product, media, relatedProducts, subProduc
                         <WishlistBtn product={product} />
                     </Col>
                 </Row>
+                {product.subscriptionOnly && <>
+                    <Alert className={styles.info} message={
+                        <>
+                            <b>BSP</b> products are <b>FREE</b> but only available to <b>Backstage Pass Subscribers</b>.  Subscribe to a monthly plan to get instant access to this and over 900 other products at no extra cost.  New products are released each month.
+                            <div style={{textAlign: "right"}}>
+                                <Link to={infoUrl || ""}>Learn more <FontAwesomeIcon icon={faArrowRight} /></Link>
+                            </div>
+                        </>
+                    } type="info" />
+                </>}
                 <h2>Tags</h2>
                 <div className={styles.tags}>
                     {product.tags.map((tag) => <Tag key={tag}>{tag}</Tag>)}
