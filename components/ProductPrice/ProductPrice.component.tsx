@@ -4,7 +4,7 @@ import clsx from "clsx";
 import styles from './ProductPrice.module.scss';
 
 export const ProductPriceComponent = ({product, salePrice, isLoading, small}:ProductPriceProps) =><>{
-    product.subscriptionOnly    ?   <Tag>BSP</Tag>          :
+    product.subscriptionOnly    ?   <><Tag>BSP</Tag><Tag>FREE</Tag></>          :
          product.price > 0.0    ?   <Spin spinning={isLoading}>
                                         <p className={clsx([styles.price, salePrice < product.price && styles.onSale])}>
                                             ${product.price.toFixed(2)}
@@ -13,5 +13,5 @@ export const ProductPriceComponent = ({product, salePrice, isLoading, small}:Pro
                                             {!small && <Tag color="green">On Sale!</Tag>} ${salePrice.toFixed(2)}
                                         </p>}
                                     </Spin>
-                                :   <Tag>Free</Tag>
+                                :   <Tag>FREE</Tag>
   }</>;
