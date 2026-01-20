@@ -14,6 +14,7 @@ export declare interface IProductScrollerInputProps {
     title: string;
     hideCartButton?: boolean;
     className?: string;
+    css?: string;
 }
 
 export type ProductScrollerProps = IProductScrollerInputProps & IProductScrollerProps;

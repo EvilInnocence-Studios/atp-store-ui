@@ -11,6 +11,7 @@ export declare interface INewProductsInputProps {
     title?: string;
     hideCartButton?: boolean;
     className?: string;
+    css?: string;
 }
 
 export type NewProductsProps = INewProductsInputProps & INewProductsProps;
