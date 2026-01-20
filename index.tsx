@@ -20,10 +20,10 @@ export const module: IModule = {
     settings: storeSettings,
 }
 
-ComponentRegistry.register("ShopLink", ShopLink, { category: "Layouts", displayName: "Shop Link" });
-ComponentRegistry.register("ProductSearchInput", ProductSearchInput, { category: "Layouts", displayName: "Product Search Input" });
-ComponentRegistry.register("CartBtn", CartBtn, { category: "Layouts", displayName: "Cart Button" });
-ComponentRegistry.register("NewProducts", NewProducts, { category: "Layouts", displayName: "New Products" });
+ComponentRegistry.register("ShopLink", ShopLink, { category: "Store", displayName: "Shop Link" });
+ComponentRegistry.register("ProductSearchInput", ProductSearchInput, { category: "Store", displayName: "Product Search Input" });
+ComponentRegistry.register("CartBtn", CartBtn, { category: "Store", displayName: "Cart Button" });
+ComponentRegistry.register("NewProducts", NewProducts, { category: "Store", displayName: "New Products" });
 
 registerMyAccountTabPlugins();
 registerUserManagerTabPlugins();
