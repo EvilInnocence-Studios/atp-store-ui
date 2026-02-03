@@ -1,5 +1,6 @@
 import { services } from "@core/lib/api";
 import { flash } from "@core/lib/flash";
+import { getCartContext, getSystemContext, serializeError } from "@core/lib/errorUtils";
 import { overridable } from "@core/lib/overridable";
 import { useLoaderAsync } from "@core/lib/useLoader";
 import { IOrder } from "@store-shared/order/types";
@@ -45,11 +46,25 @@ const injectCartProps = createInjector(({}:ICartInputProps):ICartProps => {
         );
 
     const onCancel = (data:any) => {
-        services().errorReport("Order Cancelled", data);
+        services().errorReport("Order Cancelled", {
+            error: serializeError(data),
+            context: {
+                cart: getCartContext(cart),
+                system: getSystemContext(),
+            }
+        });
     }
 
     const onError = (data:any) => {
-        services().errorReport("Order Error", data);
+        console.error("PayPal Error", data);
+        flash.error("An error occurred while processing your order. Please try again or contact support.")();
+        services().errorReport("Order Error", {
+            error: serializeError(data),
+            context: {
+                cart: getCartContext(cart),
+                system: getSystemContext(),
+            }
+        });
     }
 
     const completeFreeOrder = () => {
