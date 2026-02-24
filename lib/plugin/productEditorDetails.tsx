@@ -3,7 +3,7 @@ import { Label } from "@core/components/Label"
 import { MarkdownEditor } from "@core/components/MarkdownEditor"
 import { onNumberChange, onRadioChange } from "@core/lib/onInputChange"
 import { IUpdater } from "@core/lib/useUpdater"
-import { faCopy } from "@fortawesome/free-solid-svg-icons"
+import { faCopy, faRefresh } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { IProduct } from "@store-shared/product/types"
 import { Button, Card, Radio, Space, Switch } from "antd"
@@ -36,14 +36,27 @@ export const registerProductEditorDetailsPlugins = () => {
     </>);
 
     // Product URL
-    register(600, ({history:{entity:product}, updateString}:IUpdater<IProduct>) => <>
-        <Label label="URL"><Editable value={product.url} onChange={updateString("url")}/></Label>
-        <div style={{textAlign: "right"}}>
-            <Button onClick={copyUrlFromName(product, updateString)}>
-                <FontAwesomeIcon icon={faCopy} /> Copy url from name
+    register(600, ({history:{entity:product}, updateString}:IUpdater<IProduct>) => <div style={{position: "relative"}}>
+        <Label label="URL">
+            <Editable value={product.url} onChange={updateString("url")}/>
+            <Button
+                onClick={copyUrlFromName(product, updateString)}
+                type="link"
+                style={{
+                    position: "absolute",
+                    right: 0,
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    width: "24px",
+                    height: "24px",
+                    background: "transparent",
+                    border: "none",
+                }}
+            >
+                <FontAwesomeIcon icon={faRefresh} />
             </Button>
-        </div>
-    </>);
+        </Label>
+    </div>);
 
     // Is Discountable
     register(500, ({history:{entity:product}, updateToggle}:IUpdater<IProduct>) => <>
