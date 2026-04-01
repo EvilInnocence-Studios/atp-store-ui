@@ -1,1 +1,1 @@
-export {AddtoCartBtn} from "./AddtoCartBtn.container";
+export {AddToCartBtn} from "./AddToCartBtn.container";

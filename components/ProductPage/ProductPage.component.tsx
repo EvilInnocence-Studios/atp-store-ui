@@ -1,18 +1,25 @@
 import { MediaSwitcher } from "@core/components/MediaSwitcher";
+import { overridable } from "@core/lib/overridable";
+import { ProductIdContext } from "@store/lib/context";
+import { Layout } from "@theming/components/Layout";
 import { Col, Row, Spin, Tag } from "antd";
 import Markdown from 'react-markdown';
 import { prop } from "ts-functional";
-import { AddtoCartBtn } from "../AddtoCartBtn";
+import { AddToCartBtn } from "../AddToCartBtn";
 import { Image } from "../Image";
 import { ProductPrice } from "../ProductPrice";
 import { ProductScroller } from "../ProductScroller";
-import { WishlistBtn } from "../WishlistBtn";
 import { ProductPageProps } from "./ProductPage.d";
 import styles from './ProductPage.module.scss';
-import { overridable } from "@core/lib/overridable";
+import { WishlistBtn } from "./WishlistBtn";
+
+const Provider = ProductIdContext.Provider;
 
 export const ProductPageComponent = overridable(({ product, media, relatedProducts, subProducts, isLoading, classes = styles }: ProductPageProps) =>
     <Spin spinning={isLoading}>
+        <Provider value={product?.id || ""}>
+            <Layout element="productPage" />
+        </Provider>
         {product && <div className={classes.productPage}>
             <div className={classes.header}>
                 <h1>{product.name}</h1>
@@ -31,8 +38,8 @@ export const ProductPageComponent = overridable(({ product, media, relatedProduc
                         <ProductPrice product={product} />
                     </Col>
                     <Col xs={24} sm={12} md={24} lg={12} className={classes.cartActions}>
-                        <AddtoCartBtn product={product} size="large" />
-                        <WishlistBtn product={product} />
+                        <AddToCartBtn id={product.id} size="large" />
+                        <WishlistBtn id={product.id} />
                     </Col>
                 </Row>
                 <h2>Tags</h2>

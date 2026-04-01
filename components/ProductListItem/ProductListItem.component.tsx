@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { Link } from "react-router";
-import { AddtoCartBtn } from "../AddtoCartBtn";
+import { AddToCartBtn } from "../AddToCartBtn";
 import { ProductPrice } from "../ProductPrice";
 import { ProductThumbnail } from "../ProductThumbnail";
 import { ProductListItemProps } from "./ProductListItem.d";
@@ -24,7 +24,7 @@ export const ProductListItemComponent = overridable(({ product, textSize, hideTa
         </div>
         <div className={classes.productDetails}>
             <ProductPrice product={product} small={hideTags} />
-            {!hideCartButton && <AddtoCartBtn product={product} />}
+            {!hideCartButton && <AddToCartBtn id={product.id} />}
         </div>
     </div>
 );

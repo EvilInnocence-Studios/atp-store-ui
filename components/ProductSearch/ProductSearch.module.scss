@@ -3,5 +3,6 @@
 .productSearch {
     :global(.ant-select) {
         width: 512px;
+        max-width: 100%;
     }
 }

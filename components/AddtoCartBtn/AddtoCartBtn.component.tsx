@@ -1,8 +1,11 @@
-import { storePlugins } from "@store/lib/plugin/slots";
-import { AddtoCartBtnProps } from "./AddtoCartBtn.d";
 import { overridable } from "@core/lib/overridable";
+import { storePlugins } from "@store/lib/plugin/slots";
+import { AddToCartBtnProps } from "./AddToCartBtn.d";
 
-export const AddtoCartBtnComponent = overridable(({product, addToCart, size}:AddtoCartBtnProps) => <>
-        {storePlugins.cart.addButton.render({product, addToCart, size})}
-    </>
-);
+export const AddToCartBtnComponent = overridable(({className, css, product, addToCart, size}:AddToCartBtnProps) => <>
+    {css && <style>{css}</style>}
+    <span className={className}>
+        {product && storePlugins.cart.addButton.render({product, addToCart, size})}
+    </span>
+</>);
+

@@ -13,6 +13,7 @@ export declare interface IProductSearchInputProps {
     onSelect: (productId: string) => void;
     placeholder?: string;
     classes?: any;
+    value?: string | null;
 }
 
 export type ProductSearchProps = IProductSearchInputProps & IProductSearchProps;

@@ -4,7 +4,7 @@ import { tableColumns } from "@core/lib/plugins/tableColumns";
 import { ITableFilters } from "@core/lib/useTableFilters";
 import { IUpdater } from "@core/lib/useUpdater";
 import { IProduct } from "@store-shared/product/types";
-import { AddtoCartButtonBasic } from "@store/components/AddtoCartBtn/AddToCartBtnBasic";
+import { AddToCartButtonBasic } from "@store/components/AddToCartBtn/AddToCartBtnBasic";
 
 export interface IAddToCartPluginProps {
     product: IProduct;
@@ -36,6 +36,6 @@ export const storePlugins = {
         price: rendererOptionPlugins<IPriceProps>(),
     },
     cart: {
-        addButton: rendererOptionPlugins<IAddToCartPluginProps>(AddtoCartButtonBasic),
+        addButton: rendererOptionPlugins<IAddToCartPluginProps>(AddToCartButtonBasic),
     }
 };
