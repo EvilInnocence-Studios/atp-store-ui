@@ -3,7 +3,7 @@ import { IProductMediaInputProps } from "./ProductMedia.d";
 
 export const ProductMediaPropEditor = (
     {id}: IProductMediaInputProps,
-    updateProps: (props: any) => void,
+    _updateProps: (props: any) => void,
     updateProp: (prop: string) => (value: any) => void
 ) => {
     return <>

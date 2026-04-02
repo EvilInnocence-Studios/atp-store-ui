@@ -1,11 +1,15 @@
+import { ProductSearch } from "@store/components/ProductSearch";
 import { IWishlistBtnInputProps } from "./WishlistBtn.d";
 
 export const WishlistBtnPropEditor = (
-    {}: IWishlistBtnInputProps,
-    updateProps: (props: any) => void,
+    {id}: IWishlistBtnInputProps,
+    _updateProps: (props: any) => void,
     updateProp: (prop: string) => (value: any) => void
 ) => {
     return <>
-        Placeholder Prop Editor for WishlistBtn
+        <ProductSearch
+            value={id}
+            onSelect={updateProp("id")}
+        />
     </>;
 }
