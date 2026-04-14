@@ -32,37 +32,25 @@ export const injectProductContextProps = createInjector(({id}: {id?:string | nul
     const loader = useLoaderAsync();
 
     const defaultId = useContext(ProductIdContext);
+    const thisId = id || defaultId;
 
     useEffect(() => {
-        loader(async () => {
-            const product = await loadProduct(id || defaultId);
-            setProduct(product);
-        });
+        if (!thisId) return;
+
+        loader(() => loadProduct(thisId).then(setProduct));
 
         // Load tags
-        loader(async () => {
-            const tags = await loadTags(id || defaultId);
-            setTags(tags);
-        });
+        loader(() => loadTags(thisId).then(setTags));
 
         // Load media
-        loader(async () => {
-            const media = await loadMedia(id || defaultId);
-            setMedia(media.sort(sort.by(prop<any, any>("order")).asc));
-        });
+        loader(() => loadMedia(thisId).then(media => setMedia(media.sort(sort.by(prop<any, any>("order")).asc))));
 
         // Load related products
-        loader(async () => {
-            const related = await loadRelatedProducts(id || defaultId);
-            setRelatedProducts(related);
-        });
+        loader(() => loadRelatedProducts(thisId).then(setRelatedProducts));
 
         // Load sub products
-        loader(async () => {
-            const subProducts = await loadSubProducts(id || defaultId);
-            setSubProducts(subProducts);
-        });
-    }, [id]);
+        loader(() => loadSubProducts(thisId).then(setSubProducts));
+    }, [thisId]);
     
     return {product, tags, media, relatedProducts, isLoading: loader.isLoading, subProducts};
 });

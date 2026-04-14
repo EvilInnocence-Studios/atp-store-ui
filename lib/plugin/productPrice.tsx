@@ -6,7 +6,7 @@ import styles from './productPrice.module.scss';
 export const registerProductPricePlugins = () => {
     // Free products
     storePlugins.product.price.register({
-        filter: ({product}) => product.price <= 0.0,
+        filter: ({product}) => !!product && product.price <= 0.0,
         plugin: ({/*product,*/ small}) => <span>{small ? <></> : <Tag>Free</Tag>}</span>,
     });
 
@@ -14,10 +14,10 @@ export const registerProductPricePlugins = () => {
     storePlugins.product.price.register({
         filter: ({/*product*/}) => true,
         plugin: ({product, salePrice, isLoading, small}) => <Spin spinning={isLoading}>
-            <p className={clsx([styles.price, salePrice < product.price && styles.onSale])}>
-                ${product.price.toFixed(2)}
+            <p className={clsx([styles.price, salePrice < (product?.price || 0) && styles.onSale])}>
+                ${(product?.price || 0).toFixed(2)}
             </p>
-            {salePrice < product.price && <p className={styles.salePrice}>
+            {salePrice < (product?.price || 0) && <p className={styles.salePrice}>
                 {!small && <Tag color="green">On Sale!</Tag>} ${salePrice.toFixed(2)}
             </p>}
         </Spin>,

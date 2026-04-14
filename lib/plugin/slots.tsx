@@ -18,7 +18,7 @@ export interface IProductTableColumnProps {
 }
 
 export interface IPriceProps {
-    product: IProduct;
+    product: IProduct | null;
     salePrice: number;
     isLoading: boolean;
     small?: boolean;
