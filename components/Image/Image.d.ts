@@ -9,6 +9,7 @@ export declare interface IImageInputProps {
     productId: string;
     imageId: string | null;
     classes?: any;
+    className?: string;
 }
 
 export type ImageProps = IImageInputProps & IImageProps;

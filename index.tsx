@@ -5,9 +5,11 @@ import { CartBtn } from "./components/CartBtn";
 import { NewProducts } from "./components/NewProducts";
 import { ProductDescription } from "./components/ProductPage/ProductDescription";
 import { ProductMedia } from "./components/ProductPage/ProductMedia";
+import { ProductMediaPopup } from "./components/ProductPage/ProductMediaPopup";
 import { ProductName } from "./components/ProductPage/ProductName";
 import { ProductPrice } from "./components/ProductPage/ProductPrice";
 import { ProductTags } from "./components/ProductPage/ProductTags";
+import { ProductThumbnail } from "./components/ProductPage/ProductThumbnail";
 import { RelatedProducts } from "./components/ProductPage/RelatedProducts";
 import { SubProducts } from "./components/ProductPage/SubProducts";
 import { WishlistBtn } from "./components/ProductPage/WishlistBtn";
@@ -34,6 +36,8 @@ ComponentRegistry.register("NewProducts", NewProducts, { category: "Store", subC
 ComponentRegistry.register(ProductName);
 ComponentRegistry.register(ProductMedia);
 ComponentRegistry.register(ProductPrice);
+ComponentRegistry.register(ProductThumbnail);
+ComponentRegistry.register(ProductMediaPopup);
 ComponentRegistry.register(AddToCartBtn);
 ComponentRegistry.register(WishlistBtn);
 ComponentRegistry.register(ProductTags);
@@ -55,4 +59,14 @@ LayoutRegistry.register({
         component: "Empty"
     },
     priority: 500,
-})
+});
+
+LayoutRegistry.register({ 
+    name: "productListItem",
+    displayName: "Product List Item",
+    description: "Layout for product list item",
+    defaultLayout: {
+        component: "Empty"
+    },
+    priority: 500,
+});
