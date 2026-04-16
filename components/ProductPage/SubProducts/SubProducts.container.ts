@@ -22,9 +22,9 @@ export const SubProducts = withLayoutMetadata(
     overridable<ISubProductsInputProps>(connect(SubProductsComponent)),
     {
         name: "SubProducts",
-        displayName: "SubProducts",
+        displayName: "Sub Products",
         category: "Store",
-        subCategory: "Product",
+        subCategory: "Browse",
         description: "",
         icon,
         getSlotDisplayName: (slotName, props) => props[slotName] || slotName,

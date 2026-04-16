@@ -33,9 +33,9 @@ export const AddToCartBtn = withLayoutMetadata(
     overridable<IAddToCartBtnInputProps>(connect(AddToCartBtnComponent)),
     {
         name: "AddToCartBtn",
-        displayName: "AddToCartBtn",
+        displayName: "Add To Cart Button",
         category: "Store",
-        subCategory: "Product",
+        subCategory: "Actions",
         description: "",
         icon,
         getSlotDisplayName: (slotName, props) => props[slotName] || slotName,

@@ -32,7 +32,7 @@ export const ProductPrice = withLayoutMetadata(
     overridable<IProductPriceInputProps>(connect(ProductPriceComponent)),
     {
         name: "ProductPrice",
-        displayName: "ProductPrice",
+        displayName: "Product Price",
         category: "Store",
         subCategory: "Product",
         description: "",

@@ -22,9 +22,9 @@ export const RelatedProducts = withLayoutMetadata(
     overridable<IRelatedProductsInputProps>(connect(RelatedProductsComponent)),
     {
         name: "RelatedProducts",
-        displayName: "RelatedProducts",
+        displayName: "Related Products",
         category: "Store",
-        subCategory: "Product",
+        subCategory: "Browse",
         description: "",
         icon,
         getSlotDisplayName: (slotName, props) => props[slotName] || slotName,

@@ -22,7 +22,7 @@ export const ProductTags = withLayoutMetadata(
     overridable<IProductTagsInputProps>(connect(ProductTagsComponent)),
     {
         name: "ProductTags",
-        displayName: "ProductTags",
+        displayName: "Product Tags",
         category: "Store",
         subCategory: "Product",
         description: "",

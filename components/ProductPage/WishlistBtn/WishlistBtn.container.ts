@@ -42,9 +42,9 @@ export const WishlistBtn = withLayoutMetadata(
     overridable<IWishlistBtnInputProps>(connect(WishlistBtnComponent)),
     {
         name: "WishlistBtn",
-        displayName: "WishlistBtn",
+        displayName: "Wishlist Btn",
         category: "Store",
-        subCategory: "Product",
+        subCategory: "Actions",
         description: "",
         icon,
         getSlotDisplayName: (slotName, props) => props[slotName] || slotName,

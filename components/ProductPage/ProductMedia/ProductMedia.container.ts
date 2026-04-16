@@ -22,7 +22,7 @@ export const ProductMedia = withLayoutMetadata(
     overridable<IProductMediaInputProps>(connect(ProductMediaComponent)),
     {
         name: "ProductMedia",
-        displayName: "ProductMedia",
+        displayName: "Product Media",
         category: "Store",
         subCategory: "Product",
         description: "",

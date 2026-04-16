@@ -12,7 +12,6 @@ import { RelatedProducts } from "./components/ProductPage/RelatedProducts";
 import { SubProducts } from "./components/ProductPage/SubProducts";
 import { WishlistBtn } from "./components/ProductPage/WishlistBtn";
 import { ProductSearchInput } from "./components/ProductSearchInput";
-import { ShopLink } from "./components/ShopLink";
 import { storeMenus } from "./lib/menus";
 import { registerMyAccountTabPlugins } from "./lib/plugin/myAccountTabs";
 import { registerProductEditorDetailsPlugins } from "./lib/plugin/productEditorDetails";
@@ -29,10 +28,9 @@ export const module: IModule = {
     settings: storeSettings,
 }
 
-ComponentRegistry.register("ShopLink", ShopLink, { category: "Store", displayName: "Shop Link" });
-ComponentRegistry.register("ProductSearchInput", ProductSearchInput, { category: "Store", displayName: "Product Search Input" });
-ComponentRegistry.register("CartBtn", CartBtn, { category: "Store", displayName: "Cart Button" });
-ComponentRegistry.register("NewProducts", NewProducts, { category: "Store", displayName: "New Products" });
+ComponentRegistry.register("ProductSearchInput", ProductSearchInput, { category: "Store", subCategory:"Browse", displayName: "Product Search Input" });
+ComponentRegistry.register("CartBtn", CartBtn, { category: "Store", subCategory:"Actions", displayName: "Cart Button" });
+ComponentRegistry.register("NewProducts", NewProducts, { category: "Store", subCategory:"Browse", displayName: "New Products" });
 ComponentRegistry.register(ProductName);
 ComponentRegistry.register(ProductMedia);
 ComponentRegistry.register(ProductPrice);
