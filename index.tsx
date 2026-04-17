@@ -1,4 +1,7 @@
+import { useSetting } from "@common/lib/setting/services";
 import { IModule } from "@core/lib/module";
+import { ProviderResistry } from "@core/lib/providerRegistry";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { ComponentRegistry, LayoutRegistry } from "@theming/lib/layout/componentRegistry";
 import { AddToCartBtn } from "./components/AddToCartBtn";
 import { CartBtn } from "./components/CartBtn";
@@ -69,4 +72,18 @@ LayoutRegistry.register({
         component: "Empty"
     },
     priority: 500,
+});
+
+ProviderResistry.register(({ children }) => {
+    const clientId = useSetting("paypalClientId");
+
+    return clientId ? <>
+        
+        <PayPalScriptProvider options={{
+            clientId,
+            vault: true,
+        }}>
+            {children}
+        </PayPalScriptProvider>
+    </> : null;
 });
