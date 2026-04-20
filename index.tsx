@@ -58,6 +58,8 @@ LayoutRegistry.register({
     name: "productPage",
     displayName: "Product Page",
     description: "Layout for product page",
+    category: "Store",
+    subCategory: "Product",
     defaultLayout: {
         component: "Empty"
     },
@@ -68,6 +70,8 @@ LayoutRegistry.register({
     name: "productListItem",
     displayName: "Product List Item",
     description: "Layout for product list item",
+    category: "Store",
+    subCategory: "Product",
     defaultLayout: {
         component: "Empty"
     },
