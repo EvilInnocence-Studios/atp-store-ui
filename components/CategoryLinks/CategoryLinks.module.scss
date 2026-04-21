@@ -5,22 +5,17 @@
     flex-wrap: wrap;
     justify-content: center;
     margin: 0 auto;
-    background-color: var(--bgLightColor);
     width: 100%;
     a {
         flex-grow: 1;
-        padding: var(--padding);
+        padding: 16px;
         text-align: center;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         font-weight: bold;
-        color: var(--textColor);
         text-decoration: none;
         transition: all 0.3s;
-        &:hover {
-            background-color: var(--bgColor);
-        }
     }
 }

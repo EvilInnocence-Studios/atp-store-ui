@@ -1,14 +1,12 @@
 @use "@styles/globals.module.scss";
 
 .miniProduct {
-    background-color: var(--bgColor);
-    padding: var(--paddingSmall);
-    border-radius: var(--borderRadius);
-    border: solid 1px var(--borderColor);
+    padding: 16px;
+    border-radius: 16px;
     img {
         float: left;
         width: 64px;
-        margin-right: var(--padding);
+        margin-right: 16px;
     }
     button {
         float: right;

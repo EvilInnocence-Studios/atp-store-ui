@@ -1,15 +1,15 @@
 @use "@styles/globals.module.scss";
 
 .relatedProducts {
-    margin-top: var(--padding);
+    margin-top: 16px;
     display: flex;
     flex-wrap: wrap;
-    gap: var(--padding);
+    gap: 16px;
     .relatedProduct {
         width: 256px;
         position: relative;
         img {
-            margin-bottom: var(--paddingXS);
+            margin-bottom: 16px;
         }
         :global(.deleteBtn) {
             position: absolute;

@@ -10,9 +10,8 @@
         clear: both;
     }
     display: none;
-    background-color: var(--bgLightColor);
-    padding: var(--padding);
-    margin-bottom: var(--padding);
+    padding: 16px;
+    margin-bottom: 16px;
     @media (max-width: 890px) {
         display: block;
     }

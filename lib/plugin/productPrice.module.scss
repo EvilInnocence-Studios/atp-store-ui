@@ -1,9 +1,8 @@
 p.price, p.salePrice {
     margin: 0;
     display: inline-block;
-    padding-right: var(--paddingSmall);
+    padding-right: 8px;
     &.onSale {
-        color: var(--warningColor);
         text-decoration: line-through;
     }
     &.salePrice {

@@ -4,18 +4,18 @@
     clear: both;
     padding: 0;
     &.columnsFive > * {
-        width: calc(20% - var(--padding) * 2);
+        width: calc(20% - 16px * 2);
     }
     &.columnsFour > * {
-        width: calc(25% - var(--padding) * 2);
+        width: calc(25% - 16px * 2);
     }
     &.columnsThree > * {
-        width: calc(33.3333% - var(--padding) * 2);
+        width: calc(33.3333% - 16px * 2);
     }
     &.columnsTwo > * {
-        width: calc(50% - var(--padding) * 2);
+        width: calc(50% - 16px * 2);
     }
     &.columnsOne > * {
-        width: calc(100% - var(--padding) * 2);
+        width: calc(100% - 16px * 2);
     }            
 }
