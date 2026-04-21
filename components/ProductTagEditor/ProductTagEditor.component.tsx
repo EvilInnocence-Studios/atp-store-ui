@@ -5,6 +5,7 @@ import { overridable } from "@core/lib/overridable";
 
 export const ProductTagEditorComponent = overridable(({ productId }: ProductTagEditorProps) =>
     <EntityTagEditor
+        type="product"
         search={() => services().product.tag.search(productId)}
         create={(tagId: string) => services().product.tag.create(productId, tagId)}
         remove={(tagId: string) => services().product.tag.remove(productId, tagId)}
