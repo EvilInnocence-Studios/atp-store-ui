@@ -13,6 +13,7 @@ export declare interface IProductThumbnailInputProps {
     slots?: Index<ILayoutComponent[]>;
     __layoutId?: string;
     id?: string | null;
+    link?: boolean;
 }
 
 export type ProductThumbnailProps = IProductThumbnailInputProps & IProductContextProps & IProductThumbnailProps;

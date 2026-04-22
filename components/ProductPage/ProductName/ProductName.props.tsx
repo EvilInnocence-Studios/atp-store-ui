@@ -1,8 +1,9 @@
 import { ProductSearch } from "@store/components/ProductSearch";
+import { Checkbox } from "antd";
 import { IProductNameInputProps } from "./ProductName.d";
 
 export const ProductNamePropEditor = (
-    {id}: IProductNameInputProps,
+    {id, link}: IProductNameInputProps,
     _updateProps: (props: any) => void,
     updateProp: (prop: string) => (value: any) => void
 ) => {
@@ -11,5 +12,6 @@ export const ProductNamePropEditor = (
             onSelect={updateProp("id")}
             value={id}
         />
+        <Checkbox checked={link} title="Link to product?" />
     </>;
 }

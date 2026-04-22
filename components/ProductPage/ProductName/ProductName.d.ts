@@ -13,6 +13,7 @@ export declare interface IProductNameInputProps {
     slots?: Index<ILayoutComponent[]>;
     __layoutId?: string;
     id?: string | null;
+    link?: boolean;
 }
 
 export type ProductNameProps = IProductNameInputProps & IProductContextProps & IProductNameProps;
