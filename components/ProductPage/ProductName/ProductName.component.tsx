@@ -6,7 +6,7 @@ export const ProductNameComponent = overridable(({product, className, css, link}
     {css && <style>{css}</style>}
     <span className={className}>
         {link
-            ? <Link to={`products/${product?.id}`}>{product?.name}</Link>
+            ? <Link to={`products/${product?.url}`}>{product?.name}</Link>
             : <>{product?.name}</>
         }
     </span>
