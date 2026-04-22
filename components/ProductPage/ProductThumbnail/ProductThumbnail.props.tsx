@@ -12,6 +12,6 @@ export const ProductThumbnailPropEditor = (
             value={id}
             onSelect={updateProp('id')}
         />
-        <Checkbox checked={link} title="Link to product?" />
+        <Checkbox checked={link} onChange={updateProp("link")} /> Link to product?
     </>;
 }

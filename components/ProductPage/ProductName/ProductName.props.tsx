@@ -12,6 +12,6 @@ export const ProductNamePropEditor = (
             onSelect={updateProp("id")}
             value={id}
         />
-        <Checkbox checked={link} title="Link to product?" />
+        <Checkbox checked={link} onChange={updateProp("link")}/> Link to product?
     </>;
 }
