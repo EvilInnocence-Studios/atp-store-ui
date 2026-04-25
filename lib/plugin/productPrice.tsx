@@ -6,6 +6,7 @@ import styles from './productPrice.module.scss';
 export const registerProductPricePlugins = () => {
     // Free products
     storePlugins.product.price.register({
+        priority: 10,
         filter: ({product}) => !!product && product.price <= 0.0,
         plugin: ({/*product,*/ small}) => <span>{small ? <></> : <Tag>Free</Tag>}</span>,
     });
