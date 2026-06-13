@@ -9,6 +9,7 @@ import { ProductPrice } from "../ProductPrice";
 import { CartProps } from "./Cart.d";
 import styles from './Cart.module.scss';
 import { overridable } from "@core/lib/overridable";
+import clsx from "clsx";
 
 export const CartComponent = overridable(({ userId, createOrder, onApprove, onCancel, onError, completeFreeOrder, isLoading, loginModal, classes = styles, ...cart }: CartProps) => {
     const columns = [{
@@ -52,12 +53,12 @@ export const CartComponent = overridable(({ userId, createOrder, onApprove, onCa
     return <div className={classes.cart}>
         <Spin spinning={isLoading}>
             <h1><FontAwesomeIcon icon={faCartShopping} /> Your Cart</h1>
-            <div className={classes.cartActions}>
+            <div className={clsx(classes.cartActions, "cartActions")}>
                 <Button type="link" danger onClick={cart.clear}>
                     <FontAwesomeIcon icon={faTrashAlt} /> Clear Cart
                 </Button>
             </div>
-            <div className={classes.cartItems}>
+            <div className={clsx(classes.cartItems, "cartItems")}>
                 <Table<IProduct>
                     dataSource={cart.products}
                     columns={columns}
@@ -79,7 +80,7 @@ export const CartComponent = overridable(({ userId, createOrder, onApprove, onCa
                     </div>}
                 />
             </div>
-            {!!parseInt(userId) && <div className={classes.cartActions}>
+            {!!parseInt(userId) && <div className={clsx(classes.cartActions, "cartActions")}>
                 {cart.totals.total > 0 &&
                     <PayPalButtons
                         createOrder={handleCreateOrder}
@@ -97,7 +98,7 @@ export const CartComponent = overridable(({ userId, createOrder, onApprove, onCa
                     </Button>
                 }
             </div>}
-            {!parseInt(userId) && <div className={classes.cartActions}>
+            {!parseInt(userId) && <div className={clsx(classes.cartActions, "cartActions")}>
                 <Button type="primary" onClick={loginModal.open}>
                     <FontAwesomeIcon icon={faSignIn} /> Login to Checkout
                 </Button>
