@@ -1,10 +1,10 @@
 @use "@styles/globals.module.scss";
 
 .orderDetails {
-    padding: 16px;
-    .totals {
-        text-align: center;
-        font-weight: bold;
+    :global(.ant-table-wrapper) {
+        margin: -16px;
+        width: calc(100% + 32px);
+        max-width: calc(100% + 32px);
     }
     img {
         width: 84px;

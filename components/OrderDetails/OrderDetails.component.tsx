@@ -1,11 +1,10 @@
-import { Col, Row, Spin, Table } from "antd";
+import { overridable } from "@core/lib/overridable";
+import { IProduct } from "@store-shared/product/types";
+import { Spin, Table } from "antd";
+import { Image } from "../Image";
+import { ProductFileDownloadBtn } from "../ProductFileDownloadBtn";
 import { OrderDetailsProps } from "./OrderDetails.d";
 import styles from './OrderDetails.module.scss';
-import { ProductFileDownloadBtn } from "../ProductFileDownloadBtn";
-import { IProduct } from "@store-shared/product/types";
-import { Image } from "../Image";
-import dayjs from "dayjs";
-import { overridable } from "@core/lib/overridable";
 
 export const OrderDetailsComponent = overridable(({ order, isLoading, classes = styles }: OrderDetailsProps) => {
     const columns = [{
@@ -28,14 +27,7 @@ export const OrderDetailsComponent = overridable(({ order, isLoading, classes = 
     }]
     return <Spin spinning={isLoading}>
         {order && <div className={classes.orderDetails}>
-            <h1>Order Details (#{order.id})</h1>
-            <h2>Date: {dayjs(order.createdAt).format("MMMM DD, YYYY")}</h2>
             <Table<IProduct> dataSource={order.items} columns={columns} pagination={false} />
-            <Row className={classes.totals}>
-                <Col xs={8}>SubTotal: ${order.subtotal.toFixed(2)}</Col>
-                <Col xs={8}>Discount: ${order.discount.toFixed(2)}</Col>
-                <Col xs={8}>Total: ${order.total.toFixed(2)}</Col>
-            </Row>
 
             <h2>All Order Files</h2>
             <div className={classes.orderFiles}>

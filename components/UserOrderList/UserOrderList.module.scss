@@ -1,10 +1,25 @@
 @use "@styles/globals.module.scss";
 
 .userOrderList {
+    width: 100%;
+
     .selected {
         font-weight: bold;
     }
+
     h1 {
         display: inline;
+    }
+
+    .columnData {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        @media (min-width: 768px) {
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
     }
 }
