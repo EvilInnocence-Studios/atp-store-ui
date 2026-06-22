@@ -1,9 +1,10 @@
 import { services } from "@core/lib/api";
+import { getSystemContext, serializeError } from "@core/lib/errorUtils";
 import { flash } from "@core/lib/flash";
-import { getCartContext, getSystemContext, serializeError } from "@core/lib/errorUtils";
 import { overridable } from "@core/lib/overridable";
 import { useLoaderAsync } from "@core/lib/useLoader";
 import { IOrder } from "@store-shared/order/types";
+import { IProduct } from "@store-shared/product/types";
 import { useCart } from "@store/lib/useCart";
 import { useLoggedInUser } from "@uac/lib/login/services";
 import { useLoginForm } from "@uac/lib/useLoginForm";
@@ -12,6 +13,18 @@ import { prop } from "ts-functional";
 import { createInjector, inject, mergeProps } from "unstateless";
 import { CartComponent } from "./Cart.component";
 import { CartProps, ICartInputProps, ICartProps } from "./Cart.d";
+
+const getCartContext = (cart: any) => {
+    return {
+        items: cart.products.map((p: IProduct) => ({
+            id: p.id,
+            name: p.name,
+            price: p.price,
+        })),
+        totals: cart.totals,
+        couponCode: cart.couponCode,
+    };
+};
 
 const injectCartProps = createInjector(({}:ICartInputProps):ICartProps => {
     const [{user}] = useLoggedInUser();
