@@ -1,5 +1,6 @@
 import { useSetting } from "@common/lib/setting/services";
 import { IModule } from "@core/lib/module";
+import { RendererRegistry } from "@core/lib/plugins/renderer";
 import { ProviderResistry } from "@core/lib/providerRegistry";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { ComponentRegistry, LayoutRegistry } from "@theming/lib/layout/componentRegistry";
@@ -17,6 +18,7 @@ import { RelatedProducts } from "./components/ProductPage/RelatedProducts";
 import { SubProducts } from "./components/ProductPage/SubProducts";
 import { WishlistBtn } from "./components/ProductPage/WishlistBtn";
 import { ProductSearchInput } from "./components/ProductSearchInput";
+import { SalesReport } from "./components/SalesReport";
 import { storeMenus } from "./lib/menus";
 import { registerMyAccountTabPlugins } from "./lib/plugin/myAccountTabs";
 import { registerProductEditorDetailsPlugins } from "./lib/plugin/productEditorDetails";
@@ -53,6 +55,8 @@ registerUserManagerTabPlugins();
 registerProductEditorDetailsPlugins();
 registerProductManagerColumnPlugins();
 registerProductPricePlugins();
+
+RendererRegistry.get<any>("admin.homepage").register(0, SalesReport);
 
 LayoutRegistry.register({
     name: "productPage",
