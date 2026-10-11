@@ -8,7 +8,7 @@ import { overridable } from "@core/lib/overridable";
 
 export const ProductsPageComponent = overridable(({ classes = styles }: ProductsPageProps) =>
     <div className={classes.productsPage}>
-        <Layout>
+        <Layout className="productsPage">
             <SearchPageSidebar />
             <Layout.Content className={classes.productListContainer}>
                 <SearchPageHeader />
