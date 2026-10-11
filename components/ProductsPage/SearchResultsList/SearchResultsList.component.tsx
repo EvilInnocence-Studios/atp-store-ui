@@ -22,7 +22,7 @@ export const sortProducts = (sortBy: string) => (products: IProduct[]) => produc
     default: () => (a, b) => +a.id - +b.id,
 }) || (() => 0)));
 
-export const SearchResultsListComponent = overridable(({ products, paginator, columns, sortBy }: SearchResultsListProps) =>
+export const SearchResultsListComponent = overridable(({ products, paginator, sortBy }: SearchResultsListProps) =>
     <div className={clsx([styles.productList, "productList"])}>
         {sortProducts(sortBy)(products)
             .slice(paginator.pageSize * (paginator.current - 1), paginator.pageSize * paginator.current)
