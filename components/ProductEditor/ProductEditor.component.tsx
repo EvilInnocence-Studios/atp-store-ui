@@ -1,9 +1,8 @@
 import { Editable } from "@core/components/Editable";
 import { Label } from "@core/components/Label";
-import { onDateChange } from "@core/lib/onInputChange";
+import { DatePicker } from "@core/components/DatePicker";
 import { storePlugins } from "@store/lib/plugin/slots";
-import { Col, DatePicker, Row, Space, Spin, Switch, Tabs } from "antd";
-import dayjs from "dayjs";
+import { Col, Row, Space, Spin, Switch, Tabs } from "antd";
 import { ProductFilesEditor } from "../ProductFilesEditor";
 import { ProductMediaEditor } from "../ProductMediaEditor";
 import { ProductTagEditor } from "../ProductTagEditor";
@@ -25,7 +24,7 @@ export const ProductEditorComponent = overridable(({
                 <Col span={24}>
                     <Space>
                         <Switch checked={product.enabled} checkedChildren="Enabled" unCheckedChildren="Disabled" onChange={props.updateToggle("enabled")} />
-                        <DatePicker value={product.releaseDate ? dayjs(product.releaseDate) : undefined} onChange={onDateChange(props.updateString("releaseDate"))} />
+                        <DatePicker value={product.releaseDate} onChange={props.updateString("releaseDate")} />
                         <Switch checked={product.pinned} checkedChildren="Pinned" unCheckedChildren="Not Pinned" onChange={props.updateToggle("pinned")} />
                     </Space>
                     <div className={classes.updateButtons}><props.UpdateButtons /></div>
